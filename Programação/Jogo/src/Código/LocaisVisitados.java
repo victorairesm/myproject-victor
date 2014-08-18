@@ -14,5 +14,21 @@ public class LocaisVisitados {
     
    private String nomelocal;
    private String nomeatendente;
+
+    public String getNomelocal() {
+        return nomelocal;
+    }
+
+    public void setNomelocal(String nomelocal) {
+        this.nomelocal = nomelocal;
+    }
+
+    public String getNomeatendente() {
+        return nomeatendente;
+    }
+
+    public void setNomeatendente(String nomeatendente) {
+        this.nomeatendente = nomeatendente;
+    }
     
 }
