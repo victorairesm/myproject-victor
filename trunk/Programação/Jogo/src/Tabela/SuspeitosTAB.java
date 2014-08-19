@@ -6,6 +6,11 @@
 
 package Tabela;
 
+import Código.Suspeitos;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Victor
@@ -17,6 +22,55 @@ public class SuspeitosTAB extends javax.swing.JFrame {
      */
     public SuspeitosTAB() {
         initComponents();
+        
+        List <Suspeitos> lista = new ArrayList<Suspeitos>();
+        
+        Suspeitos s = new Suspeitos();
+        
+        s.setNomesuspeito("1");
+        s.setSexo("2");
+        s.setOcupacao("3");
+        s.setEsporte("4");
+        s.setCabelo("5");
+        s.setCarro("6");
+        s.setTracos("7");
+        s.setOutros("8");
+        lista.add(s);
+        s = new Suspeitos();
+        
+        
+        s.setNomesuspeito("a");
+        s.setSexo("b");
+        s.setOcupacao("c");
+        s.setEsporte("d");
+        s.setCabelo("e");
+        s.setCarro("f");
+        s.setTracos("g");
+        s.setOutros("h");
+        lista.add(s);
+        s = new Suspeitos();
+        
+        DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
+        
+        int linhas = tabela.getRowCount();
+        for (int i = linhas-1; i >=0; i--) {
+            tabela.removeRow(i);
+        }
+        
+        Object[] colunas = new Object[tabela.getColumnCount()];
+        
+        for (Suspeitos cid : lista) {
+            colunas[0] = cid.getNomesuspeito();
+            colunas[1] = cid.getSexo();
+            colunas[2] = cid.getOcupacao();
+            colunas[3] = cid.getEsporte();
+            colunas[4] = cid.getCabelo();
+            colunas[5] = cid.getCarro();
+            colunas[6] = cid.getTracos();
+            colunas[7] = cid.getOutros();
+            
+            tabela.addRow(colunas);
+        }
     }
 
     /**

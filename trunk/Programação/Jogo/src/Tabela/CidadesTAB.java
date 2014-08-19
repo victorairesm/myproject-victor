@@ -6,6 +6,11 @@
 
 package Tabela;
 
+import Código.Cidades;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Victor
@@ -17,6 +22,52 @@ public class CidadesTAB extends javax.swing.JFrame {
      */
     public CidadesTAB() {
         initComponents();
+        
+        List <Cidades> lista = new ArrayList<Cidades>();
+        
+        Cidades c = new Cidades();
+        
+        c.setNomecidade("1");
+        c.setDescricao("2");
+        c.setDica1("3");
+        c.setDica2("4");
+        c.setDica3("5");
+        c.setItem1("6");
+        c.setItem2("7");
+        lista.add(c);
+        c = new Cidades();
+        
+        
+        c.setNomecidade("a");
+        c.setDescricao("b");
+        c.setDica1("c");
+        c.setDica2("d");
+        c.setDica3("e");
+        c.setItem1("f");
+        c.setItem2("g");
+        lista.add(c);
+        c = new Cidades();
+        
+        DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
+        
+        int linhas = tabela.getRowCount();
+        for (int i = linhas-1; i >=0; i--) {
+            tabela.removeRow(i);
+        }
+        
+        Object[] colunas = new Object[tabela.getColumnCount()];
+        
+        for (Cidades cid : lista) {
+            colunas[0] = cid.getNomecidade();
+            colunas[1] = cid.getDescricao();
+            colunas[2] = cid.getDica1();
+            colunas[3] = cid.getDica2();
+            colunas[4] = cid.getDica3();
+            colunas[5] = cid.getItem1();
+            colunas[6] = cid.getItem2();
+            
+            tabela.addRow(colunas);
+        }
     }
 
     /**
