@@ -6,6 +6,11 @@
 
 package Tabela;
 
+import Código.LocaisVisitados;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Victor
@@ -17,6 +22,37 @@ public class LocaisVisitadosTAB extends javax.swing.JFrame {
      */
     public LocaisVisitadosTAB() {
         initComponents();
+        
+        List <LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
+        
+        LocaisVisitados lv = new LocaisVisitados();
+        
+        lv.setNomelocal("1");
+        lv.setNomeatendente("2");
+        lista.add(lv);
+        lv = new LocaisVisitados();
+        
+        
+        lv.setNomelocal("a");
+        lv.setNomeatendente("b");
+        lista.add(lv);
+        lv = new LocaisVisitados();
+        
+        DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
+        
+        int linhas = tabela.getRowCount();
+        for (int i = linhas-1; i >=0; i--) {
+            tabela.removeRow(i);
+        }
+        
+        Object[] colunas = new Object[tabela.getColumnCount()];
+        
+        for (LocaisVisitados cid : lista) {
+            colunas[0] = cid.getNomelocal();
+            colunas[1] = cid.getNomeatendente();
+            
+            tabela.addRow(colunas);
+        }
     }
 
     /**

@@ -6,6 +6,11 @@
 
 package Tabela;
 
+import Código.Detetive;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Victor
@@ -17,6 +22,43 @@ public class DetetiveTAB extends javax.swing.JFrame {
      */
     public DetetiveTAB() {
         initComponents();
+        
+                List <Detetive> lista = new ArrayList<Detetive>();
+        
+        Detetive d = new Detetive();
+        
+        d.setNome("1");
+        d.setEmail("2");
+        d.setNcasos("3");
+        d.setEquipe("4");
+        lista.add(d);
+        d = new Detetive();
+        
+        
+        d.setNome("a");
+        d.setEmail("b");
+        d.setNcasos("c");
+        d.setEquipe("d");
+        lista.add(d);
+        d = new Detetive();
+        
+        DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
+        
+        int linhas = tabela.getRowCount();
+        for (int i = linhas-1; i >=0; i--) {
+            tabela.removeRow(i);
+        }
+        
+        Object[] colunas = new Object[tabela.getColumnCount()];
+        
+        for (Detetive cid : lista) {
+            colunas[0] = cid.getNome();
+            colunas[1] = cid.getEmail();
+            colunas[2] = cid.getNcasos();
+            colunas[3] = cid.getEquipe();
+            
+            tabela.addRow(colunas);
+        }
     }
 
     /**
