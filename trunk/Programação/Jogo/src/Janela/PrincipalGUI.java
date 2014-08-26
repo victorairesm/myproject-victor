@@ -6,6 +6,11 @@
 
 package Janela;
 
+import Tabela.CidadesTAB;
+import Tabela.DetetiveTAB;
+import Tabela.LocaisVisitadosTAB;
+import Tabela.SuspeitosTAB;
+
 /**
  *
  * @author Aluno
@@ -29,27 +34,107 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        menuDetetive = new javax.swing.JMenu();
+        itemDetetiveG = new javax.swing.JMenuItem();
+        itemDetetiveL = new javax.swing.JMenuItem();
+        menuSuspeitos = new javax.swing.JMenu();
+        itemSuspeitosG = new javax.swing.JMenuItem();
+        itemSuspeitosL = new javax.swing.JMenuItem();
+        menuLocaisvisitados = new javax.swing.JMenu();
+        itemLocaisG = new javax.swing.JMenuItem();
+        itemLocaisL = new javax.swing.JMenuItem();
+        menuCidades = new javax.swing.JMenu();
+        itemCidadesG = new javax.swing.JMenuItem();
+        itemCidadesL = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel1.setText("TchêLoqui Ramos");
 
-        jMenu1.setText("Detetives");
-        jMenuBar1.add(jMenu1);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/detetiveIMG.gif"))); // NOI18N
 
-        jMenu2.setText("Suspeitos");
-        jMenuBar1.add(jMenu2);
+        menuDetetive.setText("Detetive");
 
-        jMenu3.setText("Locais Visitados");
-        jMenuBar1.add(jMenu3);
+        itemDetetiveG.setText("Gerenciar");
+        itemDetetiveG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDetetiveGActionPerformed(evt);
+            }
+        });
+        menuDetetive.add(itemDetetiveG);
 
-        jMenu4.setText("Cidades");
-        jMenuBar1.add(jMenu4);
+        itemDetetiveL.setText("Listar");
+        itemDetetiveL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDetetiveLActionPerformed(evt);
+            }
+        });
+        menuDetetive.add(itemDetetiveL);
+
+        jMenuBar1.add(menuDetetive);
+
+        menuSuspeitos.setText("Suspeitos");
+
+        itemSuspeitosG.setText("Gerenciar");
+        itemSuspeitosG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSuspeitosGActionPerformed(evt);
+            }
+        });
+        menuSuspeitos.add(itemSuspeitosG);
+
+        itemSuspeitosL.setText("Listar");
+        itemSuspeitosL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSuspeitosLActionPerformed(evt);
+            }
+        });
+        menuSuspeitos.add(itemSuspeitosL);
+
+        jMenuBar1.add(menuSuspeitos);
+
+        menuLocaisvisitados.setText("Locais Visitados");
+
+        itemLocaisG.setText("Gerenciar");
+        itemLocaisG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemLocaisGActionPerformed(evt);
+            }
+        });
+        menuLocaisvisitados.add(itemLocaisG);
+
+        itemLocaisL.setText("Listar");
+        itemLocaisL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemLocaisLActionPerformed(evt);
+            }
+        });
+        menuLocaisvisitados.add(itemLocaisL);
+
+        jMenuBar1.add(menuLocaisvisitados);
+
+        menuCidades.setText("Cidades");
+
+        itemCidadesG.setText("Gerenciar");
+        itemCidadesG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCidadesGActionPerformed(evt);
+            }
+        });
+        menuCidades.add(itemCidadesG);
+
+        itemCidadesL.setText("Listar");
+        itemCidadesL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCidadesLActionPerformed(evt);
+            }
+        });
+        menuCidades.add(itemCidadesL);
+
+        jMenuBar1.add(menuCidades);
 
         setJMenuBar(jMenuBar1);
 
@@ -57,21 +142,71 @@ public class PrincipalGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(78, 78, 78)
-                .addComponent(jLabel1)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addComponent(jLabel1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemDetetiveGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDetetiveGActionPerformed
+        DetetiveGUI d = new DetetiveGUI();
+        d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        d.setVisible(true);  
+    }//GEN-LAST:event_itemDetetiveGActionPerformed
+
+    private void itemDetetiveLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDetetiveLActionPerformed
+        DetetiveTAB d = new DetetiveTAB();
+        d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        d.setVisible(true);
+    }//GEN-LAST:event_itemDetetiveLActionPerformed
+
+    private void itemSuspeitosGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSuspeitosGActionPerformed
+        SuspeitosGUI s = new SuspeitosGUI();
+        s.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        s.setVisible(true);  
+    }//GEN-LAST:event_itemSuspeitosGActionPerformed
+
+    private void itemSuspeitosLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSuspeitosLActionPerformed
+        SuspeitosTAB s = new SuspeitosTAB();
+        s.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        s.setVisible(true);  
+    }//GEN-LAST:event_itemSuspeitosLActionPerformed
+
+    private void itemLocaisGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLocaisGActionPerformed
+        LocaisVisitadosGUI lv = new LocaisVisitadosGUI();
+        lv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        lv.setVisible(true);  
+    }//GEN-LAST:event_itemLocaisGActionPerformed
+
+    private void itemLocaisLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLocaisLActionPerformed
+        LocaisVisitadosTAB lv = new LocaisVisitadosTAB();
+        lv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        lv.setVisible(true); 
+    }//GEN-LAST:event_itemLocaisLActionPerformed
+
+    private void itemCidadesGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadesGActionPerformed
+        CidadesGUI c = new CidadesGUI();
+        c.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        c.setVisible(true); 
+    }//GEN-LAST:event_itemCidadesGActionPerformed
+
+    private void itemCidadesLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadesLActionPerformed
+        CidadesTAB c = new CidadesTAB();
+        c.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        c.setVisible(true); 
+    }//GEN-LAST:event_itemCidadesLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,11 +244,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itemCidadesG;
+    private javax.swing.JMenuItem itemCidadesL;
+    private javax.swing.JMenuItem itemDetetiveG;
+    private javax.swing.JMenuItem itemDetetiveL;
+    private javax.swing.JMenuItem itemLocaisG;
+    private javax.swing.JMenuItem itemLocaisL;
+    private javax.swing.JMenuItem itemSuspeitosG;
+    private javax.swing.JMenuItem itemSuspeitosL;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menuCidades;
+    private javax.swing.JMenu menuDetetive;
+    private javax.swing.JMenu menuLocaisvisitados;
+    private javax.swing.JMenu menuSuspeitos;
     // End of variables declaration//GEN-END:variables
 }
