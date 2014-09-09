@@ -6,7 +6,7 @@
 
 package Tabela;
 
-import Código.Detetive;
+import Codigo.Detetive;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -29,7 +29,7 @@ public class DetetiveTAB extends javax.swing.JFrame {
         
         d.setNome("1");
         d.setEmail("2");
-        d.setNcasos("3");
+        d.setNcasos(3);
         d.setEquipe("4");
         lista.add(d);
         d = new Detetive();
@@ -37,7 +37,7 @@ public class DetetiveTAB extends javax.swing.JFrame {
         
         d.setNome("a");
         d.setEmail("b");
-        d.setNcasos("c");
+        d.setNcasos(2);
         d.setEquipe("d");
         lista.add(d);
         d = new Detetive();

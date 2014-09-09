@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Código;
+package Codigo;
 
 /**
  *
@@ -20,6 +20,7 @@ public class Suspeitos {
    private String carro;
    private String tracos;
    private String outros;
+   private Integer suspeitoid;
 
     public String getNomesuspeito() {
         return nomesuspeito;
@@ -83,6 +84,14 @@ public class Suspeitos {
 
     public void setOutros(String outros) {
         this.outros = outros;
+    }
+
+    public Integer getSuspeitoid() {
+        return suspeitoid;
+    }
+
+    public void setSuspeitoid(Integer suspeitoid) {
+        this.suspeitoid = suspeitoid;
     }
     
 }

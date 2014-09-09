@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class DetetiveGUI extends javax.swing.JFrame {
     
-  List<Código.Detetive> lista = new ArrayList<Código.Detetive>();
+  List<Codigo.Detetive> lista = new ArrayList<Codigo.Detetive>();
 
   Integer posicaoLista;
   
@@ -249,11 +249,11 @@ public class DetetiveGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
-        Código.Detetive jogo = lista.get(0);
+        Codigo.Detetive jogo = lista.get(0);
 
         txtNome.setText(jogo.getNome());
         txtEmail.setText(jogo.getEmail());
-        txtNcasos.setText(jogo.getNcasos());
+        txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
 
         posicaoLista = 0;
@@ -262,11 +262,11 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         if (posicaoLista < (lista.size() - 1)) {
             posicaoLista = posicaoLista + 1;
-            Código.Detetive jogo = lista.get(posicaoLista);
+            Codigo.Detetive jogo = lista.get(posicaoLista);
 
         txtNome.setText(jogo.getNome());
         txtEmail.setText(jogo.getEmail());
-        txtNcasos.setText(jogo.getNcasos());
+        txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
         
         }
@@ -275,33 +275,33 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         if (posicaoLista > 0) {
             posicaoLista = posicaoLista - 1;
-            Código.Detetive jogo = lista.get(posicaoLista);
+            Codigo.Detetive jogo = lista.get(posicaoLista);
 
         txtNome.setText(jogo.getNome());
         txtEmail.setText(jogo.getEmail());
-        txtNcasos.setText(jogo.getNcasos());
+        txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
         
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
-        Código.Detetive jogo = lista.get(lista.size() - 1);
+        Codigo.Detetive jogo = lista.get(lista.size() - 1);
 
         txtNome.setText(jogo.getNome());
         txtEmail.setText(jogo.getEmail());
-        txtNcasos.setText(jogo.getNcasos());
+        txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
         
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-            Código.Detetive jogo = new Código.Detetive();
+            Codigo.Detetive jogo = new Codigo.Detetive();
 
             jogo.setNome(txtNome.getText());
             jogo.setEmail(txtEmail.getText());
-            jogo.setNcasos(txtNcasos.getText());
+            jogo.setNcasos(Integer.parseInt(txtNcasos.getText()));
             jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
            
             lista.add(jogo);
@@ -319,13 +319,13 @@ public class DetetiveGUI extends javax.swing.JFrame {
         boolean encontrou = false;
 
         int i = 0;
-        for (Código.Detetive jogo : lista) {
+        for (Codigo.Detetive jogo : lista) {
 
             if (jogo.getNome().equals(consulta)) {
 
             txtNome.setText(jogo.getNome());
             txtEmail.setText(jogo.getEmail());
-            txtNcasos.setText(jogo.getNcasos());
+            txtNcasos.setText(jogo.getNcasos().toString());
             jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
 
                 encontrou = true;
@@ -345,12 +345,12 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         String nome = txtNome.getText();
 
-        for (Código.Detetive jogo : lista) {
+        for (Codigo.Detetive jogo : lista) {
             if (nome.equals(jogo.getNome())) { 
             
             jogo.setNome(txtNome.getText());
             jogo.setEmail(txtEmail.getText());
-            jogo.setNcasos(txtNcasos.getText());
+            jogo.setNcasos(Integer.parseInt(txtNcasos.getText()));
             jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
 
             JOptionPane.showMessageDialog(null, "Detetive atualizado com sucesso");
@@ -374,7 +374,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
         if (confirma == 0) {
             String nome = txtNome.getText();
 
-            for (Código.Detetive jogo : lista) {
+            for (Codigo.Detetive jogo : lista) {
 
                 if (jogo.getNome().equals(nome)) {
 

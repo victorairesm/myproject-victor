@@ -6,7 +6,8 @@
 
 package Tabela;
 
-import Código.LocaisVisitados;
+import Codigo.LocaisVisitados;
+import Dao.LocaisVisitadosDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -25,18 +26,8 @@ public class LocaisVisitadosTAB extends javax.swing.JFrame {
         
         List <LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
         
-        LocaisVisitados lv = new LocaisVisitados();
-        
-        lv.setNomelocal("1");
-        lv.setNomeatendente("2");
-        lista.add(lv);
-        lv = new LocaisVisitados();
-        
-        
-        lv.setNomelocal("a");
-        lv.setNomeatendente("b");
-        lista.add(lv);
-        lv = new LocaisVisitados();
+        LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
+        lista = dao.Listar();
         
         DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
         

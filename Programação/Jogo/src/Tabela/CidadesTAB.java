@@ -6,7 +6,7 @@
 
 package Tabela;
 
-import Código.Cidades;
+import Codigo.Cidades;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Código;
+package Codigo;
 
 /**
  *
@@ -14,6 +14,7 @@ public class LocaisVisitados {
     
    private String nomelocal;
    private String nomeatendente;
+   private Integer localvisitadoid;
 
     public String getNomelocal() {
         return nomelocal;
@@ -29,6 +30,14 @@ public class LocaisVisitados {
 
     public void setNomeatendente(String nomeatendente) {
         this.nomeatendente = nomeatendente;
+    }
+
+    public Integer getLocalvisitadoid() {
+        return localvisitadoid;
+    }
+
+    public void setLocalvisitadoid(Integer localvisitadoid) {
+        this.localvisitadoid = localvisitadoid;
     }
     
 }
