@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Código;
+package Codigo;
 
 /**
  *
@@ -19,6 +19,7 @@ public class Cidades {
    private String item1;
    private String item2;
    private String descricao;
+   private Integer cidadeid;
 
     public String getNomecidade() {
         return nomecidade;
@@ -74,6 +75,14 @@ public class Cidades {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Integer getCidadeid() {
+        return cidadeid;
+    }
+
+    public void setCidadeid(Integer cidadeid) {
+        this.cidadeid = cidadeid;
     }
     
 }
