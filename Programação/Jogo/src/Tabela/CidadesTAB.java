@@ -6,7 +6,9 @@
 
 package Tabela;
 
+
 import Codigo.Cidades;
+import Dao.CidadesDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -24,29 +26,9 @@ public class CidadesTAB extends javax.swing.JFrame {
         initComponents();
         
         List <Cidades> lista = new ArrayList<Cidades>();
-        
-        Cidades c = new Cidades();
-        
-        c.setNomecidade("1");
-        c.setDescricao("2");
-        c.setDica1("3");
-        c.setDica2("4");
-        c.setDica3("5");
-        c.setItem1("6");
-        c.setItem2("7");
-        lista.add(c);
-        c = new Cidades();
-        
-        
-        c.setNomecidade("a");
-        c.setDescricao("b");
-        c.setDica1("c");
-        c.setDica2("d");
-        c.setDica3("e");
-        c.setItem1("f");
-        c.setItem2("g");
-        lista.add(c);
-        c = new Cidades();
+
+        CidadesDAO dao = new CidadesDAO();
+        lista = dao.Listar();
         
         DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
         
