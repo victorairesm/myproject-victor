@@ -7,6 +7,7 @@
 package Tabela;
 
 import Codigo.Detetive;
+import Dao.DetetiveDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -23,24 +24,10 @@ public class DetetiveTAB extends javax.swing.JFrame {
     public DetetiveTAB() {
         initComponents();
         
-                List <Detetive> lista = new ArrayList<Detetive>();
+        List <Detetive> lista = new ArrayList<Detetive>();
         
-        Detetive d = new Detetive();
-        
-        d.setNome("1");
-        d.setEmail("2");
-        d.setNcasos(3);
-        d.setEquipe("4");
-        lista.add(d);
-        d = new Detetive();
-        
-        
-        d.setNome("a");
-        d.setEmail("b");
-        d.setNcasos(2);
-        d.setEquipe("d");
-        lista.add(d);
-        d = new Detetive();
+        DetetiveDAO dao = new DetetiveDAO();
+        lista = dao.Listar();
         
         DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
         

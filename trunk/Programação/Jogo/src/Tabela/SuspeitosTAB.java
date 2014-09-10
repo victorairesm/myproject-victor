@@ -7,6 +7,7 @@
 package Tabela;
 
 import Codigo.Suspeitos;
+import Dao.SuspeitosDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -25,30 +26,8 @@ public class SuspeitosTAB extends javax.swing.JFrame {
         
         List <Suspeitos> lista = new ArrayList<Suspeitos>();
         
-        Suspeitos s = new Suspeitos();
-        
-        s.setNomesuspeito("1");
-        s.setSexo("2");
-        s.setOcupacao("3");
-        s.setEsporte("4");
-        s.setCabelo("5");
-        s.setCarro("6");
-        s.setTracos("7");
-        s.setOutros("8");
-        lista.add(s);
-        s = new Suspeitos();
-        
-        
-        s.setNomesuspeito("a");
-        s.setSexo("b");
-        s.setOcupacao("c");
-        s.setEsporte("d");
-        s.setCabelo("e");
-        s.setCarro("f");
-        s.setTracos("g");
-        s.setOutros("h");
-        lista.add(s);
-        s = new Suspeitos();
+        SuspeitosDAO dao = new SuspeitosDAO();
+        lista = dao.Listar();
         
         DefaultTableModel tabela = (DefaultTableModel)jTable1.getModel();
         
