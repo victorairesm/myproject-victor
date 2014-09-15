@@ -23,8 +23,8 @@ public class CidadesDAO {
 
         Boolean retorno = false;
 
-        String sql = "INSERT INTO cidade(cidadeid, nome, descricao"
-                + "dica1, dica2, dica3, item1, item2) VALUES (?,?)";
+        String sql = "INSERT INTO cidade(nome, descricao,"
+                + "dica1, dica2, dica3, item1, item2) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -43,7 +43,7 @@ public class CidadesDAO {
                 retorno = false;
             }
         } catch (SQLException ex) {
-            System.out.println("Erro ao acessar o banco");
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
         }
         return retorno;
@@ -70,6 +70,7 @@ public class CidadesDAO {
                }
                
            } catch(SQLException ex) {
+               System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
                lista = null;
            }
            

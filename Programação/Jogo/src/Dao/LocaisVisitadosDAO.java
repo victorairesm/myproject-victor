@@ -24,12 +24,12 @@ public class LocaisVisitadosDAO {
 
         Boolean retorno = false;
 
-        String sql = "INSERT INTO localvisitado(localvisitadoid, nome, atendente) VALUES (?,?)";
+        String sql = "INSERT INTO localvisitado(nome, atendente) VALUES (?,?)";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
-            pst.setString(2, obj.getNomelocal());
-            pst.setString(3, obj.getNomeatendente());
+            pst.setString(1, obj.getNomelocal());
+            pst.setString(2, obj.getNomeatendente());
 
             Integer resultado = pst.executeUpdate();
             if (resultado > 0) {
@@ -38,7 +38,7 @@ public class LocaisVisitadosDAO {
                 retorno = false;
             }
         } catch (SQLException ex) {
-            System.out.println("Erro ao acessar o banco");
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
         }
         return retorno;
@@ -60,6 +60,7 @@ public class LocaisVisitadosDAO {
                }
                
            } catch(SQLException ex) {
+               System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
                lista = null;
            }
            

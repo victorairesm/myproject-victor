@@ -7,6 +7,7 @@
 package Janela;
 
 import Codigo.Cidades;
+import Dao.CidadesDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,6 +24,8 @@ public class CidadesGUI extends javax.swing.JFrame {
     
     public CidadesGUI() {
         initComponents();
+        CidadesDAO dao = new CidadesDAO();
+        lista = dao.Listar();
     }
 
     /**
@@ -358,11 +361,15 @@ public class CidadesGUI extends javax.swing.JFrame {
             jogo.setItem1(txtItem1.getText());
             jogo.setItem2(txtItem2.getText());
             
-            lista.add(jogo);
+            CidadesDAO dao = new CidadesDAO();
+            dao.Cadastrar(jogo);
+           
             JOptionPane.showMessageDialog(null, "Cidade inserida com sucesso");
 
             limparDados();
-        
+            
+            lista = dao.Listar();
+            
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed

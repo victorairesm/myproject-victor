@@ -23,8 +23,8 @@ public class SuspeitosDAO {
 
         Boolean retorno = false;
 
-        String sql = "INSERT INTO suspeito(suspeitoid, nome, ocupacao"
-                + "esporte, cabelo, carro, tracos, outros) VALUES (?,?)";
+        String sql = "INSERT INTO suspeito(nome, ocupacao,"
+                + "esporte, cabelo, carro, tracos, outros) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -43,7 +43,7 @@ public class SuspeitosDAO {
                 retorno = false;
             }
         } catch (SQLException ex) {
-            System.out.println("Erro ao acessar o banco");
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
         }
         return retorno;
@@ -70,6 +70,7 @@ public class SuspeitosDAO {
                }
                
            } catch(SQLException ex) {
+               System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
                lista = null;
            }
            

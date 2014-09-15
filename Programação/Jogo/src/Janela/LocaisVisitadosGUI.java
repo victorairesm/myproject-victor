@@ -7,6 +7,7 @@
 package Janela;
 
 import Codigo.LocaisVisitados;
+import Dao.LocaisVisitadosDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -26,6 +27,8 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
      */
     public LocaisVisitadosGUI() {
         initComponents();
+        LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
+        lista = dao.Listar();
     }
 
     /**
@@ -274,10 +277,13 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             jogo.setNomelocal(txtNomelocal.getText());
             jogo.setNomeatendente(txtNomeatendente.getText());
            
-            lista.add(jogo);
+            LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
+            dao.Cadastrar(jogo);
             JOptionPane.showMessageDialog(null, "Local inserido com sucesso");
 
             limparDados();
+            
+            lista = dao.Listar();
         
     }//GEN-LAST:event_btnInserirActionPerformed
 

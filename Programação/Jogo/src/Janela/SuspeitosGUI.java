@@ -7,6 +7,7 @@
 package Janela;
 
 import Codigo.Suspeitos;
+import Dao.SuspeitosDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -26,6 +27,8 @@ public class SuspeitosGUI extends javax.swing.JFrame {
      */
     public SuspeitosGUI() {
         initComponents();
+        SuspeitosDAO dao = new SuspeitosDAO();
+        lista = dao.Listar();
     }
 
     /**
@@ -364,10 +367,13 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             jogo.setTracos(txtTracos.getText());
             jogo.setOutros(txtOutros.getText());
            
-            lista.add(jogo);
+            SuspeitosDAO dao = new SuspeitosDAO();
+            dao.Cadastrar(jogo);
             JOptionPane.showMessageDialog(null, "Suspeito inserido com sucesso");
 
             limparDados();
+            
+            lista = dao.Listar();
         
     }//GEN-LAST:event_btnInserirActionPerformed
 
