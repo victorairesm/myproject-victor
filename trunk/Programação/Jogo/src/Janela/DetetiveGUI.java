@@ -2,6 +2,7 @@
 
 package Janela;
 
+import Dao.DetetiveDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,6 +22,8 @@ public class DetetiveGUI extends javax.swing.JFrame {
      */
     public DetetiveGUI() {
         initComponents();
+        DetetiveDAO dao = new DetetiveDAO();
+        lista = dao.Listar();
     }
 
     /**
@@ -304,10 +307,13 @@ public class DetetiveGUI extends javax.swing.JFrame {
             jogo.setNcasos(Integer.parseInt(txtNcasos.getText()));
             jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
            
-            lista.add(jogo);
+            DetetiveDAO dao = new DetetiveDAO();
+            dao.Cadastrar(jogo);
             JOptionPane.showMessageDialog(null, "Detetive inserido com sucesso");
 
             limparDados();
+            
+            lista = dao.Listar();
         
     }//GEN-LAST:event_btnInserirActionPerformed
 

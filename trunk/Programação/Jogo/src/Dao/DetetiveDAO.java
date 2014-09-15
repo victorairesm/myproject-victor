@@ -23,15 +23,15 @@ public class DetetiveDAO {
 
         Boolean retorno = false;
 
-        String sql = "INSERT INTO detetive(detetiveid, nome, email"
-                + "numerocasos, nomeequipe) VALUES (?,?)";
+        String sql = "INSERT INTO detetive(nome, email,"
+                + "numerocasos, nomeequipe) VALUES (?,?,?,?)";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
-            pst.setString(1, obj.getEmail());
-            pst.setString(2, obj.getEquipe());
-            pst.setString(3, obj.getNome());
-            pst.setInt(4, obj.getNcasos());
+            pst.setString(1, obj.getNome());
+            pst.setString(2, obj.getEmail());
+            pst.setInt(3, obj.getNcasos());
+            pst.setString(4, obj.getEquipe());
 
             Integer resultado = pst.executeUpdate();
             if (resultado > 0) {
@@ -40,7 +40,7 @@ public class DetetiveDAO {
                 retorno = false;
             }
         } catch (SQLException ex) {
-            System.out.println("Erro ao acessar o banco");
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
         }
         return retorno;
@@ -64,6 +64,7 @@ public class DetetiveDAO {
                }
                
            } catch(SQLException ex) {
+               System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
                lista = null;
            }
            
