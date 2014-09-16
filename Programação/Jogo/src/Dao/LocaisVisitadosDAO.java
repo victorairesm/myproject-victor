@@ -44,6 +44,25 @@ public class LocaisVisitadosDAO {
         return retorno;
     }
     
+    public Boolean Excluir(LocaisVisitados obj)
+    {
+        Boolean retorno = false;
+        String sql = "DELETE FROM localvisitado WHERE localvisitadoid=?";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            psm.setInt(1, obj.getLocalvisitadoid());
+            Integer resultado = psm.executeUpdate();
+            if(resultado>0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao conectar com o banco: " + ex.getMessage());
+        }
+        return retorno;
+    }
+    
     public List<LocaisVisitados> Listar() {
         List<LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
         String sql = "SELECT * FROM localvisitado";
