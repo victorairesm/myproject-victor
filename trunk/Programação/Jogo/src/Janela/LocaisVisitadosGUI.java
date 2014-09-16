@@ -55,6 +55,8 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         txtNomeatendente = new javax.swing.JTextField();
         txtNomelocal = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,6 +187,10 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel3.setText("Código:");
+
+        txtCodigo.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,15 +202,18 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNomeatendente)
-                            .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNomeatendente)
+                                .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 422, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 89, Short.MAX_VALUE)))
@@ -215,17 +224,21 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNomeatendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeatendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -234,6 +247,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         LocaisVisitados jogo = lista.get(0);
 
+        txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
         
@@ -245,6 +259,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista - 1;
             LocaisVisitados jogo = lista.get(posicaoLista);
 
+        txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
         
@@ -256,6 +271,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista + 1;
             LocaisVisitados jogo = lista.get(posicaoLista);
 
+        txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
         
@@ -265,6 +281,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         LocaisVisitados jogo = lista.get(lista.size() - 1);
 
+        txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
         
@@ -345,18 +362,13 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o local?");
 
         if (confirma == 0) {
-            String nome = txtNomelocal.getText();
-
-            for (LocaisVisitados jogo : lista) {
-
-                if (jogo.getNomelocal().equals(nome)) {
-
-                    lista.remove(jogo);
-
-                    break;
-                }
-            }
-
+            
+            LocaisVisitados obj = new LocaisVisitados();
+            obj.setLocalvisitadoid
+            (Integer.parseInt(txtCodigo.getText()));
+            LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
+            dao.Excluir(obj);
+            lista = dao.Listar();
             limparDados();
             JOptionPane.showMessageDialog(null, "Local excluído com sucesso!");
         }
@@ -364,6 +376,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverActionPerformed
 
         public void limparDados() {
+        txtCodigo.setText("");
         txtNomelocal.setText("");
         txtNomeatendente.setText("");
     }
@@ -415,8 +428,10 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNomeatendente;
     private javax.swing.JTextField txtNomelocal;
     // End of variables declaration//GEN-END:variables

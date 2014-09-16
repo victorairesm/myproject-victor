@@ -67,6 +67,8 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         btnNovo = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         cbxSexo = new javax.swing.JComboBox();
+        txtCodigo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -212,6 +214,10 @@ public class SuspeitosGUI extends javax.swing.JFrame {
 
         cbxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
 
+        txtCodigo.setEditable(false);
+
+        jLabel9.setText("Código");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,7 +225,13 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -228,23 +240,19 @@ public class SuspeitosGUI extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNomesuspeito)
                             .addComponent(txtOcupacao)
-                            .addComponent(txtEsporte, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(txtEsporte)
                             .addComponent(txtCabelo)
                             .addComponent(txtCarro)
                             .addComponent(txtTracos)
                             .addComponent(txtOutros)
-                            .addComponent(cbxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -252,7 +260,11 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(txtNomesuspeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -284,7 +296,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtOutros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -295,6 +307,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         Suspeitos jogo = lista.get(0);
 
+        txtCodigo.setText(jogo.getSuspeitoid().toString());
         txtNomesuspeito.setText(jogo.getNomesuspeito());
         cbxSexo.setSelectedItem(jogo.getSexo());
         txtOcupacao.setText(jogo.getOcupacao());
@@ -312,6 +325,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista - 1;
             Suspeitos jogo = lista.get(posicaoLista);
 
+        txtCodigo.setText(jogo.getSuspeitoid().toString());
         txtNomesuspeito.setText(jogo.getNomesuspeito());
         cbxSexo.setSelectedItem(jogo.getSexo());
         txtOcupacao.setText(jogo.getOcupacao());
@@ -327,6 +341,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         Suspeitos jogo = lista.get(lista.size() - 1);
 
+        txtCodigo.setText(jogo.getSuspeitoid().toString());
         txtNomesuspeito.setText(jogo.getNomesuspeito());
         cbxSexo.setSelectedItem(jogo.getSexo());
         txtOcupacao.setText(jogo.getOcupacao());
@@ -344,6 +359,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista + 1;
             Suspeitos jogo = lista.get(posicaoLista);
 
+        txtCodigo.setText(jogo.getSuspeitoid().toString());
         txtNomesuspeito.setText(jogo.getNomesuspeito());
         cbxSexo.setSelectedItem(jogo.getSexo());
         txtOcupacao.setText(jogo.getOcupacao());
@@ -528,10 +544,12 @@ public class SuspeitosGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtCabelo;
     private javax.swing.JTextField txtCarro;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEsporte;
     private javax.swing.JTextField txtNomesuspeito;
     private javax.swing.JTextField txtOcupacao;
