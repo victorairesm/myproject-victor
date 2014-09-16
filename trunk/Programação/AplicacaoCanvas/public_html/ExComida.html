@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <canvas id="canvas1" width="500" height="400" style="border:solid"></canvas>
+        
+        <form>
+            
+            <input type="button" value="esquerda" onclick="moverEsquerda();"/>
+            <input type="button" value="direita" onclick="moverDireita();"/>
+            <input type="button" value="cima" onclick="moverCima();"/>
+            <input type="button" value="baixo" onclick="moverBaixo();"/>
+        </form>
+ 
+        <script>
+            var ctx1 = document.getElementById('canvas1').getContext("2d");
+            var canvas = document.getElementById('canvas1');
+            //variáveis do desenho
+            var x = 10;
+            var y = 60;
+            var largura=30;
+            var altura=30;
+            
+            //variáveis da comida
+            var comidax = 180;
+            var comiday = 60;
+            var comidalargura=5;
+            var comidaaltura=5;
+            
+            //iniciar os elementos na tela
+            function iniciar()
+            {
+                ctx1.fillStyle = "red";
+                ctx1.fillRect(x,y,largura,altura);
+                
+                desenhaComida ();
+            }
+            
+              //funções para mover
+            function moverEsquerda()
+            {
+                
+            }
+            function moverDireita()
+            {
+                 //incrementa o eixo X
+                x = x+5;
+                //desenh o retângulo
+                ctx1.fillStyle = "blue";
+                ctx1.fillRect(x,y,largura,altura);
+            }
+            function moverCima()
+            {
+               
+                
+            }
+            function moverBaixo()
+            {
+                
+            }
+
+            //função para desenhar a comida na tela
+            function desenhaComida()
+            {
+                ctx1.fillStyle = "blue";
+                 
+                ctx1.fillRect(comidax,comiday,comidalargura,comidaaltura);
+            }
+              function verificaComida()
+            {
+
+
+                if ((comidax + (comidalargura / 2)) >= x &&
+                        (comidax + (comidalargura / 2)) <= (largura + x)
+                        && (comiday + (comidaaltura / 2)) >= y &&
+                        (comiday + (comidaaltura / 2)) <= (altura + y))
+                {
+                    alert("TOCOU!!");
+                    comidax = Math.floor((Math.random() * (canvas.width - comidalargura)));
+                    comiday = Math.floor((Math.random() * (canvas.height - comidaaltura)));
+                    
+                    desenhaComida();
+                }
+            }
+            
+            //chama a função iniciar
+            iniciar();
+            
+        </script>
+    </body>
+</html>
