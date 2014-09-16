@@ -35,6 +35,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuDetetive = new javax.swing.JMenu();
         itemDetetiveG = new javax.swing.JMenuItem();
@@ -51,11 +52,20 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel1.setText("TchêLoqui Ramos");
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        jLabel1.setText("TchêLoque");
+        jLabel1.setMaximumSize(new java.awt.Dimension(110, 40));
+        jLabel1.setPreferredSize(new java.awt.Dimension(110, 40));
+        jLabel1.setVerifyInputWhenFocusTarget(false);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/detetiveIMG.gif"))); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        jLabel3.setText("Ramos");
+
+        jMenuBar1.setMargin(new java.awt.Insets(15, 0, 0, 0));
+
+        menuDetetive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/detetive.png"))); // NOI18N
         menuDetetive.setText("Detetive");
 
         itemDetetiveG.setText("Gerenciar");
@@ -76,6 +86,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(menuDetetive);
 
+        menuSuspeitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/suspeito.png"))); // NOI18N
         menuSuspeitos.setText("Suspeitos");
 
         itemSuspeitosG.setText("Gerenciar");
@@ -96,6 +107,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(menuSuspeitos);
 
+        menuLocaisvisitados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/lugares.gif"))); // NOI18N
         menuLocaisvisitados.setText("Locais Visitados");
 
         itemLocaisG.setText("Gerenciar");
@@ -116,6 +128,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(menuLocaisvisitados);
 
+        menuCidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/cidades.jpeg"))); // NOI18N
         menuCidades.setText("Cidades");
 
         itemCidadesG.setText("Gerenciar");
@@ -142,19 +155,31 @@ public class PrincipalGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel1))
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -254,6 +279,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemSuspeitosL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuCidades;
     private javax.swing.JMenu menuDetetive;
