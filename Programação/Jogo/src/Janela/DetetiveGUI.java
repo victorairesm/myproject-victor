@@ -3,6 +3,7 @@
 package Janela;
 
 import Dao.DetetiveDAO;
+import Modelo.Detetive;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class DetetiveGUI extends javax.swing.JFrame {
     
-  List<Codigo.Detetive> lista = new ArrayList<Codigo.Detetive>();
+  List<Modelo.Detetive> lista = new ArrayList<Modelo.Detetive>();
 
   Integer posicaoLista;
   
@@ -267,7 +268,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
-        Codigo.Detetive jogo = lista.get(0);
+        Modelo.Detetive jogo = lista.get(0);
 
         txtCodigo.setText(jogo.getDetetiveid().toString());
         txtNome.setText(jogo.getNome());
@@ -281,7 +282,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         if (posicaoLista < (lista.size() - 1)) {
             posicaoLista = posicaoLista + 1;
-            Codigo.Detetive jogo = lista.get(posicaoLista);
+            Modelo.Detetive jogo = lista.get(posicaoLista);
 
         txtCodigo.setText(jogo.getDetetiveid().toString());
         txtNome.setText(jogo.getNome());
@@ -295,7 +296,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         if (posicaoLista > 0) {
             posicaoLista = posicaoLista - 1;
-            Codigo.Detetive jogo = lista.get(posicaoLista);
+            Modelo.Detetive jogo = lista.get(posicaoLista);
 
         txtCodigo.setText(jogo.getDetetiveid().toString());
         txtNome.setText(jogo.getNome());
@@ -307,7 +308,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
-        Codigo.Detetive jogo = lista.get(lista.size() - 1);
+        Modelo.Detetive jogo = lista.get(lista.size() - 1);
 
         txtCodigo.setText(jogo.getDetetiveid().toString());
         txtNome.setText(jogo.getNome());
@@ -319,7 +320,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-            Codigo.Detetive jogo = new Codigo.Detetive();
+            Modelo.Detetive jogo = new Modelo.Detetive();
 
             jogo.setNome(txtNome.getText());
             jogo.setEmail(txtEmail.getText());
@@ -344,7 +345,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
         boolean encontrou = false;
 
         int i = 0;
-        for (Codigo.Detetive jogo : lista) {
+        for (Modelo.Detetive jogo : lista) {
 
             if (jogo.getNome().equals(consulta)) {
 
@@ -370,7 +371,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         String nome = txtNome.getText();
 
-        for (Codigo.Detetive jogo : lista) {
+        for (Modelo.Detetive jogo : lista) {
             if (nome.equals(jogo.getNome())) { 
             
             jogo.setNome(txtNome.getText());
@@ -394,27 +395,23 @@ public class DetetiveGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o detetive?");
+                int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o detetive?");
 
         if (confirma == 0) {
-            String nome = txtNome.getText();
-
-            for (Codigo.Detetive jogo : lista) {
-
-                if (jogo.getNome().equals(nome)) {
-
-                    lista.remove(jogo);
-
-                    break;
-                }
-            }
-
+            
+            Detetive obj = new Detetive();
+            obj.setDetetiveid
+            (Integer.parseInt(txtCodigo.getText()));
+            DetetiveDAO dao = new DetetiveDAO();
+            dao.Excluir(obj);
+            lista = dao.Listar();
             limparDados();
             JOptionPane.showMessageDialog(null, "Detetive excluído com sucesso!");
         }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     public void limparDados() {
+        txtCodigo.setText("");
         txtNome.setText("");
         txtEmail.setText("");
         txtNcasos.setText("");

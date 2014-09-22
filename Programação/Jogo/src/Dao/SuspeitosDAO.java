@@ -6,7 +6,7 @@
 
 package Dao;
 
-import Codigo.Suspeitos;
+import Modelo.Suspeitos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,6 +45,25 @@ public class SuspeitosDAO {
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
+        }
+        return retorno;
+    }
+    
+        public Boolean Excluir(Suspeitos obj)
+    {
+        Boolean retorno = false;
+        String sql = "DELETE FROM suspeito WHERE suspeitoid=?";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            psm.setInt(1, obj.getSuspeitoid());
+            Integer resultado = psm.executeUpdate();
+            if(resultado>0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao conectar com o banco: " + ex.getMessage());
         }
         return retorno;
     }

@@ -6,7 +6,7 @@
 
 package Janela;
 
-import Codigo.Suspeitos;
+import Modelo.Suspeitos;
 import Dao.SuspeitosDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -436,18 +436,13 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o suspeito?");
 
         if (confirma == 0) {
-            String nome = txtNomesuspeito.getText();
-
-            for (Suspeitos jogo : lista) {
-
-                if (jogo.getNomesuspeito().equals(nome)) {
-
-                    lista.remove(jogo);
-
-                    break;
-                }
-            }
-
+            
+            Suspeitos obj = new Suspeitos();
+            obj.setSuspeitoid
+            (Integer.parseInt(txtCodigo.getText()));
+            SuspeitosDAO dao = new SuspeitosDAO();
+            dao.Excluir(obj);
+            lista = dao.Listar();
             limparDados();
             JOptionPane.showMessageDialog(null, "Suspeito excluído com sucesso!");
         }
@@ -480,6 +475,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
         public void limparDados() {
+        txtCodigo.setText("");
         txtNomesuspeito.setText("");
         cbxSexo.setSelectedIndex(-1);
         txtOcupacao.setText("");

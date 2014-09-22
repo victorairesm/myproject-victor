@@ -7,7 +7,7 @@
 package Tabela;
 
 
-import Codigo.Cidades;
+import Modelo.Cidades;
 import Dao.CidadesDAO;
 import java.util.ArrayList;
 import java.util.List;

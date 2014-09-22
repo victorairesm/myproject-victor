@@ -6,7 +6,7 @@
 
 package Tabela;
 
-import Codigo.LocaisVisitados;
+import Modelo.LocaisVisitados;
 import Dao.LocaisVisitadosDAO;
 import java.util.ArrayList;
 import java.util.List;

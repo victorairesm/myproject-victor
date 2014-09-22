@@ -6,7 +6,7 @@
 
 package Dao;
 
-import Codigo.Detetive;
+import Modelo.Detetive;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +45,26 @@ public class DetetiveDAO {
         }
         return retorno;
     }
-    
+
+         public Boolean Excluir(Detetive obj)
+    {
+        Boolean retorno = false;
+        String sql = "DELETE FROM detetive WHERE detetiveid=?";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            psm.setInt(1, obj.getDetetiveid());
+            Integer resultado = psm.executeUpdate();
+            if(resultado>0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao conectar com o banco: " + ex.getMessage());
+        }
+        return retorno;
+    }   
+     
     public List<Detetive> Listar() {
         List<Detetive> lista = new ArrayList<Detetive>();
         String sql = "SELECT * FROM detetive";

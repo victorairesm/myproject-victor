@@ -6,7 +6,7 @@
 
 package Janela;
 
-import Codigo.Cidades;
+import Modelo.Cidades;
 import Dao.CidadesDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -478,26 +478,19 @@ public class CidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir a cidade?");
 
         if (confirma == 0) {
-            String nome = txtNomecidade.getText();
-
-            for (Cidades jogo : lista) {
-
-                if (jogo.getNomecidade().equals(nome)) {
-
-                    lista.remove(jogo);
-
-                    break;
-                }
-            }
-
+            
+            Cidades obj = new Cidades();
+            obj.setCidadeid
+            (Integer.parseInt(txtCodigo.getText()));
+            CidadesDAO dao = new CidadesDAO();
+            dao.Excluir(obj);
+            lista = dao.Listar();
             limparDados();
-            JOptionPane.showMessageDialog(null, "Cidade excluída com sucesso!!!!");
+            JOptionPane.showMessageDialog(null, "Cidade excluída com sucesso!");
         }
-
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -513,6 +506,7 @@ public class CidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDescricaoActionPerformed
 
     public void limparDados() {
+        txtCodigo.setText("");
         txtNomecidade.setText("");
         txtDescricao.setText("");
         txtDica1.setText("");
