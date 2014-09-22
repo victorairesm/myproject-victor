@@ -6,7 +6,7 @@
 
 package Tabela;
 
-import Codigo.Detetive;
+import Modelo.Detetive;
 import Dao.DetetiveDAO;
 import java.util.ArrayList;
 import java.util.List;

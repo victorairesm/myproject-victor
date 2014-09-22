@@ -6,7 +6,7 @@
 
 package Tabela;
 
-import Codigo.Suspeitos;
+import Modelo.Suspeitos;
 import Dao.SuspeitosDAO;
 import java.util.ArrayList;
 import java.util.List;
