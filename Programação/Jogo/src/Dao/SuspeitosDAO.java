@@ -96,4 +96,35 @@ public class SuspeitosDAO {
         return lista;
     }
     
+    public Suspeitos Consultar(Suspeitos obj2) {
+
+        String sql = "SELECT * FROM suspeito WHERE nome = ?";
+        Suspeitos obj = null;
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+
+        try {
+            psm.setString(1, obj2.getNomesuspeito());
+            ResultSet resultado = psm.executeQuery();
+
+            if (resultado.next()) {
+                obj = new Suspeitos();
+                obj.setSuspeitoid(resultado.getInt("suspeitoid"));
+                obj.setNomesuspeito(resultado.getString("nome"));
+                obj.setOcupacao(resultado.getString("ocupacao"));
+                obj.setEsporte(resultado.getString("esporte"));
+                obj.setCabelo(resultado.getString("cabelo"));
+                obj.setCarro(resultado.getString("carro"));
+                obj.setTracos(resultado.getString("tracos"));
+                obj.setOutros(resultado.getString("outros"));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+
+        }
+
+        return obj;
+    }
+    
 }

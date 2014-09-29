@@ -96,5 +96,36 @@ public class CidadesDAO {
         return lista;
     }
     
+    public Cidades Consultar(Cidades obj2) {
+
+        String sql = "SELECT * FROM cidade WHERE nome = ?";
+        Cidades obj = null;
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+
+        try {
+            psm.setString(1, obj2.getNomecidade());
+            ResultSet resultado = psm.executeQuery();
+
+            if (resultado.next()) {
+                obj = new Cidades();
+                obj.setCidadeid(resultado.getInt("cidadeid"));
+                obj.setNomecidade(resultado.getString("nome"));
+                obj.setDescricao(resultado.getString("descricao"));
+                obj.setDica1(resultado.getString("dica1"));
+                obj.setDica2(resultado.getString("dica2"));
+                obj.setDica3(resultado.getString("dica3"));
+                obj.setItem1(resultado.getString("item1"));
+                obj.setItem2(resultado.getString("item2"));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+
+        }
+
+        return obj;
+    }
+    
 }
 
