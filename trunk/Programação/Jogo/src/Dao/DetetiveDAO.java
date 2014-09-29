@@ -90,4 +90,32 @@ public class DetetiveDAO {
         return lista;
     }
     
+    public Detetive Consultar(Detetive obj2) {
+
+        String sql = "SELECT * FROM detetive WHERE nome = ?";
+        Detetive obj = null;
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+
+        try {
+            psm.setString(1, obj2.getNome());
+            ResultSet resultado = psm.executeQuery();
+
+            if (resultado.next()) {
+                obj = new Detetive();
+                obj.setDetetiveid(resultado.getInt("detetiveid"));
+                obj.setNome(resultado.getString("nome"));
+                obj.setEmail(resultado.getString("email"));
+                obj.setNcasos(resultado.getInt("numerocasos"));
+                obj.setEquipe(resultado.getString("nomeequipe"));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+
+        }
+
+        return obj;
+    }
+    
 }
