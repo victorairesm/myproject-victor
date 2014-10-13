@@ -17,6 +17,7 @@ public class Detetive {
    private Integer ncasos;
    private String equipe;
    private Integer detetiveid;
+   private byte[] imagem;
 
     public String getNome() {
         return nome;
@@ -56,6 +57,14 @@ public class Detetive {
 
     public void setDetetiveid(Integer detetiveid) {
         this.detetiveid = detetiveid;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
    
 }
