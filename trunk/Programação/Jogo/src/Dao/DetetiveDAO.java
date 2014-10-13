@@ -24,7 +24,7 @@ public class DetetiveDAO {
         Boolean retorno = false;
 
         String sql = "INSERT INTO detetive(nome, email,"
-                + "numerocasos, nomeequipe) VALUES (?,?,?,?)";
+                + "numerocasos, nomeequipe,imagem) VALUES (?,?,?,?,?)";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -32,6 +32,7 @@ public class DetetiveDAO {
             pst.setString(2, obj.getEmail());
             pst.setInt(3, obj.getNcasos());
             pst.setString(4, obj.getEquipe());
+            pst.setBytes(5, obj.getImagem());
 
             Integer resultado = pst.executeUpdate();
             if (resultado > 0) {
@@ -79,6 +80,7 @@ public class DetetiveDAO {
                    obj.setEmail(resultado.getString("email"));
                    obj.setNcasos(resultado.getInt("numerocasos"));
                    obj.setEquipe(resultado.getString("nomeequipe"));
+                   obj.setImagem(resultado.getBytes("imagem"));
                    lista.add(obj);
                }
                
