@@ -20,6 +20,7 @@ public class Cidades {
    private String item2;
    private String descricao;
    private Integer cidadeid;
+   private byte[] imagem;
 
     public String getNomecidade() {
         return nomecidade;
@@ -83,6 +84,14 @@ public class Cidades {
 
     public void setCidadeid(Integer cidadeid) {
         this.cidadeid = cidadeid;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
     
 }

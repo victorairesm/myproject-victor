@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Janela;
 
 import Modelo.Cidades;
 import Dao.CidadesDAO;
+import UTIL.ManipularImagem;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +25,8 @@ public class CidadesGUI extends javax.swing.JFrame {
     List<Cidades> lista = new ArrayList<Cidades>();
 
     Integer posicaoLista;
-    
+    BufferedImage imagem;
+
     public CidadesGUI() {
         initComponents();
         CidadesDAO dao = new CidadesDAO();
@@ -65,6 +70,10 @@ public class CidadesGUI extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        btnSelecionar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        lblImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Cidades");
@@ -233,6 +242,28 @@ public class CidadesGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("Imagem:");
+
+        btnSelecionar.setText("Selecionar Imagem");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -257,21 +288,28 @@ public class CidadesGUI extends javax.swing.JFrame {
                                             .addComponent(jLabel5)
                                             .addComponent(jLabel6)
                                             .addComponent(jLabel7)
-                                            .addComponent(jLabel8))
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel9))
                                         .addGap(34, 34, 34))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                    .addComponent(txtNomecidade)
-                                    .addComponent(txtDica1)
-                                    .addComponent(txtDica2)
-                                    .addComponent(txtDica3)
-                                    .addComponent(txtItem1)
-                                    .addComponent(txtItem2)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnSelecionar)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                                            .addComponent(txtNomecidade)
+                                            .addComponent(txtDica1)
+                                            .addComponent(txtDica2)
+                                            .addComponent(txtDica3)
+                                            .addComponent(txtItem1)
+                                            .addComponent(txtItem2)
+                                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -279,43 +317,48 @@ public class CidadesGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomecidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtDica1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtDica2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtDica3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomecidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtDica1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDica2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtDica3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel9)
+                    .addComponent(btnSelecionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -339,7 +382,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText(jogo.getDica3());
         txtItem1.setText(jogo.getItem1());
         txtItem2.setText(jogo.getItem2());
-        
+
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
@@ -348,30 +391,30 @@ public class CidadesGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista - 1;
             Cidades jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getCidadeid().toString());
-        txtNomecidade.setText(jogo.getNomecidade());
-        txtDescricao.setText(jogo.getDescricao());
-        txtDica1.setText(jogo.getDica1());
-        txtDica2.setText(jogo.getDica2());
-        txtDica3.setText(jogo.getDica3());
-        txtItem1.setText(jogo.getItem1());
-        txtItem2.setText(jogo.getItem2());
+            txtCodigo.setText(jogo.getCidadeid().toString());
+            txtNomecidade.setText(jogo.getNomecidade());
+            txtDescricao.setText(jogo.getDescricao());
+            txtDica1.setText(jogo.getDica1());
+            txtDica2.setText(jogo.getDica2());
+            txtDica3.setText(jogo.getDica3());
+            txtItem1.setText(jogo.getItem1());
+            txtItem2.setText(jogo.getItem2());
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
-            if (posicaoLista < (lista.size() - 1)) {
+        if (posicaoLista < (lista.size() - 1)) {
             posicaoLista = posicaoLista + 1;
             Cidades jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getCidadeid().toString());
-        txtNomecidade.setText(jogo.getNomecidade());
-        txtDescricao.setText(jogo.getDescricao());
-        txtDica1.setText(jogo.getDica1());
-        txtDica2.setText(jogo.getDica2());
-        txtDica3.setText(jogo.getDica3());
-        txtItem1.setText(jogo.getItem1());
-        txtItem2.setText(jogo.getItem2());
+            txtCodigo.setText(jogo.getCidadeid().toString());
+            txtNomecidade.setText(jogo.getNomecidade());
+            txtDescricao.setText(jogo.getDescricao());
+            txtDica1.setText(jogo.getDica1());
+            txtDica2.setText(jogo.getDica2());
+            txtDica3.setText(jogo.getDica3());
+            txtItem1.setText(jogo.getItem1());
+            txtItem2.setText(jogo.getItem2());
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -386,32 +429,32 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText(jogo.getDica3());
         txtItem1.setText(jogo.getItem1());
         txtItem2.setText(jogo.getItem2());
-        
+
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-        
 
-            Cidades jogo = new Cidades();
+        Cidades jogo = new Cidades();
 
-            jogo.setNomecidade(txtNomecidade.getText());
-            jogo.setDescricao(txtDescricao.getText());
-            jogo.setDica1(txtDica1.getText());
-            jogo.setDica2(txtDica2.getText());
-            jogo.setDica3(txtDica3.getText());
-            jogo.setItem1(txtItem1.getText());
-            jogo.setItem2(txtItem2.getText());
-            
-            CidadesDAO dao = new CidadesDAO();
-            dao.Cadastrar(jogo);
-           
-            JOptionPane.showMessageDialog(null, "Cidade inserida com sucesso");
+        jogo.setNomecidade(txtNomecidade.getText());
+        jogo.setDescricao(txtDescricao.getText());
+        jogo.setDica1(txtDica1.getText());
+        jogo.setDica2(txtDica2.getText());
+        jogo.setDica3(txtDica3.getText());
+        jogo.setItem1(txtItem1.getText());
+        jogo.setItem2(txtItem2.getText());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
-            limparDados();
-            
-            lista = dao.Listar();
-            
+        CidadesDAO dao = new CidadesDAO();
+        dao.Cadastrar(jogo);
+
+        JOptionPane.showMessageDialog(null, "Cidade inserida com sucesso");
+
+        limparDados();
+
+        lista = dao.Listar();
+
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -427,13 +470,14 @@ public class CidadesGUI extends javax.swing.JFrame {
 
             if (jogo.getNomecidade().equals(consulta)) {
 
-            txtNomecidade.setText(jogo.getNomecidade());
-            txtDescricao.setText(jogo.getDescricao());
-            txtDica1.setText(jogo.getDica1());
-            txtDica2.setText(jogo.getDica2());
-            txtDica3.setText(jogo.getDica3());
-            txtItem1.setText(jogo.getItem1());
-            txtItem2.setText(jogo.getItem2());
+                txtNomecidade.setText(jogo.getNomecidade());
+                txtDescricao.setText(jogo.getDescricao());
+                txtDica1.setText(jogo.getDica1());
+                txtDica2.setText(jogo.getDica2());
+                txtDica3.setText(jogo.getDica3());
+                txtItem1.setText(jogo.getItem1());
+                txtItem2.setText(jogo.getItem2());
+                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
                 encontrou = true;
 
@@ -457,34 +501,34 @@ public class CidadesGUI extends javax.swing.JFrame {
         String nome = txtNomecidade.getText();
 
         for (Cidades jogo : lista) {
-            if (nome.equals(jogo.getNomecidade())) { 
-            
-            jogo.setNomecidade(txtNomecidade.getText());
-            jogo.setDescricao(txtDescricao.getText());
-            jogo.setDica1(txtDica1.getText());
-            jogo.setDica2(txtDica2.getText());
-            jogo.setDica3(txtDica3.getText());
-            jogo.setItem1(txtItem1.getText());
-            jogo.setItem2(txtItem2.getText());
-            JOptionPane.showMessageDialog(null, "Cidade atualizada com sucesso");
-            limparDados();
-            break;
-            
+            if (nome.equals(jogo.getNomecidade())) {
+
+                jogo.setNomecidade(txtNomecidade.getText());
+                jogo.setDescricao(txtDescricao.getText());
+                jogo.setDica1(txtDica1.getText());
+                jogo.setDica2(txtDica2.getText());
+                jogo.setDica3(txtDica3.getText());
+                jogo.setItem1(txtItem1.getText());
+                jogo.setItem2(txtItem2.getText());
+                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+                JOptionPane.showMessageDialog(null, "Cidade atualizada com sucesso");
+                limparDados();
+                break;
+
             } else {
                 JOptionPane.showMessageDialog(null, "Você não pode modificar o nome da cidade!");
             }
         }
-  
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir a cidade?");
 
         if (confirma == 0) {
-            
+
             Cidades obj = new Cidades();
-            obj.setCidadeid
-            (Integer.parseInt(txtCodigo.getText()));
+            obj.setCidadeid(Integer.parseInt(txtCodigo.getText()));
             CidadesDAO dao = new CidadesDAO();
             dao.Excluir(obj);
             lista = dao.Listar();
@@ -505,6 +549,16 @@ public class CidadesGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescricaoActionPerformed
 
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int res = fc.showOpenDialog(null);
+        if (res == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            imagem = ManipularImagem.setImagemDimensao(file.getAbsolutePath(), 160, 160);
+            lblImagem.setIcon(new ImageIcon(imagem));
+        }
+    }//GEN-LAST:event_btnSelecionarActionPerformed
+
     public void limparDados() {
         txtCodigo.setText("");
         txtNomecidade.setText("");
@@ -515,6 +569,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtItem1.setText("");
         txtItem2.setText("");
     }
+
     /**
      * @param args the command line arguments
      */
@@ -559,6 +614,7 @@ public class CidadesGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnPrimeiro;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnSelecionar;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -568,9 +624,12 @@ public class CidadesGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lblImagem;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtDica1;

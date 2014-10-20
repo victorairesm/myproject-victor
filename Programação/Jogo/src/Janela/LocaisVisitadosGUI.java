@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Janela;
 
 import Modelo.LocaisVisitados;
 import Dao.LocaisVisitadosDAO;
+import UTIL.ManipularImagem;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,9 +22,10 @@ import javax.swing.JOptionPane;
  */
 public class LocaisVisitadosGUI extends javax.swing.JFrame {
 
-  List<LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
+    List<LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
 
-  Integer posicaoLista;
+    Integer posicaoLista;
+    BufferedImage imagem;
 
     /**
      * Creates new form NewJFrame
@@ -57,6 +62,10 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtNomelocal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        btnSelecionar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        lblImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,6 +200,28 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
 
         txtCodigo.setEditable(false);
 
+        jLabel9.setText("Imagem:");
+
+        btnSelecionar.setText("Selecionar Imagem");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,40 +234,51 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel9))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSelecionar)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtNomeatendente)
-                                .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 89, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 89, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomeatendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomeatendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(btnSelecionar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -250,31 +292,31 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
-        
+
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-            if (posicaoLista > 0) {
+        if (posicaoLista > 0) {
             posicaoLista = posicaoLista - 1;
             LocaisVisitados jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getLocalvisitadoid().toString());
-        txtNomelocal.setText(jogo.getNomelocal());
-        txtNomeatendente.setText(jogo.getNomeatendente());
-        
+            txtCodigo.setText(jogo.getLocalvisitadoid().toString());
+            txtNomelocal.setText(jogo.getNomelocal());
+            txtNomeatendente.setText(jogo.getNomeatendente());
+
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
-            if (posicaoLista < (lista.size() - 1)) {
+        if (posicaoLista < (lista.size() - 1)) {
             posicaoLista = posicaoLista + 1;
             LocaisVisitados jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getLocalvisitadoid().toString());
-        txtNomelocal.setText(jogo.getNomelocal());
-        txtNomeatendente.setText(jogo.getNomeatendente());
-        
+            txtCodigo.setText(jogo.getLocalvisitadoid().toString());
+            txtNomelocal.setText(jogo.getNomelocal());
+            txtNomeatendente.setText(jogo.getNomeatendente());
+
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -284,28 +326,29 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
-        
+
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         LocaisVisitados jogo = new LocaisVisitados();
 
-            jogo.setNomelocal(txtNomelocal.getText());
-            jogo.setNomeatendente(txtNomeatendente.getText());
-           
-            LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
-            dao.Cadastrar(jogo);
-            JOptionPane.showMessageDialog(null, "Local inserido com sucesso");
+        jogo.setNomelocal(txtNomelocal.getText());
+        jogo.setNomeatendente(txtNomeatendente.getText());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
-            limparDados();
-            
-            lista = dao.Listar();
-        
+        LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
+        dao.Cadastrar(jogo);
+        JOptionPane.showMessageDialog(null, "Local inserido com sucesso");
+
+        limparDados();
+
+        lista = dao.Listar();
+
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        
+
         String consulta
                 = JOptionPane.showInputDialog("Informe o nome do local a ser"
                         + " consultado ");
@@ -317,8 +360,9 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
 
             if (jogo.getNomelocal().equals(consulta)) {
 
-            txtNomelocal.setText(jogo.getNomelocal());
-            txtNomeatendente.setText(jogo.getNomeatendente());
+                txtNomelocal.setText(jogo.getNomelocal());
+                txtNomeatendente.setText(jogo.getNomeatendente());
+                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
                 encontrou = true;
 
@@ -338,20 +382,21 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         String nome = txtNomelocal.getText();
 
         for (LocaisVisitados jogo : lista) {
-            if (nome.equals(jogo.getNomelocal())) { 
-            
-            jogo.setNomelocal(txtNomelocal.getText());
-            jogo.setNomeatendente(txtNomeatendente.getText());
+            if (nome.equals(jogo.getNomelocal())) {
 
-            JOptionPane.showMessageDialog(null, "Local atualizado com sucesso");
-            limparDados();
-            break;
-            
+                jogo.setNomelocal(txtNomelocal.getText());
+                jogo.setNomeatendente(txtNomeatendente.getText());
+                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+
+                JOptionPane.showMessageDialog(null, "Local atualizado com sucesso");
+                limparDados();
+                break;
+
             } else {
                 JOptionPane.showMessageDialog(null, "Você não pode modificar o nome do local!");
             }
         }
-  
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
@@ -362,10 +407,9 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o local?");
 
         if (confirma == 0) {
-            
+
             LocaisVisitados obj = new LocaisVisitados();
-            obj.setLocalvisitadoid
-            (Integer.parseInt(txtCodigo.getText()));
+            obj.setLocalvisitadoid(Integer.parseInt(txtCodigo.getText()));
             LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
             dao.Excluir(obj);
             lista = dao.Listar();
@@ -375,12 +419,22 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRemoverActionPerformed
 
-        public void limparDados() {
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int res = fc.showOpenDialog(null);
+        if (res == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            imagem = ManipularImagem.setImagemDimensao(file.getAbsolutePath(), 160, 160);
+            lblImagem.setIcon(new ImageIcon(imagem));
+        }
+    }//GEN-LAST:event_btnSelecionarActionPerformed
+
+    public void limparDados() {
         txtCodigo.setText("");
         txtNomelocal.setText("");
         txtNomeatendente.setText("");
     }
-        
+
     /**
      * @param args the command line arguments
      */
@@ -425,12 +479,16 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnPrimeiro;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnSelecionar;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblImagem;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNomeatendente;
     private javax.swing.JTextField txtNomelocal;

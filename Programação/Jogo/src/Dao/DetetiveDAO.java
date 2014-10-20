@@ -109,6 +109,7 @@ public class DetetiveDAO {
                 obj.setEmail(resultado.getString("email"));
                 obj.setNcasos(resultado.getInt("numerocasos"));
                 obj.setEquipe(resultado.getString("nomeequipe"));
+                obj.setImagem(resultado.getBytes("imagem"));
 
             }
 
