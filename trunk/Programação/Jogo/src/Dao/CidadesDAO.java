@@ -24,7 +24,7 @@ public class CidadesDAO {
         Boolean retorno = false;
 
         String sql = "INSERT INTO cidade(nome, descricao,"
-                + "dica1, dica2, dica3, item1, item2) VALUES (?,?,?,?,?,?,?)";
+                + "dica1, dica2, dica3, item1, item2, imagem) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -35,6 +35,7 @@ public class CidadesDAO {
             pst.setString(5, obj.getDica3());
             pst.setString(6, obj.getItem1());
             pst.setString(7, obj.getItem2());
+            pst.setBytes(8, obj.getImagem());
 
             Integer resultado = pst.executeUpdate();
             if (resultado > 0) {
@@ -85,6 +86,7 @@ public class CidadesDAO {
                    obj.setDica3(resultado.getString("dica3"));
                    obj.setItem1(resultado.getString("item1"));
                    obj.setItem2(resultado.getString("Item2"));
+                   obj.setImagem(resultado.getBytes("imagem"));
                    lista.add(obj);
                }
                
@@ -116,6 +118,7 @@ public class CidadesDAO {
                 obj.setDica3(resultado.getString("dica3"));
                 obj.setItem1(resultado.getString("item1"));
                 obj.setItem2(resultado.getString("item2"));
+                obj.setImagem(resultado.getBytes("imagem"));
 
             }
 

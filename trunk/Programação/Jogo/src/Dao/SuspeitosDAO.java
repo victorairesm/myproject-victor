@@ -24,7 +24,7 @@ public class SuspeitosDAO {
         Boolean retorno = false;
 
         String sql = "INSERT INTO suspeito(nome, ocupacao,"
-                + "esporte, cabelo, carro, tracos, outros) VALUES (?,?,?,?,?,?,?)";
+                + "esporte, cabelo, carro, tracos, outros, imagem) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -35,6 +35,7 @@ public class SuspeitosDAO {
             pst.setString(3, obj.getCarro());
             pst.setString(3, obj.getTracos());
             pst.setString(3, obj.getOutros());
+            pst.setBytes(5, obj.getImagem());
 
             Integer resultado = pst.executeUpdate();
             if (resultado > 0) {
@@ -85,6 +86,7 @@ public class SuspeitosDAO {
                    obj.setCarro(resultado.getString("carro"));
                    obj.setTracos(resultado.getString("tracos"));
                    obj.setOutros(resultado.getString("outros"));
+                   obj.setImagem(resultado.getBytes("imagem"));
                    lista.add(obj);
                }
                
@@ -116,6 +118,7 @@ public class SuspeitosDAO {
                 obj.setCarro(resultado.getString("carro"));
                 obj.setTracos(resultado.getString("tracos"));
                 obj.setOutros(resultado.getString("outros"));
+                obj.setImagem(resultado.getBytes("imagem"));
 
             }
 

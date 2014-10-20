@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Janela;
 
 import Modelo.Suspeitos;
 import Dao.SuspeitosDAO;
+import UTIL.ManipularImagem;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,10 +21,11 @@ import javax.swing.JOptionPane;
  * @author Marcos
  */
 public class SuspeitosGUI extends javax.swing.JFrame {
-    
-  List<Suspeitos> lista = new ArrayList<Suspeitos>();
 
-  Integer posicaoLista;
+    List<Suspeitos> lista = new ArrayList<Suspeitos>();
+
+    Integer posicaoLista;
+    BufferedImage imagem;
 
     /**
      * Creates new form Suspeitos
@@ -69,6 +74,10 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         cbxSexo = new javax.swing.JComboBox();
         txtCodigo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        btnSelecionar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        lblImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,6 +227,28 @@ public class SuspeitosGUI extends javax.swing.JFrame {
 
         jLabel9.setText("Código");
 
+        jLabel10.setText("Imagem:");
+
+        btnSelecionar.setText("Selecionar Imagem");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,7 +262,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -241,7 +272,8 @@ public class SuspeitosGUI extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNomesuspeito)
@@ -252,7 +284,10 @@ public class SuspeitosGUI extends javax.swing.JFrame {
                             .addComponent(txtTracos)
                             .addComponent(txtOutros)
                             .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSelecionar))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -260,43 +295,52 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNomesuspeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEsporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtCabelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtTracos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNomesuspeito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtEsporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtCabelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtTracos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtOutros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(btnSelecionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -325,16 +369,16 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista - 1;
             Suspeitos jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getSuspeitoid().toString());
-        txtNomesuspeito.setText(jogo.getNomesuspeito());
-        cbxSexo.setSelectedItem(jogo.getSexo());
-        txtOcupacao.setText(jogo.getOcupacao());
-        txtEsporte.setText(jogo.getEsporte());
-        txtCabelo.setText(jogo.getCabelo());
-        txtCarro.setText(jogo.getCarro());
-        txtTracos.setText(jogo.getTracos());
-        txtOutros.setText(jogo.getOutros());
-        
+            txtCodigo.setText(jogo.getSuspeitoid().toString());
+            txtNomesuspeito.setText(jogo.getNomesuspeito());
+            cbxSexo.setSelectedItem(jogo.getSexo());
+            txtOcupacao.setText(jogo.getOcupacao());
+            txtEsporte.setText(jogo.getEsporte());
+            txtCabelo.setText(jogo.getCabelo());
+            txtCarro.setText(jogo.getCarro());
+            txtTracos.setText(jogo.getTracos());
+            txtOutros.setText(jogo.getOutros());
+
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -350,7 +394,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         txtCarro.setText(jogo.getCarro());
         txtTracos.setText(jogo.getTracos());
         txtOutros.setText(jogo.getOutros());
-        
+
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
 
@@ -359,38 +403,39 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista + 1;
             Suspeitos jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getSuspeitoid().toString());
-        txtNomesuspeito.setText(jogo.getNomesuspeito());
-        cbxSexo.setSelectedItem(jogo.getSexo());
-        txtOcupacao.setText(jogo.getOcupacao());
-        txtEsporte.setText(jogo.getEsporte());
-        txtCabelo.setText(jogo.getCabelo());
-        txtCarro.setText(jogo.getCarro());
-        txtTracos.setText(jogo.getTracos());
-        txtOutros.setText(jogo.getOutros());
+            txtCodigo.setText(jogo.getSuspeitoid().toString());
+            txtNomesuspeito.setText(jogo.getNomesuspeito());
+            cbxSexo.setSelectedItem(jogo.getSexo());
+            txtOcupacao.setText(jogo.getOcupacao());
+            txtEsporte.setText(jogo.getEsporte());
+            txtCabelo.setText(jogo.getCabelo());
+            txtCarro.setText(jogo.getCarro());
+            txtTracos.setText(jogo.getTracos());
+            txtOutros.setText(jogo.getOutros());
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-            Suspeitos jogo = new Suspeitos();
+        Suspeitos jogo = new Suspeitos();
 
-            jogo.setNomesuspeito(txtNomesuspeito.getText());
-            jogo.setSexo(cbxSexo.getSelectedItem().toString());
-            jogo.setOcupacao(txtOcupacao.getText());
-            jogo.setEsporte(txtEsporte.getText());
-            jogo.setCabelo(txtCabelo.getText());
-            jogo.setCarro(txtCarro.getText());
-            jogo.setTracos(txtTracos.getText());
-            jogo.setOutros(txtOutros.getText());
-           
-            SuspeitosDAO dao = new SuspeitosDAO();
-            dao.Cadastrar(jogo);
-            JOptionPane.showMessageDialog(null, "Suspeito inserido com sucesso");
+        jogo.setNomesuspeito(txtNomesuspeito.getText());
+        jogo.setSexo(cbxSexo.getSelectedItem().toString());
+        jogo.setOcupacao(txtOcupacao.getText());
+        jogo.setEsporte(txtEsporte.getText());
+        jogo.setCabelo(txtCabelo.getText());
+        jogo.setCarro(txtCarro.getText());
+        jogo.setTracos(txtTracos.getText());
+        jogo.setOutros(txtOutros.getText());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
-            limparDados();
-            
-            lista = dao.Listar();
-        
+        SuspeitosDAO dao = new SuspeitosDAO();
+        dao.Cadastrar(jogo);
+        JOptionPane.showMessageDialog(null, "Suspeito inserido com sucesso");
+
+        limparDados();
+
+        lista = dao.Listar();
+
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -405,14 +450,15 @@ public class SuspeitosGUI extends javax.swing.JFrame {
 
             if (jogo.getNomesuspeito().equals(consulta)) {
 
-            txtNomesuspeito.setText(jogo.getNomesuspeito());
-            jogo.setSexo(cbxSexo.getSelectedItem().toString());
-            txtOcupacao.setText(jogo.getOcupacao());
-            txtEsporte.setText(jogo.getEsporte());
-            txtCabelo.setText(jogo.getCabelo());
-            txtCarro.setText(jogo.getCarro());
-            txtTracos.setText(jogo.getTracos());
-            txtOutros.setText(jogo.getOutros());
+                txtNomesuspeito.setText(jogo.getNomesuspeito());
+                jogo.setSexo(cbxSexo.getSelectedItem().toString());
+                txtOcupacao.setText(jogo.getOcupacao());
+                txtEsporte.setText(jogo.getEsporte());
+                txtCabelo.setText(jogo.getCabelo());
+                txtCarro.setText(jogo.getCarro());
+                txtTracos.setText(jogo.getTracos());
+                txtOutros.setText(jogo.getOutros());
+                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
                 encontrou = true;
 
@@ -436,10 +482,9 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o suspeito?");
 
         if (confirma == 0) {
-            
+
             Suspeitos obj = new Suspeitos();
-            obj.setSuspeitoid
-            (Integer.parseInt(txtCodigo.getText()));
+            obj.setSuspeitoid(Integer.parseInt(txtCodigo.getText()));
             SuspeitosDAO dao = new SuspeitosDAO();
             dao.Excluir(obj);
             lista = dao.Listar();
@@ -452,29 +497,40 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         String nome = txtNomesuspeito.getText();
 
         for (Suspeitos jogo : lista) {
-            if (nome.equals(jogo.getNomesuspeito())) { 
-            
-            jogo.setNomesuspeito(txtNomesuspeito.getText());
-            jogo.setSexo(cbxSexo.getSelectedItem().toString());
-            jogo.setOcupacao(txtOcupacao.getText());
-            jogo.setEsporte(txtEsporte.getText());
-            jogo.setCabelo(txtCabelo.getText());
-            jogo.setCarro(txtCarro.getText());
-            jogo.setTracos(txtTracos.getText());
-            jogo.setOutros(txtOutros.getText());
+            if (nome.equals(jogo.getNomesuspeito())) {
 
-            JOptionPane.showMessageDialog(null, "Suspeito atualizado com sucesso");
-            limparDados();
-            break;
-            
+                jogo.setNomesuspeito(txtNomesuspeito.getText());
+                jogo.setSexo(cbxSexo.getSelectedItem().toString());
+                jogo.setOcupacao(txtOcupacao.getText());
+                jogo.setEsporte(txtEsporte.getText());
+                jogo.setCabelo(txtCabelo.getText());
+                jogo.setCarro(txtCarro.getText());
+                jogo.setTracos(txtTracos.getText());
+                jogo.setOutros(txtOutros.getText());
+                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+
+                JOptionPane.showMessageDialog(null, "Suspeito atualizado com sucesso");
+                limparDados();
+                break;
+
             } else {
-                JOptionPane.showMessageDialog(null, "Você não pode modificar o nome do suspeito!");
+                JOptionPane.showMessageDialog(null, "Erro desconhecido");
             }
         }
-  
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
-        public void limparDados() {
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int res = fc.showOpenDialog(null);
+        if (res == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            imagem = ManipularImagem.setImagemDimensao(file.getAbsolutePath(), 160, 160);
+            lblImagem.setIcon(new ImageIcon(imagem));
+        }
+    }//GEN-LAST:event_btnSelecionarActionPerformed
+
+    public void limparDados() {
         txtCodigo.setText("");
         txtNomesuspeito.setText("");
         cbxSexo.setSelectedIndex(-1);
@@ -484,12 +540,13 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         txtCarro.setText("");
         txtTracos.setText("");
         txtOutros.setText("");
-        
+
     }
+
     /**
      * @param args the command line arguments
      */
-    public static void main (String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -530,9 +587,11 @@ public class SuspeitosGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnPrimeiro;
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnSelecionar;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JComboBox cbxSexo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -543,6 +602,8 @@ public class SuspeitosGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblImagem;
     private javax.swing.JTextField txtCabelo;
     private javax.swing.JTextField txtCarro;
     private javax.swing.JTextField txtCodigo;

@@ -21,6 +21,7 @@ public class Suspeitos {
    private String tracos;
    private String outros;
    private Integer suspeitoid;
+   private byte[] imagem;
 
     public String getNomesuspeito() {
         return nomesuspeito;
@@ -92,6 +93,14 @@ public class Suspeitos {
 
     public void setSuspeitoid(Integer suspeitoid) {
         this.suspeitoid = suspeitoid;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
     
 }
