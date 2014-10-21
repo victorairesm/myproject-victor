@@ -30,7 +30,7 @@ public class LocaisVisitadosDAO {
         try {
             pst.setString(1, obj.getNomelocal());
             pst.setString(2, obj.getNomeatendente());
-            pst.setBytes(5, obj.getImagem());
+            pst.setBytes(3, obj.getImagem());
 
             Integer resultado = pst.executeUpdate();
             if (resultado > 0) {
@@ -112,6 +112,35 @@ public class LocaisVisitadosDAO {
         }
 
         return obj;
+    }
+    
+    public Boolean Atualizar(LocaisVisitados obj) {
+
+        Boolean retorno = false;
+
+        String sql = "UPDATE localvisitado SET nome = ?, atendente = ?,"
+                + "imagem = ? "
+                + "WHERE localvisitadoid = ?";
+       
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+
+        try {
+            pst.setString(1, obj.getNomelocal());
+            pst.setString(2, obj.getNomeatendente());
+            pst.setBytes(3, obj.getImagem());
+            pst.setInt(4, obj.getLocalvisitadoid());
+
+            Integer resultado = pst.executeUpdate();
+            if (resultado > 0) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            return false;
+        }
+        return retorno;
     }
 
 }

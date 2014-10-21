@@ -35,11 +35,9 @@ public class DetetiveDAO {
             pst.setBytes(5, obj.getImagem());
 
             Integer resultado = pst.executeUpdate();
-            if (resultado > 0) {
-                retorno = true;
-            } else {
-                retorno = false;
-            }
+            
+            retorno = (resultado > 0);
+        
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
@@ -54,12 +52,11 @@ public class DetetiveDAO {
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
         try {
             psm.setInt(1, obj.getDetetiveid());
+            
             Integer resultado = psm.executeUpdate();
-            if(resultado>0) {
-                retorno = true;
-            } else {
-                retorno = false;
-            }
+            
+            retorno = (resultado > 0);
+            
         } catch (SQLException ex) {
             System.out.println("Erro ao conectar com o banco: " + ex.getMessage());
         }
@@ -119,6 +116,35 @@ public class DetetiveDAO {
         }
 
         return obj;
+    }
+    
+    public Boolean Atualizar(Detetive obj) {
+
+        Boolean retorno = false;
+
+        String sql = "UPDATE detetive SET nome = ?, email = ?,"
+                + "numerocasos = ?, nomeequipe = ?,imagem = ?"
+                + " WHERE detetiveid = ?";
+       
+        PreparedStatement pst = Conexao.getPreparedStatement(sql);
+
+        try {
+            pst.setString(1, obj.getNome());
+            pst.setString(2, obj.getEmail());
+            pst.setInt(3, obj.getNcasos());
+            pst.setString(4, obj.getEquipe());
+            pst.setBytes(5, obj.getImagem());
+            pst.setInt(6, obj.getDetetiveid());
+
+            Integer resultado = pst.executeUpdate();
+            
+            retorno = (resultado > 0);
+        
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            return false;
+        }
+        return retorno;
     }
     
 }

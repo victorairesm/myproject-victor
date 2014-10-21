@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 public class LocaisVisitadosGUI extends javax.swing.JFrame {
 
     List<LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
-
+    LocaisVisitadosDAO dao;
     Integer posicaoLista;
     BufferedImage imagem;
 
@@ -32,7 +32,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
      */
     public LocaisVisitadosGUI() {
         initComponents();
-        LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
+        dao = new LocaisVisitadosDAO();
         lista = dao.Listar();
     }
 
@@ -292,6 +292,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -304,6 +305,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             txtCodigo.setText(jogo.getLocalvisitadoid().toString());
             txtNomelocal.setText(jogo.getNomelocal());
             txtNomeatendente.setText(jogo.getNomeatendente());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
@@ -316,6 +318,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             txtCodigo.setText(jogo.getLocalvisitadoid().toString());
             txtNomelocal.setText(jogo.getNomelocal());
             txtNomeatendente.setText(jogo.getNomeatendente());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         }
     }//GEN-LAST:event_btnProximoActionPerformed
@@ -326,6 +329,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
@@ -337,14 +341,15 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         jogo.setNomeatendente(txtNomeatendente.getText());
         jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
-        LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
-        dao.Cadastrar(jogo);
-        JOptionPane.showMessageDialog(null, "Local inserido com sucesso");
+        Boolean retorno = dao.Cadastrar(jogo);
+        if (retorno = true) {
+            JOptionPane.showMessageDialog(null, "Local inserido com sucesso");
+            lista = dao.Listar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
+        }
 
         limparDados();
-
-        lista = dao.Listar();
-
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -360,6 +365,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
 
             if (jogo.getNomelocal().equals(consulta)) {
 
+                txtCodigo.setText(jogo.getLocalvisitadoid().toString());
                 txtNomelocal.setText(jogo.getNomelocal());
                 txtNomeatendente.setText(jogo.getNomeatendente());
                 jogo.setImagem(ManipularImagem.getImgBytes(imagem));
@@ -379,22 +385,21 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        String nome = txtNomelocal.getText();
 
-        for (LocaisVisitados jogo : lista) {
-            if (nome.equals(jogo.getNomelocal())) {
+        LocaisVisitados jogo = new LocaisVisitados();
 
-                jogo.setNomelocal(txtNomelocal.getText());
-                jogo.setNomeatendente(txtNomeatendente.getText());
-                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        jogo.setNomelocal(txtNomelocal.getText());
+        jogo.setNomeatendente(txtNomeatendente.getText());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        jogo.setLocalvisitadoid(Integer.parseInt(txtCodigo.getText()));
 
-                JOptionPane.showMessageDialog(null, "Local atualizado com sucesso");
-                limparDados();
-                break;
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Você não pode modificar o nome do local!");
-            }
+        Boolean retorno = dao.Atualizar(jogo);
+        if (retorno) {
+            JOptionPane.showMessageDialog(null, "Local atualizado com sucesso!");
+            limparDados();
+            lista = dao.Listar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha na atualização do registro!");
         }
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
@@ -410,13 +415,17 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
 
             LocaisVisitados obj = new LocaisVisitados();
             obj.setLocalvisitadoid(Integer.parseInt(txtCodigo.getText()));
-            LocaisVisitadosDAO dao = new LocaisVisitadosDAO();
-            dao.Excluir(obj);
-            lista = dao.Listar();
-            limparDados();
-            JOptionPane.showMessageDialog(null, "Local excluído com sucesso!");
-        }
+            Boolean retorno = dao.Excluir(obj);
+            if (retorno) {
+                limparDados();
+                JOptionPane.showMessageDialog(null, "Local excluído com sucesso!");
+                lista = dao.Listar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do registro!");
+                lista = dao.Listar();
+            }
 
+        }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
@@ -433,6 +442,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtCodigo.setText("");
         txtNomelocal.setText("");
         txtNomeatendente.setText("");
+        lblImagem.setIcon(null);
     }
 
     /**
