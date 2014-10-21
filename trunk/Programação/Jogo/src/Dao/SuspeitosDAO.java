@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Dao;
 
 import Modelo.Suspeitos;
@@ -18,7 +17,7 @@ import java.util.List;
  * @author Aluno
  */
 public class SuspeitosDAO {
-    
+
     public Boolean Cadastrar(Suspeitos obj) {
 
         Boolean retorno = false;
@@ -50,16 +49,15 @@ public class SuspeitosDAO {
         }
         return retorno;
     }
-    
-        public Boolean Excluir(Suspeitos obj)
-    {
+
+    public Boolean Excluir(Suspeitos obj) {
         Boolean retorno = false;
         String sql = "DELETE FROM suspeito WHERE suspeitoid=?";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
         try {
             psm.setInt(1, obj.getSuspeitoid());
             Integer resultado = psm.executeUpdate();
-            if(resultado>0) {
+            if (resultado > 0) {
                 retorno = true;
             } else {
                 retorno = false;
@@ -69,52 +67,19 @@ public class SuspeitosDAO {
         }
         return retorno;
     }
-    
+
     public List<Suspeitos> Listar() {
         List<Suspeitos> lista = new ArrayList<Suspeitos>();
         String sql = "SELECT * FROM suspeito";
-           PreparedStatement psm = Conexao.getPreparedStatement(sql);
-           try {
-               ResultSet resultado = psm.executeQuery();
-               
-               while(resultado.next()) {
-                   Suspeitos obj = new Suspeitos();
-                   obj.setSuspeitoid(resultado.getInt("suspeitoid"));
-                   obj.setSexo(resultado.getString("sexo"));
-                   obj.setNomesuspeito(resultado.getString("nome"));
-                   obj.setOcupacao(resultado.getString("ocupacao"));
-                   obj.setEsporte(resultado.getString("esporte"));
-                   obj.setCabelo(resultado.getString("cabelo"));
-                   obj.setCarro(resultado.getString("carro"));
-                   obj.setTracos(resultado.getString("tracos"));
-                   obj.setOutros(resultado.getString("outros"));
-                   obj.setImagem(resultado.getBytes("imagem"));
-                   lista.add(obj);
-               }
-               
-           } catch(SQLException ex) {
-               System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
-               lista = null;
-           }
-           
-        return lista;
-    }
-    
-    public Suspeitos Consultar(Suspeitos obj2) {
-
-        String sql = "SELECT * FROM suspeito WHERE nome = ?";
-        Suspeitos obj = null;
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
-
         try {
-            psm.setString(1, obj2.getNomesuspeito());
             ResultSet resultado = psm.executeQuery();
 
-            if (resultado.next()) {
-                obj = new Suspeitos();
+            while (resultado.next()) {
+                Suspeitos obj = new Suspeitos();
                 obj.setSuspeitoid(resultado.getInt("suspeitoid"));
-                obj.setNomesuspeito(resultado.getString("nome"));
                 obj.setSexo(resultado.getString("sexo"));
+                obj.setNomesuspeito(resultado.getString("nome"));
                 obj.setOcupacao(resultado.getString("ocupacao"));
                 obj.setEsporte(resultado.getString("esporte"));
                 obj.setCabelo(resultado.getString("cabelo"));
@@ -122,17 +87,47 @@ public class SuspeitosDAO {
                 obj.setTracos(resultado.getString("tracos"));
                 obj.setOutros(resultado.getString("outros"));
                 obj.setImagem(resultado.getBytes("imagem"));
-
+                lista.add(obj);
             }
 
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
-
+            lista = null;
         }
 
-        return obj;
+        return lista;
     }
-    
+
+    public List<Suspeitos> Consultar(String filtro) {
+        List<Suspeitos> lista = new ArrayList<Suspeitos>();
+        String sql = "SELECT * FROM suspeito WHERE nome ILIKE ?";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            psm.setString(1, "%" + filtro + "%");
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                Suspeitos obj = new Suspeitos();
+                obj.setSuspeitoid(resultado.getInt("suspeitoid"));
+                obj.setSexo(resultado.getString("sexo"));
+                obj.setNomesuspeito(resultado.getString("nome"));
+                obj.setOcupacao(resultado.getString("ocupacao"));
+                obj.setEsporte(resultado.getString("esporte"));
+                obj.setCabelo(resultado.getString("cabelo"));
+                obj.setCarro(resultado.getString("carro"));
+                obj.setTracos(resultado.getString("tracos"));
+                obj.setOutros(resultado.getString("outros"));
+                obj.setImagem(resultado.getBytes("imagem"));
+                lista.add(obj);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            lista = null;
+        }
+
+        return lista;
+    }
+
     public Boolean Atualizar(Suspeitos obj) {
 
         Boolean retorno = false;
@@ -140,7 +135,7 @@ public class SuspeitosDAO {
         String sql = "UPDATE suspeito SET nome = ?, sexo = ?, ocupacao = ?,"
                 + "esporte = ?, cabelo = ?,carro = ?, tracos = ?,"
                 + "outros = ?, imagem = ? WHERE suspeitoid = ?";
-        
+
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -168,4 +163,33 @@ public class SuspeitosDAO {
         return retorno;
     }
     
+        public Suspeitos ListarRandom() {
+        Suspeitos retorno = new Suspeitos();
+        String sql = "SELECT * FROM detetive ORDER BY RANDOM() LIMIT 1;";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+
+            if (resultado.next()) {
+                Suspeitos obj = new Suspeitos();
+                obj.setSuspeitoid(resultado.getInt("suspeitoid"));
+                obj.setSexo(resultado.getString("sexo"));
+                obj.setNomesuspeito(resultado.getString("nome"));
+                obj.setOcupacao(resultado.getString("ocupacao"));
+                obj.setEsporte(resultado.getString("esporte"));
+                obj.setCabelo(resultado.getString("cabelo"));
+                obj.setCarro(resultado.getString("carro"));
+                obj.setTracos(resultado.getString("tracos"));
+                obj.setOutros(resultado.getString("outros"));
+                obj.setImagem(resultado.getBytes("imagem"));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            retorno = null;
+        }
+
+        return retorno;
+    }
+
 }

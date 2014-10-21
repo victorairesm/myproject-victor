@@ -87,31 +87,28 @@ public class LocaisVisitadosDAO {
         return lista;
     }
 
-    public LocaisVisitados Consultar(LocaisVisitados obj2) {
-
-        String sql = "SELECT * FROM localvisitado WHERE nome = ?";
-        LocaisVisitados obj = null;
+    public List<LocaisVisitados> Consultar(String filtro) {
+        List<LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
+        String sql = "SELECT * FROM localvisitado WHERE nome ILIKE ?";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
-
         try {
-            psm.setString(1, obj2.getNomeatendente());
+            psm.setString(1, "%" + filtro + "%");
             ResultSet resultado = psm.executeQuery();
-
-            if (resultado.next()) {
-                obj = new LocaisVisitados();
+            while (resultado.next()) {
+                LocaisVisitados obj = new LocaisVisitados();
                 obj.setLocalvisitadoid(resultado.getInt("localvisitadoid"));
                 obj.setNomeatendente(resultado.getString("atendente"));
                 obj.setNomelocal(resultado.getString("nome"));
                 obj.setImagem(resultado.getBytes("imagem"));
-
+                lista.add(obj);
             }
 
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
-
+            lista = null;
         }
 
-        return obj;
+        return lista;
     }
     
     public Boolean Atualizar(LocaisVisitados obj) {

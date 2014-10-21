@@ -95,19 +95,16 @@ public class CidadesDAO {
 
         return lista;
     }
-
-    public Cidades Consultar(Cidades obj2) {
-
-        String sql = "SELECT * FROM cidade WHERE nome = ?";
-        Cidades obj = null;
+    
+    public List<Cidades> Consultar(String filtro) {
+        List<Cidades> lista = new ArrayList<Cidades>();
+        String sql = "SELECT * FROM cidade WHERE nome ILIKE ?";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
-
         try {
-            psm.setString(1, obj2.getNomecidade());
+            psm.setString(1, "%" + filtro + "%");
             ResultSet resultado = psm.executeQuery();
-
-            if (resultado.next()) {
-                obj = new Cidades();
+            while (resultado.next()) {
+                Cidades obj = new Cidades();
                 obj.setCidadeid(resultado.getInt("cidadeid"));
                 obj.setNomecidade(resultado.getString("nome"));
                 obj.setDescricao(resultado.getString("descricao"));
@@ -115,18 +112,19 @@ public class CidadesDAO {
                 obj.setDica2(resultado.getString("dica2"));
                 obj.setDica3(resultado.getString("dica3"));
                 obj.setItem1(resultado.getString("item1"));
-                obj.setItem2(resultado.getString("item2"));
+                obj.setItem2(resultado.getString("Item2"));
                 obj.setImagem(resultado.getBytes("imagem"));
-
+                lista.add(obj);
             }
 
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
-
+            lista = null;
         }
 
-        return obj;
+        return lista;
     }
+        
 
     public Boolean Atualizar(Cidades obj) {
 
@@ -160,6 +158,35 @@ public class CidadesDAO {
             return false;
         }
         return retorno;
+    }
+    
+        public List<Cidades> ListarRandom() {
+        List<Cidades> lista = new ArrayList<Cidades>();
+        String sql = "SELECT * FROM detetive ORDER BY RANDOM() LIMIT 3;";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+
+            while (resultado.next()) {
+                Cidades obj = new Cidades();
+                obj.setCidadeid(resultado.getInt("cidadeid"));
+                obj.setNomecidade(resultado.getString("nome"));
+                obj.setDescricao(resultado.getString("descricao"));
+                obj.setDica1(resultado.getString("dica1"));
+                obj.setDica2(resultado.getString("dica2"));
+                obj.setDica3(resultado.getString("dica3"));
+                obj.setItem1(resultado.getString("item1"));
+                obj.setItem2(resultado.getString("Item2"));
+                obj.setImagem(resultado.getBytes("imagem"));
+                lista.add(obj);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            lista = null;
+        }
+
+        return lista;
     }
 
 }

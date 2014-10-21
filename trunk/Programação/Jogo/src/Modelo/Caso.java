@@ -6,17 +6,29 @@
 
 package Modelo;
 
+import Dao.CidadesDAO;
 import java.util.List;
 
 /**
  *
  * @author Aluno
  */
+
 public class Caso {
     private Suspeitos suspeito;
     private List<Cidades> cidades;
     private Integer passos;
     private Boolean mandato;
+    
+    public Caso() {
+        this.passos = 0;
+        this.mandato = false;
+        CidadesDAO daoCidade = new CidadesDAO();
+        cidades = daoCidade.ListarRandom();
+        //CARREGAR OS SUSPEITOS
+        //CARREGAR CIDADES
+        
+    }
 
     public Suspeitos getSuspeito() {
         return suspeito;

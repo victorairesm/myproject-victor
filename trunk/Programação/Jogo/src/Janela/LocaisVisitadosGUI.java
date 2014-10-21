@@ -318,7 +318,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             txtCodigo.setText(jogo.getLocalvisitadoid().toString());
             txtNomelocal.setText(jogo.getNomelocal());
             txtNomeatendente.setText(jogo.getNomeatendente());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
 
         }
     }//GEN-LAST:event_btnProximoActionPerformed
