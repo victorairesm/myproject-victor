@@ -1,5 +1,3 @@
-
-
 package Janela;
 
 import Dao.DetetiveDAO;
@@ -22,18 +20,18 @@ import javax.swing.JOptionPane;
  * @author Marcos
  */
 public class DetetiveGUI extends javax.swing.JFrame {
-    
-  List<Modelo.Detetive> lista = new ArrayList<Modelo.Detetive>();
 
-  Integer posicaoLista;
-  BufferedImage imagem;
-  
+    List<Modelo.Detetive> lista = new ArrayList<Modelo.Detetive>();
+    DetetiveDAO dao;
+    Integer posicaoLista;
+    BufferedImage imagem;
+
     /**
      * Creates new form Detetive
      */
     public DetetiveGUI() {
         initComponents();
-        DetetiveDAO dao = new DetetiveDAO();
+        dao = new DetetiveDAO();
         lista = dao.Listar();
     }
 
@@ -324,6 +322,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
         txtEmail.setText(jogo.getEmail());
         txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -333,12 +332,13 @@ public class DetetiveGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista + 1;
             Modelo.Detetive jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getDetetiveid().toString());
-        txtNome.setText(jogo.getNome());
-        txtEmail.setText(jogo.getEmail());
-        txtNcasos.setText(jogo.getNcasos().toString());
-        cbxEquipe.setSelectedItem(jogo.getEquipe());
-        
+            txtCodigo.setText(jogo.getDetetiveid().toString());
+            txtNome.setText(jogo.getNome());
+            txtEmail.setText(jogo.getEmail());
+            txtNcasos.setText(jogo.getNcasos().toString());
+            cbxEquipe.setSelectedItem(jogo.getEquipe());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -347,12 +347,13 @@ public class DetetiveGUI extends javax.swing.JFrame {
             posicaoLista = posicaoLista - 1;
             Modelo.Detetive jogo = lista.get(posicaoLista);
 
-        txtCodigo.setText(jogo.getDetetiveid().toString());
-        txtNome.setText(jogo.getNome());
-        txtEmail.setText(jogo.getEmail());
-        txtNcasos.setText(jogo.getNcasos().toString());
-        cbxEquipe.setSelectedItem(jogo.getEquipe());
-        
+            txtCodigo.setText(jogo.getDetetiveid().toString());
+            txtNome.setText(jogo.getNome());
+            txtEmail.setText(jogo.getEmail());
+            txtNcasos.setText(jogo.getNcasos().toString());
+            cbxEquipe.setSelectedItem(jogo.getEquipe());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -364,28 +365,30 @@ public class DetetiveGUI extends javax.swing.JFrame {
         txtEmail.setText(jogo.getEmail());
         txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
-        
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+
         exibeImagem(jogo.getImagem());
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-            Modelo.Detetive jogo = new Modelo.Detetive();
+        Modelo.Detetive jogo = new Modelo.Detetive();
 
-            jogo.setNome(txtNome.getText());
-            jogo.setEmail(txtEmail.getText());
-            jogo.setNcasos(Integer.parseInt(txtNcasos.getText()));
-            jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-           
-            DetetiveDAO dao = new DetetiveDAO();
-            dao.Cadastrar(jogo);
+        jogo.setNome(txtNome.getText());
+        jogo.setEmail(txtEmail.getText());
+        jogo.setNcasos(Integer.parseInt(txtNcasos.getText()));
+        jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+
+        Boolean retorno = dao.Cadastrar(jogo);
+        if (retorno = true) {
             JOptionPane.showMessageDialog(null, "Detetive inserido com sucesso");
-
-            limparDados();
-            
             lista = dao.Listar();
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
+        }
+
+        limparDados();
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -400,11 +403,12 @@ public class DetetiveGUI extends javax.swing.JFrame {
 
             if (jogo.getNome().equals(consulta)) {
 
-            txtNome.setText(jogo.getNome());
-            txtEmail.setText(jogo.getEmail());
-            txtNcasos.setText(jogo.getNcasos().toString());
-            jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+                txtCodigo.setText(jogo.getDetetiveid().toString());
+                txtNome.setText(jogo.getNome());
+                txtEmail.setText(jogo.getEmail());
+                txtNcasos.setText(jogo.getNcasos().toString());
+                jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
+                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
                 encontrou = true;
 
@@ -421,26 +425,24 @@ public class DetetiveGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        String nome = txtNome.getText();
+        Detetive jogo = new Detetive();
 
-        for (Modelo.Detetive jogo : lista) {
-            if (nome.equals(jogo.getNome())) { 
-            
-            jogo.setNome(txtNome.getText());
-            jogo.setEmail(txtEmail.getText());
-            jogo.setNcasos(Integer.parseInt(txtNcasos.getText()));
-            jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-
-            JOptionPane.showMessageDialog(null, "Detetive atualizado com sucesso");
+        jogo.setNome(txtNome.getText());
+        jogo.setEmail(txtEmail.getText());
+        jogo.setNcasos(Integer.parseInt(txtNcasos.getText()));
+        jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        jogo.setDetetiveid(Integer.parseInt(txtCodigo.getText()));
+        
+        Boolean retorno = dao.Atualizar(jogo);
+        if(retorno) {
+            JOptionPane.showMessageDialog(null, "Detetive atualizado com sucesso!");
             limparDados();
-            break;
-            
-            } else {
-                JOptionPane.showMessageDialog(null, "Você não pode modificar o nome do detetive!");
-            }
+            lista = dao.Listar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha na atualização do registro!");
         }
-  
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
@@ -448,18 +450,22 @@ public class DetetiveGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-                int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o detetive?");
+        int confirma = JOptionPane.showConfirmDialog(null, "Deseja excluir o detetive?");
 
         if (confirma == 0) {
-            
+
             Detetive obj = new Detetive();
-            obj.setDetetiveid
-            (Integer.parseInt(txtCodigo.getText()));
-            DetetiveDAO dao = new DetetiveDAO();
-            dao.Excluir(obj);
-            lista = dao.Listar();
-            limparDados();
-            JOptionPane.showMessageDialog(null, "Detetive excluído com sucesso!");
+            obj.setDetetiveid(Integer.parseInt(txtCodigo.getText()));
+            Boolean retorno = dao.Excluir(obj);
+            if (retorno) {
+                limparDados();
+                JOptionPane.showMessageDialog(null, "Detetive excluído com sucesso!");
+                lista = dao.Listar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do registro!");
+                lista = dao.Listar();
+            }
+
         }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
@@ -473,29 +479,30 @@ public class DetetiveGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
-    private void exibeImagem(byte[] minhaimagem)
-    {
-        if(minhaimagem!=null)
-        {
+    private void exibeImagem(byte[] minhaimagem) {
+        if (minhaimagem != null) {
             InputStream input = new ByteArrayInputStream(minhaimagem);
             try {
                 imagem = ImageIO.read(input);
             } catch (IOException ex) {
-                
-            } lblImagem.setIcon(new ImageIcon(imagem));
+
+            }
+            lblImagem.setIcon(new ImageIcon(imagem));
         } else {
             lblImagem.setIcon(null);
-            imagem=null;
+            imagem = null;
         }
     }
-    
+
     public void limparDados() {
         txtCodigo.setText("");
         txtNome.setText("");
         txtEmail.setText("");
         txtNcasos.setText("");
         cbxEquipe.setSelectedIndex(-1);
+        lblImagem.setIcon(null);
     }
+
     /**
      * @param args the command line arguments
      */

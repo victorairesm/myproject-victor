@@ -23,13 +23,13 @@ import javax.swing.JOptionPane;
 public class CidadesGUI extends javax.swing.JFrame {
 
     List<Cidades> lista = new ArrayList<Cidades>();
-
+    CidadesDAO dao;
     Integer posicaoLista;
     BufferedImage imagem;
 
     public CidadesGUI() {
         initComponents();
-        CidadesDAO dao = new CidadesDAO();
+        dao = new CidadesDAO();
         lista = dao.Listar();
     }
 
@@ -382,6 +382,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText(jogo.getDica3());
         txtItem1.setText(jogo.getItem1());
         txtItem2.setText(jogo.getItem2());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -399,6 +400,7 @@ public class CidadesGUI extends javax.swing.JFrame {
             txtDica3.setText(jogo.getDica3());
             txtItem1.setText(jogo.getItem1());
             txtItem2.setText(jogo.getItem2());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -415,6 +417,7 @@ public class CidadesGUI extends javax.swing.JFrame {
             txtDica3.setText(jogo.getDica3());
             txtItem1.setText(jogo.getItem1());
             txtItem2.setText(jogo.getItem2());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -429,6 +432,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText(jogo.getDica3());
         txtItem1.setText(jogo.getItem1());
         txtItem2.setText(jogo.getItem2());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
@@ -446,15 +450,15 @@ public class CidadesGUI extends javax.swing.JFrame {
         jogo.setItem2(txtItem2.getText());
         jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
-        CidadesDAO dao = new CidadesDAO();
-        dao.Cadastrar(jogo);
-
-        JOptionPane.showMessageDialog(null, "Cidade inserida com sucesso");
+        Boolean retorno = dao.Cadastrar(jogo);
+        if (retorno = true) {
+            JOptionPane.showMessageDialog(null, "Cidade inserida com sucesso");
+            lista = dao.Listar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
+        }
 
         limparDados();
-
-        lista = dao.Listar();
-
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -470,6 +474,7 @@ public class CidadesGUI extends javax.swing.JFrame {
 
             if (jogo.getNomecidade().equals(consulta)) {
 
+                txtCodigo.setText(jogo.getCidadeid().toString());
                 txtNomecidade.setText(jogo.getNomecidade());
                 txtDescricao.setText(jogo.getDescricao());
                 txtDica1.setText(jogo.getDica1());
@@ -498,27 +503,28 @@ public class CidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        String nome = txtNomecidade.getText();
 
-        for (Cidades jogo : lista) {
-            if (nome.equals(jogo.getNomecidade())) {
+        Cidades jogo = new Cidades();
 
-                jogo.setNomecidade(txtNomecidade.getText());
-                jogo.setDescricao(txtDescricao.getText());
-                jogo.setDica1(txtDica1.getText());
-                jogo.setDica2(txtDica2.getText());
-                jogo.setDica3(txtDica3.getText());
-                jogo.setItem1(txtItem1.getText());
-                jogo.setItem2(txtItem2.getText());
-                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-                JOptionPane.showMessageDialog(null, "Cidade atualizada com sucesso");
-                limparDados();
-                break;
+        jogo.setNomecidade(txtNomecidade.getText());
+        jogo.setDescricao(txtDescricao.getText());
+        jogo.setDica1(txtDica1.getText());
+        jogo.setDica2(txtDica2.getText());
+        jogo.setDica3(txtDica3.getText());
+        jogo.setItem1(txtItem1.getText());
+        jogo.setItem2(txtItem2.getText());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        jogo.setCidadeid(Integer.parseInt(txtCodigo.getText()));
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Você não pode modificar o nome da cidade!");
-            }
+        Boolean retorno = dao.Atualizar(jogo);
+        if (retorno) {
+            JOptionPane.showMessageDialog(null, "Cidade atualizado com sucesso!");
+            limparDados();
+            lista = dao.Listar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha na atualização do registro!");
         }
+
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
@@ -529,11 +535,16 @@ public class CidadesGUI extends javax.swing.JFrame {
 
             Cidades obj = new Cidades();
             obj.setCidadeid(Integer.parseInt(txtCodigo.getText()));
-            CidadesDAO dao = new CidadesDAO();
-            dao.Excluir(obj);
-            lista = dao.Listar();
-            limparDados();
-            JOptionPane.showMessageDialog(null, "Cidade excluída com sucesso!");
+            Boolean retorno = dao.Excluir(obj);
+            if (retorno) {
+                limparDados();
+                JOptionPane.showMessageDialog(null, "Cidade excluída com sucesso!");
+                lista = dao.Listar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do registro!");
+                lista = dao.Listar();
+            }
+
         }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
@@ -568,6 +579,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText("");
         txtItem1.setText("");
         txtItem2.setText("");
+        lblImagem.setIcon(null);
     }
 
     /**

@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 public class SuspeitosGUI extends javax.swing.JFrame {
 
     List<Suspeitos> lista = new ArrayList<Suspeitos>();
-
+    SuspeitosDAO dao;
     Integer posicaoLista;
     BufferedImage imagem;
 
@@ -32,7 +32,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
      */
     public SuspeitosGUI() {
         initComponents();
-        SuspeitosDAO dao = new SuspeitosDAO();
+        dao = new SuspeitosDAO();
         lista = dao.Listar();
     }
 
@@ -360,6 +360,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         txtCarro.setText(jogo.getCarro());
         txtTracos.setText(jogo.getTracos());
         txtOutros.setText(jogo.getOutros());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -378,6 +379,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             txtCarro.setText(jogo.getCarro());
             txtTracos.setText(jogo.getTracos());
             txtOutros.setText(jogo.getOutros());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
@@ -394,6 +396,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         txtCarro.setText(jogo.getCarro());
         txtTracos.setText(jogo.getTracos());
         txtOutros.setText(jogo.getOutros());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
@@ -412,6 +415,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
             txtCarro.setText(jogo.getCarro());
             txtTracos.setText(jogo.getTracos());
             txtOutros.setText(jogo.getOutros());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -428,14 +432,15 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         jogo.setOutros(txtOutros.getText());
         jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
-        SuspeitosDAO dao = new SuspeitosDAO();
-        dao.Cadastrar(jogo);
-        JOptionPane.showMessageDialog(null, "Suspeito inserido com sucesso");
+        Boolean retorno = dao.Cadastrar(jogo);
+        if (retorno = true) {
+            JOptionPane.showMessageDialog(null, "Suspeito inserido com sucesso");
+            lista = dao.Listar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
+        }
 
         limparDados();
-
-        lista = dao.Listar();
-
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
@@ -450,6 +455,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
 
             if (jogo.getNomesuspeito().equals(consulta)) {
 
+                txtCodigo.setText(jogo.getSuspeitoid().toString());
                 txtNomesuspeito.setText(jogo.getNomesuspeito());
                 jogo.setSexo(cbxSexo.getSelectedItem().toString());
                 txtOcupacao.setText(jogo.getOcupacao());
@@ -485,39 +491,41 @@ public class SuspeitosGUI extends javax.swing.JFrame {
 
             Suspeitos obj = new Suspeitos();
             obj.setSuspeitoid(Integer.parseInt(txtCodigo.getText()));
-            SuspeitosDAO dao = new SuspeitosDAO();
-            dao.Excluir(obj);
-            lista = dao.Listar();
-            limparDados();
-            JOptionPane.showMessageDialog(null, "Suspeito excluído com sucesso!");
+            Boolean retorno = dao.Excluir(obj);
+            if (retorno) {
+                limparDados();
+                JOptionPane.showMessageDialog(null, "Suspeito excluído com sucesso!");
+                lista = dao.Listar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Falha na exclusão do registro!");
+                lista = dao.Listar();
+            }
+
         }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        String nome = txtNomesuspeito.getText();
+        Suspeitos jogo = new Suspeitos();
 
-        for (Suspeitos jogo : lista) {
-            if (nome.equals(jogo.getNomesuspeito())) {
+        jogo.setNomesuspeito(txtNomesuspeito.getText());
+        jogo.setSexo(cbxSexo.getSelectedItem().toString());
+        jogo.setOcupacao(txtOcupacao.getText());
+        jogo.setEsporte(txtEsporte.getText());
+        jogo.setCabelo(txtCabelo.getText());
+        jogo.setCarro(txtCarro.getText());
+        jogo.setTracos(txtTracos.getText());
+        jogo.setOutros(txtOutros.getText());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        jogo.setSuspeitoid(Integer.parseInt(txtCodigo.getText()));
 
-                jogo.setNomesuspeito(txtNomesuspeito.getText());
-                jogo.setSexo(cbxSexo.getSelectedItem().toString());
-                jogo.setOcupacao(txtOcupacao.getText());
-                jogo.setEsporte(txtEsporte.getText());
-                jogo.setCabelo(txtCabelo.getText());
-                jogo.setCarro(txtCarro.getText());
-                jogo.setTracos(txtTracos.getText());
-                jogo.setOutros(txtOutros.getText());
-                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-
-                JOptionPane.showMessageDialog(null, "Suspeito atualizado com sucesso");
-                limparDados();
-                break;
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro desconhecido");
-            }
+        Boolean retorno = dao.Atualizar(jogo);
+        if (retorno) {
+            JOptionPane.showMessageDialog(null, "Suspeito atualizado com sucesso!");
+            limparDados();
+            lista = dao.Listar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha na atualização do registro!");
         }
-
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
@@ -540,6 +548,7 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         txtCarro.setText("");
         txtTracos.setText("");
         txtOutros.setText("");
+        lblImagem.setIcon(null);
 
     }
 
