@@ -43,6 +43,7 @@ public class CidadesGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jProgressBar1 = new javax.swing.JProgressBar();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnPrimeiro = new javax.swing.JButton();
         btnAnterior = new javax.swing.JButton();
@@ -74,6 +75,10 @@ public class CidadesGUI extends javax.swing.JFrame {
         btnSelecionar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblImagem = new javax.swing.JLabel();
+        lblExibicao = new javax.swing.JLabel();
+        btnTodos = new javax.swing.JButton();
+
+        jButton2.setText("jButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Cidades");
@@ -264,6 +269,18 @@ public class CidadesGUI extends javax.swing.JFrame {
             .addComponent(lblImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        lblExibicao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblExibicao.setForeground(new java.awt.Color(204, 0, 0));
+        lblExibicao.setText("Todos os registros");
+        lblExibicao.setToolTipText("");
+
+        btnTodos.setText("Todos");
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,9 +288,6 @@ public class CidadesGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -310,14 +324,26 @@ public class CidadesGUI extends javax.swing.JFrame {
                                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblExibicao, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTodos)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblExibicao)
+                    .addComponent(btnTodos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -358,7 +384,7 @@ public class CidadesGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(btnSelecionar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -462,7 +488,6 @@ public class CidadesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-
         String consulta
                 = JOptionPane.showInputDialog("Informe o nome da cidade a ser"
                         + " consultada ");
@@ -470,32 +495,28 @@ public class CidadesGUI extends javax.swing.JFrame {
         boolean encontrou = false;
 
         int i = 0;
-        for (Cidades jogo : lista) {
-
-            if (jogo.getNomecidade().equals(consulta)) {
-
-                txtCodigo.setText(jogo.getCidadeid().toString());
-                txtNomecidade.setText(jogo.getNomecidade());
-                txtDescricao.setText(jogo.getDescricao());
-                txtDica1.setText(jogo.getDica1());
-                txtDica2.setText(jogo.getDica2());
-                txtDica3.setText(jogo.getDica3());
-                txtItem1.setText(jogo.getItem1());
-                txtItem2.setText(jogo.getItem2());
-                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-
-                encontrou = true;
-
-                posicaoLista = i;
-                break;
-            }
-            i++;
-        }
-
+        lista = dao.Consultar(consulta);
+        encontrou = (lista.size() > 0);
+        String saidaLabel = "";
         if (encontrou == false) {
-            JOptionPane.showMessageDialog(null, "Não encontrou nenhum registro");
-        }
+            saidaLabel = "Filtrando por: " + consulta + ". Nenhum registro encontrado";
+            limparDados();
+        } else {
+            saidaLabel = "Filtrando por: " + consulta + ". Exibindo " + lista.size() + " registros";
 
+            Modelo.Cidades jogo = lista.get(posicaoLista);
+            posicaoLista = 0;
+            txtCodigo.setText(jogo.getCidadeid().toString());
+            txtNomecidade.setText(jogo.getNomecidade());
+            txtDescricao.setText(jogo.getDescricao());
+            txtDica1.setText(jogo.getDica1());
+            txtDica2.setText(jogo.getDica2());
+            txtDica3.setText(jogo.getDica3());
+            txtItem1.setText(jogo.getItem1());
+            txtItem2.setText(jogo.getItem2());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        }
+        lblExibicao.setText(saidaLabel);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
@@ -570,6 +591,23 @@ public class CidadesGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
+    private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
+        lista = dao.Listar();
+        lblExibicao.setText("Todos os registros");
+
+        Modelo.Cidades jogo = lista.get(posicaoLista);
+        posicaoLista = 0;
+        txtCodigo.setText(jogo.getCidadeid().toString());
+        txtNomecidade.setText(jogo.getNomecidade());
+        txtDescricao.setText(jogo.getDescricao());
+        txtDica1.setText(jogo.getDica1());
+        txtDica2.setText(jogo.getDica2());
+        txtDica3.setText(jogo.getDica3());
+        txtItem1.setText(jogo.getItem1());
+        txtItem2.setText(jogo.getItem2());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+    }//GEN-LAST:event_btnTodosActionPerformed
+
     public void limparDados() {
         txtCodigo.setText("");
         txtNomecidade.setText("");
@@ -627,7 +665,9 @@ public class CidadesGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSelecionar;
+    private javax.swing.JButton btnTodos;
     private javax.swing.JButton btnUltimo;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -641,6 +681,7 @@ public class CidadesGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lblExibicao;
     private javax.swing.JLabel lblImagem;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;

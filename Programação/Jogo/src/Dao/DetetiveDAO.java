@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Dao;
 
 import Modelo.Detetive;
@@ -18,8 +17,8 @@ import java.util.List;
  * @author Aluno
  */
 public class DetetiveDAO {
-    
-        public Boolean Cadastrar(Detetive obj) {
+
+    public Boolean Cadastrar(Detetive obj) {
 
         Boolean retorno = false;
 
@@ -35,9 +34,9 @@ public class DetetiveDAO {
             pst.setBytes(5, obj.getImagem());
 
             Integer resultado = pst.executeUpdate();
-            
+
             retorno = (resultado > 0);
-        
+
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
@@ -45,79 +44,49 @@ public class DetetiveDAO {
         return retorno;
     }
 
-         public Boolean Excluir(Detetive obj)
-    {
+    public Boolean Excluir(Detetive obj) {
         Boolean retorno = false;
         String sql = "DELETE FROM detetive WHERE detetiveid=?";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
         try {
             psm.setInt(1, obj.getDetetiveid());
-            
+
             Integer resultado = psm.executeUpdate();
-            
+
             retorno = (resultado > 0);
-            
+
         } catch (SQLException ex) {
             System.out.println("Erro ao conectar com o banco: " + ex.getMessage());
         }
         return retorno;
-    }   
-     
+    }
+
     public List<Detetive> Listar() {
         List<Detetive> lista = new ArrayList<Detetive>();
         String sql = "SELECT * FROM detetive";
-           PreparedStatement psm = Conexao.getPreparedStatement(sql);
-           try {
-               ResultSet resultado = psm.executeQuery();
-               
-               while(resultado.next()) {
-                   Detetive obj = new Detetive();
-                   obj.setDetetiveid(resultado.getInt("detetiveid"));
-                   obj.setNome(resultado.getString("nome"));
-                   obj.setEmail(resultado.getString("email"));
-                   obj.setNcasos(resultado.getInt("numerocasos"));
-                   obj.setEquipe(resultado.getString("nomeequipe"));
-                   obj.setImagem(resultado.getBytes("imagem"));
-                   lista.add(obj);
-               }
-               
-           } catch(SQLException ex) {
-               System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
-               lista = null;
-           }
-           
-        return lista;
-    }
-    
-    public Detetive Consultar(Detetive obj2) {
-
-        String sql = "SELECT * FROM detetive WHERE nome = ?";
-        Detetive obj = null;
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
-
         try {
-            psm.setString(1, obj2.getNome());
             ResultSet resultado = psm.executeQuery();
 
-            if (resultado.next()) {
-                obj = new Detetive();
+            while (resultado.next()) {
+                Detetive obj = new Detetive();
                 obj.setDetetiveid(resultado.getInt("detetiveid"));
                 obj.setNome(resultado.getString("nome"));
                 obj.setEmail(resultado.getString("email"));
                 obj.setNcasos(resultado.getInt("numerocasos"));
                 obj.setEquipe(resultado.getString("nomeequipe"));
                 obj.setImagem(resultado.getBytes("imagem"));
-
+                lista.add(obj);
             }
 
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
-
+            lista = null;
         }
 
-        return obj;
+        return lista;
     }
-    
+
     public Boolean Atualizar(Detetive obj) {
 
         Boolean retorno = false;
@@ -125,7 +94,7 @@ public class DetetiveDAO {
         String sql = "UPDATE detetive SET nome = ?, email = ?,"
                 + "numerocasos = ?, nomeequipe = ?,imagem = ?"
                 + " WHERE detetiveid = ?";
-       
+
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -137,14 +106,40 @@ public class DetetiveDAO {
             pst.setInt(6, obj.getDetetiveid());
 
             Integer resultado = pst.executeUpdate();
-            
+
             retorno = (resultado > 0);
-        
+
         } catch (SQLException ex) {
             System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
             return false;
         }
         return retorno;
     }
-    
+
+    public List<Detetive> Consultar(String filtro) {
+        List<Detetive> lista = new ArrayList<Detetive>();
+        String sql = "SELECT * FROM detetive WHERE nome ILIKE ?";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            psm.setString(1, "%" + filtro + "%");
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                Detetive obj = new Detetive();
+                obj.setDetetiveid(resultado.getInt("detetiveid"));
+                obj.setNome(resultado.getString("nome"));
+                obj.setEmail(resultado.getString("email"));
+                obj.setNcasos(resultado.getInt("numerocasos"));
+                obj.setEquipe(resultado.getString("nomeequipe"));
+                obj.setImagem(resultado.getBytes("imagem"));
+                lista.add(obj);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            lista = null;
+        }
+
+        return lista;
+    }
+
 }

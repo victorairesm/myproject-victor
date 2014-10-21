@@ -69,6 +69,8 @@ public class DetetiveGUI extends javax.swing.JFrame {
         btnSelecionar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblImagem = new javax.swing.JLabel();
+        lblExibicao = new javax.swing.JLabel();
+        btnTodos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -232,6 +234,17 @@ public class DetetiveGUI extends javax.swing.JFrame {
             .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
         );
 
+        lblExibicao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblExibicao.setForeground(new java.awt.Color(204, 0, 0));
+        lblExibicao.setText("Todos os registros");
+
+        btnTodos.setText("Todos");
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -250,36 +263,48 @@ public class DetetiveGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNcasos, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblExibicao, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSelecionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                        .addComponent(btnTodos)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNcasos, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSelecionar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblExibicao)
+                    .addComponent(btnTodos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
@@ -303,10 +328,8 @@ public class DetetiveGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(btnSelecionar)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -399,29 +422,25 @@ public class DetetiveGUI extends javax.swing.JFrame {
         boolean encontrou = false;
 
         int i = 0;
-        for (Modelo.Detetive jogo : lista) {
-
-            if (jogo.getNome().equals(consulta)) {
-
-                txtCodigo.setText(jogo.getDetetiveid().toString());
-                txtNome.setText(jogo.getNome());
-                txtEmail.setText(jogo.getEmail());
-                txtNcasos.setText(jogo.getNcasos().toString());
-                jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
-                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-
-                encontrou = true;
-
-                posicaoLista = i;
-                break;
-            }
-            i++;
-        }
-
+        lista = dao.Consultar(consulta);
+        encontrou = (lista.size() > 0);
+        String saidaLabel = "";
         if (encontrou == false) {
-            JOptionPane.showMessageDialog(null, "Não encontrou nenhum registro");
-        }
+            saidaLabel = "Filtrando por: " + consulta + ". Nenhum registro encontrado";
+            limparDados();
+        } else {
+            saidaLabel = "Filtrando por: " + consulta + ". Exibindo " + lista.size() + " registros";
 
+            Modelo.Detetive jogo = lista.get(posicaoLista);
+            posicaoLista = 0;
+            txtCodigo.setText(jogo.getDetetiveid().toString());
+            txtNome.setText(jogo.getNome());
+            txtEmail.setText(jogo.getEmail());
+            txtNcasos.setText(jogo.getNcasos().toString());
+            cbxEquipe.setSelectedItem(jogo.getEquipe());
+            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        }
+        lblExibicao.setText(saidaLabel);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
@@ -433,9 +452,9 @@ public class DetetiveGUI extends javax.swing.JFrame {
         jogo.setEquipe(cbxEquipe.getSelectedItem().toString());
         jogo.setImagem(ManipularImagem.getImgBytes(imagem));
         jogo.setDetetiveid(Integer.parseInt(txtCodigo.getText()));
-        
+
         Boolean retorno = dao.Atualizar(jogo);
-        if(retorno) {
+        if (retorno) {
             JOptionPane.showMessageDialog(null, "Detetive atualizado com sucesso!");
             limparDados();
             lista = dao.Listar();
@@ -478,6 +497,20 @@ public class DetetiveGUI extends javax.swing.JFrame {
             lblImagem.setIcon(new ImageIcon(imagem));
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed
+
+    private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
+        lista = dao.Listar();
+        lblExibicao.setText("Todos os registros");
+
+        Modelo.Detetive jogo = lista.get(posicaoLista);
+        posicaoLista = 0;
+        txtCodigo.setText(jogo.getDetetiveid().toString());
+        txtNome.setText(jogo.getNome());
+        txtEmail.setText(jogo.getEmail());
+        txtNcasos.setText(jogo.getNcasos().toString());
+        cbxEquipe.setSelectedItem(jogo.getEquipe());
+        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+    }//GEN-LAST:event_btnTodosActionPerformed
 
     private void exibeImagem(byte[] minhaimagem) {
         if (minhaimagem != null) {
@@ -548,6 +581,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSelecionar;
+    private javax.swing.JButton btnTodos;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JComboBox cbxEquipe;
     private javax.swing.JLabel jLabel1;
@@ -559,6 +593,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblExibicao;
     private javax.swing.JLabel lblImagem;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtEmail;
