@@ -22,6 +22,9 @@ public class PrincipalGUI extends javax.swing.JFrame {
      */
     public PrincipalGUI() {
         initComponents();
+        LoginGUI tela = new LoginGUI(Desktop);
+        Desktop.add(tela);
+        tela.show();
     }
 
     /**
@@ -34,7 +37,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
-        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuDetetive = new javax.swing.JMenu();
         itemDetetiveG = new javax.swing.JMenuItem();
@@ -52,25 +54,16 @@ public class PrincipalGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1364, 725));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/detetiveIMG.gif"))); // NOI18N
-
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DesktopLayout.createSequentialGroup()
-                .addGap(191, 191, 191)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(300, Short.MAX_VALUE))
+            .addGap(0, 774, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DesktopLayout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+            .addGap(0, 586, Short.MAX_VALUE)
         );
-        Desktop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenuBar1.setMargin(new java.awt.Insets(15, 0, 0, 0));
 
@@ -267,7 +260,6 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemLocaisL;
     private javax.swing.JMenuItem itemSuspeitosG;
     private javax.swing.JMenuItem itemSuspeitosL;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuCidades;
     private javax.swing.JMenu menuDetetive;

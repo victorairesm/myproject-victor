@@ -74,8 +74,6 @@ public class DetetiveGUI extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximizable(true);
-        setResizable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));
 

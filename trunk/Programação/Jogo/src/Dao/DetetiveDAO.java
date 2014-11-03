@@ -141,5 +141,28 @@ public class DetetiveDAO {
 
         return lista;
     }
+    
+        public List<Detetive> ConsultarEmail(String filtro) {
+        List<Detetive> lista = new ArrayList<Detetive>();
+        String sql = "SELECT * FROM detetive WHERE email ILIKE ?";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            psm.setString(1, "%" + filtro + "%");
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                Detetive obj = new Detetive();
+
+                obj.setEmail(resultado.getString("email"));
+
+                lista.add(obj);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            lista = null;
+        }
+
+        return lista;
+    }
 
 }

@@ -86,8 +86,6 @@ public class CidadesGUI extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Cadastro de Cidades");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));
