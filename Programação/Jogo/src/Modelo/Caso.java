@@ -7,6 +7,7 @@
 package Modelo;
 
 import Dao.CidadesDAO;
+import Dao.SuspeitosDAO;
 import java.util.List;
 
 /**
@@ -25,7 +26,9 @@ public class Caso {
         this.mandato = false;
         CidadesDAO daoCidade = new CidadesDAO();
         cidades = daoCidade.ListarRandom();
-        //CARREGAR OS SUSPEITOS
+        SuspeitosDAO daoSuspeito = new SuspeitosDAO();
+        this.suspeito = daoSuspeito.ListarRandom();
+        //CARREGAR OS SUSPEITOSsdf
         //CARREGAR CIDADES
         
     }
