@@ -33,9 +33,8 @@ public class PrincipalGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        Desktop = new javax.swing.JDesktopPane();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuDetetive = new javax.swing.JMenu();
         itemDetetiveG = new javax.swing.JMenuItem();
@@ -51,17 +50,27 @@ public class PrincipalGUI extends javax.swing.JFrame {
         itemCidadesL = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel1.setText("TchêLoque");
-        jLabel1.setMaximumSize(new java.awt.Dimension(110, 40));
-        jLabel1.setPreferredSize(new java.awt.Dimension(110, 40));
-        jLabel1.setVerifyInputWhenFocusTarget(false);
+        setPreferredSize(new java.awt.Dimension(1364, 725));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/detetiveIMG.gif"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
-        jLabel3.setText("Ramos");
+        javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
+        Desktop.setLayout(DesktopLayout);
+        DesktopLayout.setHorizontalGroup(
+            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopLayout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(300, Short.MAX_VALUE))
+        );
+        DesktopLayout.setVerticalGroup(
+            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DesktopLayout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(186, Short.MAX_VALUE))
+        );
+        Desktop.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jMenuBar1.setMargin(new java.awt.Insets(15, 0, 0, 0));
 
@@ -155,82 +164,62 @@ public class PrincipalGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(51, 51, 51))
+            .addComponent(Desktop)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)))
-                .addGap(30, 30, 30))
+            .addComponent(Desktop)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemDetetiveGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDetetiveGActionPerformed
-        DetetiveGUI d = new DetetiveGUI();
-        d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        d.setVisible(true);  
+        DetetiveGUI tela = new DetetiveGUI();
+        Desktop.add(tela);
+        tela.show();
     }//GEN-LAST:event_itemDetetiveGActionPerformed
 
     private void itemDetetiveLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDetetiveLActionPerformed
-        DetetiveTAB d = new DetetiveTAB();
-        d.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        d.setVisible(true);
+        DetetiveTAB tela = new DetetiveTAB();
+        Desktop.add(tela);
+        tela.show();
     }//GEN-LAST:event_itemDetetiveLActionPerformed
 
     private void itemSuspeitosGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSuspeitosGActionPerformed
-        SuspeitosGUI s = new SuspeitosGUI();
-        s.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        s.setVisible(true);  
+        SuspeitosGUI tela = new SuspeitosGUI();
+        Desktop.add(tela);
+        tela.show();
     }//GEN-LAST:event_itemSuspeitosGActionPerformed
 
     private void itemSuspeitosLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSuspeitosLActionPerformed
-        SuspeitosTAB s = new SuspeitosTAB();
-        s.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        s.setVisible(true);  
+        SuspeitosTAB tela = new SuspeitosTAB();
+        Desktop.add(tela);
+        tela.show(); 
     }//GEN-LAST:event_itemSuspeitosLActionPerformed
 
     private void itemLocaisGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLocaisGActionPerformed
-        LocaisVisitadosGUI lv = new LocaisVisitadosGUI();
-        lv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        lv.setVisible(true);  
+        LocaisVisitadosGUI tela = new LocaisVisitadosGUI();
+        Desktop.add(tela);
+        tela.show();
     }//GEN-LAST:event_itemLocaisGActionPerformed
 
     private void itemLocaisLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLocaisLActionPerformed
-        LocaisVisitadosTAB lv = new LocaisVisitadosTAB();
-        lv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        lv.setVisible(true); 
+        LocaisVisitadosTAB tela = new LocaisVisitadosTAB();
+        Desktop.add(tela);
+        tela.show();
     }//GEN-LAST:event_itemLocaisLActionPerformed
 
     private void itemCidadesGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadesGActionPerformed
-        CidadesGUI c = new CidadesGUI();
-        c.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        c.setVisible(true); 
+        CidadesGUI tela = new CidadesGUI();
+        Desktop.add(tela);
+        tela.show();
     }//GEN-LAST:event_itemCidadesGActionPerformed
 
     private void itemCidadesLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadesLActionPerformed
-        CidadesTAB c = new CidadesTAB();
-        c.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        c.setVisible(true); 
+        CidadesTAB tela = new CidadesTAB();
+        Desktop.add(tela);
+        tela.show();
     }//GEN-LAST:event_itemCidadesLActionPerformed
 
     /**
@@ -269,6 +258,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenuItem itemCidadesG;
     private javax.swing.JMenuItem itemCidadesL;
     private javax.swing.JMenuItem itemDetetiveG;
@@ -277,9 +267,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemLocaisL;
     private javax.swing.JMenuItem itemSuspeitosG;
     private javax.swing.JMenuItem itemSuspeitosL;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuCidades;
     private javax.swing.JMenu menuDetetive;

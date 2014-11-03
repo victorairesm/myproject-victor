@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  *
  * @author Marcos
  */
-public class CidadesGUI extends javax.swing.JFrame {
+public class CidadesGUI extends javax.swing.JInternalFrame {
 
     List<Cidades> lista = new ArrayList<Cidades>();
     CidadesDAO dao;
@@ -84,7 +84,10 @@ public class CidadesGUI extends javax.swing.JFrame {
 
         jButton2.setText("jButton2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Cadastro de Cidades");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));

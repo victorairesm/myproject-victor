@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Victor
  */
-public class SuspeitosTAB extends javax.swing.JFrame {
+public class SuspeitosTAB extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form SuspeitosTAB

@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Victor
  */
-public class LocaisVisitadosTAB extends javax.swing.JFrame {
+public class LocaisVisitadosTAB extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form LocaisVisitadosTAB
