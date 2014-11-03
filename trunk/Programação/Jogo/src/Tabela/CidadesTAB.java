@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Victor
  */
-public class CidadesTAB extends javax.swing.JFrame {
+public class CidadesTAB extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CidadesTAB

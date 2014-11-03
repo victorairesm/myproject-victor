@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Marcos
  */
-public class DetetiveGUI extends javax.swing.JFrame {
+public class DetetiveGUI extends javax.swing.JInternalFrame {
 
     List<Modelo.Detetive> lista = new ArrayList<Modelo.Detetive>();
     DetetiveDAO dao;
@@ -72,7 +72,10 @@ public class DetetiveGUI extends javax.swing.JFrame {
         lblExibicao = new javax.swing.JLabel();
         btnTodos = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximizable(true);
+        setResizable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));
 

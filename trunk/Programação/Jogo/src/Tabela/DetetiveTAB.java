@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Victor
  */
-public class DetetiveTAB extends javax.swing.JFrame {
+public class DetetiveTAB extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form DetetiveTAB

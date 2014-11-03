@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  *
  * @author Marcos
  */
-public class SuspeitosGUI extends javax.swing.JFrame {
+public class SuspeitosGUI extends javax.swing.JInternalFrame {
 
     List<Suspeitos> lista = new ArrayList<Suspeitos>();
     SuspeitosDAO dao;
@@ -85,7 +85,10 @@ public class SuspeitosGUI extends javax.swing.JFrame {
         lblExibicao = new javax.swing.JLabel();
         btnTodos = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximizable(true);
+        setResizable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Navegação"));
 
