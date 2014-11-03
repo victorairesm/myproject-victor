@@ -5,7 +5,11 @@
  */
 package Janela;
 
+import Dao.CidadesDAO;
 import Dao.DetetiveDAO;
+import Dao.SuspeitosDAO;
+import Modelo.Caso;
+import Modelo.Detetive;
 import static java.awt.SystemColor.desktop;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +30,13 @@ public class LoginGUI extends javax.swing.JInternalFrame {
     /**
      * Creates new form LoginGUI
      */
+    Caso caso;
     public LoginGUI(JDesktopPane desktop) {
         initComponents();
         dao = new DetetiveDAO();
         lista = dao.Listar();
         this.desktop = desktop;
+        
     }
 
     /**
@@ -46,7 +52,7 @@ public class LoginGUI extends javax.swing.JInternalFrame {
         btnAcessar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setTitle("TchêLoque Ramos Login");
@@ -63,7 +69,12 @@ public class LoginGUI extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Email:");
 
-        jButton1.setText("Cadastrar");
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jLabel2.setText("TchêLoque Ramos");
@@ -86,7 +97,7 @@ public class LoginGUI extends javax.swing.JInternalFrame {
                         .addGap(87, 87, 87)
                         .addComponent(btnAcessar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(btnCadastrar)
                         .addContainerGap(88, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -108,7 +119,7 @@ public class LoginGUI extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAcessar)
-                            .addComponent(jButton1))
+                            .addComponent(btnCadastrar))
                         .addGap(96, 96, 96))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDetetive)
@@ -122,24 +133,31 @@ public class LoginGUI extends javax.swing.JInternalFrame {
 
         boolean encontrou = false;
         PrincipalGUI pgui = new PrincipalGUI();
-        lista = dao.ConsultarEmail(txtUser.getText());
-        encontrou = (lista.size() > 0);
+        Detetive detetive = dao.ConsultarEmail(txtUser.getText());
+        encontrou = (detetive == null);
 
         if (encontrou == false) {
             JOptionPane.showMessageDialog(null, "Email não encontrado, cadastre-se");
         } else {
             JOptionPane.showMessageDialog(null, "Email encontrado, bem-vindo!");
             local tela = new local();
+            tela.caso = caso; 
             desktop.add(tela);
             tela.show();
-            this.dispose();
+            this.dispose();     
         }
     }//GEN-LAST:event_btnAcessarActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        DetetiveGUI tela = new DetetiveGUI();
+        desktop.add(tela);
+        tela.show();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcessar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblDetetive;

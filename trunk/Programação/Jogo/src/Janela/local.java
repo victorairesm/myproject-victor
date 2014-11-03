@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Janela;
+
+import Modelo.Caso;
+import Modelo.Cidades;
 
 /**
  *
@@ -15,6 +17,10 @@ public class local extends javax.swing.JInternalFrame {
     /**
      * Creates new form local
      */
+    public Caso caso;
+    private Cidades cidade;
+    private Integer posicaoCidade = 0;
+
     public local() {
         initComponents();
     }
@@ -45,6 +51,23 @@ public class local extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setPreferredSize(new java.awt.Dimension(1024, 760));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51)));
 
@@ -252,6 +275,11 @@ public class local extends javax.swing.JInternalFrame {
     private void btnLocal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocal3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLocal3ActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        cidade = caso.getCidades().get(posicaoCidade);
+        blNomedaCidade.setText(cidade.getNomecidade());
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
