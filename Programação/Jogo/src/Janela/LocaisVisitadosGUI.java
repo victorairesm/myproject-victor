@@ -9,9 +9,13 @@ import Modelo.LocaisVisitados;
 import Dao.LocaisVisitadosDAO;
 import UTIL.ManipularImagem;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -66,6 +70,8 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         btnSelecionar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblImagem = new javax.swing.JLabel();
+        lblExibicao = new javax.swing.JLabel();
+        btnTodos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,8 +225,19 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
+
+        lblExibicao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblExibicao.setForeground(new java.awt.Color(204, 0, 0));
+        lblExibicao.setText("Todos os registros");
+
+        btnTodos.setText("Todos");
+        btnTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -229,6 +246,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,10 +263,15 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
                                 .addComponent(txtNomelocal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 89, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(lblExibicao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTodos)
+                        .addGap(40, 40, 40)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -256,9 +279,14 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblExibicao)
+                    .addComponent(btnTodos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -273,14 +301,11 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(btnSelecionar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(btnSelecionar)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -292,7 +317,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
 
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -305,7 +330,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             txtCodigo.setText(jogo.getLocalvisitadoid().toString());
             txtNomelocal.setText(jogo.getNomelocal());
             txtNomeatendente.setText(jogo.getNomeatendente());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
 
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
@@ -319,7 +344,6 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             txtNomelocal.setText(jogo.getNomelocal());
             txtNomeatendente.setText(jogo.getNomeatendente());
             exibeImagem(jogo.getImagem());
-
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -329,7 +353,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         txtCodigo.setText(jogo.getLocalvisitadoid().toString());
         txtNomelocal.setText(jogo.getNomelocal());
         txtNomeatendente.setText(jogo.getNomeatendente());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
 
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
@@ -353,7 +377,6 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-
         String consulta
                 = JOptionPane.showInputDialog("Informe o nome do local a ser"
                         + " consultado ");
@@ -361,27 +384,23 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         boolean encontrou = false;
 
         int i = 0;
-        for (LocaisVisitados jogo : lista) {
-
-            if (jogo.getNomelocal().equals(consulta)) {
-
-                txtCodigo.setText(jogo.getLocalvisitadoid().toString());
-                txtNomelocal.setText(jogo.getNomelocal());
-                txtNomeatendente.setText(jogo.getNomeatendente());
-                jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-
-                encontrou = true;
-
-                posicaoLista = i;
-                break;
-            }
-            i++;
-        }
-
+        lista = dao.Consultar(consulta);
+        encontrou = (lista.size() > 0);
+        String saidaLabel = "";
         if (encontrou == false) {
-            JOptionPane.showMessageDialog(null, "Não encontrou nenhum registro");
-        }
+            saidaLabel = "Filtrando por: " + consulta + ". Nenhum registro encontrado";
+            limparDados();
+        } else {
+            saidaLabel = "Filtrando por: " + consulta + ". Exibindo " + lista.size() + " registros";
 
+            Modelo.LocaisVisitados jogo = lista.get(posicaoLista);
+            posicaoLista = 0;
+            txtCodigo.setText(jogo.getLocalvisitadoid().toString());
+            txtNomelocal.setText(jogo.getNomelocal());
+            txtNomeatendente.setText(jogo.getNomeatendente());
+            exibeImagem(jogo.getImagem());
+        }
+        lblExibicao.setText(saidaLabel);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
@@ -438,6 +457,37 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
+    private void btnTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodosActionPerformed
+        lista = dao.Listar();
+        lblExibicao.setText("Todos os registros");
+
+        Modelo.LocaisVisitados jogo = lista.get(posicaoLista);
+        posicaoLista = 0;
+        txtCodigo.setText(jogo.getLocalvisitadoid().toString());
+        txtNomelocal.setText(jogo.getNomelocal());
+        txtNomeatendente.setText(jogo.getNomeatendente());
+        exibeImagem(jogo.getImagem());
+    }//GEN-LAST:event_btnTodosActionPerformed
+
+    private void exibeImagem(byte[] minhaimagem) {
+        //primeiro verifica se tem a imagem
+        //se tem convert para inputstream que é o formato reconhecido pelo ImageIO
+
+        if (minhaimagem != null) {
+            InputStream input = new ByteArrayInputStream(minhaimagem);
+            try {
+                imagem = ImageIO.read(input);
+            } catch (IOException ex) {
+            }
+            lblImagem.setIcon(new ImageIcon(imagem));
+
+        } else {
+            lblImagem.setIcon(null);
+            imagem = null;
+        }
+
+    }
+    
     public void limparDados() {
         txtCodigo.setText("");
         txtNomelocal.setText("");
@@ -471,6 +521,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LocaisVisitadosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -490,6 +541,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSelecionar;
+    private javax.swing.JButton btnTodos;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -498,6 +550,7 @@ public class LocaisVisitadosGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblExibicao;
     private javax.swing.JLabel lblImagem;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNomeatendente;

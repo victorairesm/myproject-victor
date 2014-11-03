@@ -345,7 +345,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
         txtEmail.setText(jogo.getEmail());
         txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
 
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -360,7 +360,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
             txtEmail.setText(jogo.getEmail());
             txtNcasos.setText(jogo.getNcasos().toString());
             cbxEquipe.setSelectedItem(jogo.getEquipe());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
 
         }
     }//GEN-LAST:event_btnProximoActionPerformed
@@ -375,7 +375,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
             txtEmail.setText(jogo.getEmail());
             txtNcasos.setText(jogo.getNcasos().toString());
             cbxEquipe.setSelectedItem(jogo.getEquipe());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
 
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
@@ -388,7 +388,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
         txtEmail.setText(jogo.getEmail());
         txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
 
         exibeImagem(jogo.getImagem());
         posicaoLista = lista.size() - 1;
@@ -438,7 +438,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
             txtEmail.setText(jogo.getEmail());
             txtNcasos.setText(jogo.getNcasos().toString());
             cbxEquipe.setSelectedItem(jogo.getEquipe());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
         }
         lblExibicao.setText(saidaLabel);
     }//GEN-LAST:event_btnConsultarActionPerformed
@@ -509,22 +509,26 @@ public class DetetiveGUI extends javax.swing.JFrame {
         txtEmail.setText(jogo.getEmail());
         txtNcasos.setText(jogo.getNcasos().toString());
         cbxEquipe.setSelectedItem(jogo.getEquipe());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
     }//GEN-LAST:event_btnTodosActionPerformed
 
     private void exibeImagem(byte[] minhaimagem) {
+        //primeiro verifica se tem a imagem
+        //se tem convert para inputstream que é o formato reconhecido pelo ImageIO
+
         if (minhaimagem != null) {
             InputStream input = new ByteArrayInputStream(minhaimagem);
             try {
                 imagem = ImageIO.read(input);
             } catch (IOException ex) {
-
             }
             lblImagem.setIcon(new ImageIcon(imagem));
+
         } else {
             lblImagem.setIcon(null);
             imagem = null;
         }
+
     }
 
     public void limparDados() {
@@ -561,6 +565,7 @@ public class DetetiveGUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DetetiveGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

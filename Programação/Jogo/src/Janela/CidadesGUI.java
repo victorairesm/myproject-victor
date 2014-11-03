@@ -9,9 +9,13 @@ import Modelo.Cidades;
 import Dao.CidadesDAO;
 import UTIL.ManipularImagem;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -408,7 +412,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText(jogo.getDica3());
         txtItem1.setText(jogo.getItem1());
         txtItem2.setText(jogo.getItem2());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
 
         posicaoLista = 0;
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -426,7 +430,7 @@ public class CidadesGUI extends javax.swing.JFrame {
             txtDica3.setText(jogo.getDica3());
             txtItem1.setText(jogo.getItem1());
             txtItem2.setText(jogo.getItem2());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
         }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -443,7 +447,7 @@ public class CidadesGUI extends javax.swing.JFrame {
             txtDica3.setText(jogo.getDica3());
             txtItem1.setText(jogo.getItem1());
             txtItem2.setText(jogo.getItem2());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
         }
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -458,7 +462,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText(jogo.getDica3());
         txtItem1.setText(jogo.getItem1());
         txtItem2.setText(jogo.getItem2());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
 
         posicaoLista = lista.size() - 1;
     }//GEN-LAST:event_btnUltimoActionPerformed
@@ -514,7 +518,7 @@ public class CidadesGUI extends javax.swing.JFrame {
             txtDica3.setText(jogo.getDica3());
             txtItem1.setText(jogo.getItem1());
             txtItem2.setText(jogo.getItem2());
-            jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+            exibeImagem(jogo.getImagem());
         }
         lblExibicao.setText(saidaLabel);
     }//GEN-LAST:event_btnConsultarActionPerformed
@@ -605,8 +609,27 @@ public class CidadesGUI extends javax.swing.JFrame {
         txtDica3.setText(jogo.getDica3());
         txtItem1.setText(jogo.getItem1());
         txtItem2.setText(jogo.getItem2());
-        jogo.setImagem(ManipularImagem.getImgBytes(imagem));
+        exibeImagem(jogo.getImagem());
     }//GEN-LAST:event_btnTodosActionPerformed
+
+    private void exibeImagem(byte[] minhaimagem) {
+        //primeiro verifica se tem a imagem
+        //se tem convert para inputstream que é o formato reconhecido pelo ImageIO
+
+        if (minhaimagem != null) {
+            InputStream input = new ByteArrayInputStream(minhaimagem);
+            try {
+                imagem = ImageIO.read(input);
+            } catch (IOException ex) {
+            }
+            lblImagem.setIcon(new ImageIcon(imagem));
+
+        } else {
+            lblImagem.setIcon(null);
+            imagem = null;
+        }
+
+    }
 
     public void limparDados() {
         txtCodigo.setText("");
@@ -645,6 +668,7 @@ public class CidadesGUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CidadesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
