@@ -162,7 +162,7 @@ public class CidadesDAO {
     
         public List<Cidades> ListarRandom() {
         List<Cidades> lista = new ArrayList<Cidades>();
-        String sql = "SELECT * FROM detetive ORDER BY RANDOM() LIMIT 3;";
+        String sql = "SELECT * FROM cidade ORDER BY RANDOM() LIMIT 3;";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
         try {
             ResultSet resultado = psm.executeQuery();

@@ -165,7 +165,7 @@ public class SuspeitosDAO {
     
         public Suspeitos ListarRandom() {
         Suspeitos retorno = new Suspeitos();
-        String sql = "SELECT * FROM detetive ORDER BY RANDOM() LIMIT 1;";
+        String sql = "SELECT * FROM suspeito ORDER BY RANDOM() LIMIT 1;";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
         try {
             ResultSet resultado = psm.executeQuery();
