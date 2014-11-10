@@ -59,6 +59,8 @@ public class JogoGUI extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         lblDescricao = new javax.swing.JLabel();
 
+        setMaximizable(true);
+        setMaximumSize(new java.awt.Dimension(4009, 3000));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
