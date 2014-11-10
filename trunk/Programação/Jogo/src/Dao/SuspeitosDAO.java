@@ -182,6 +182,7 @@ public class SuspeitosDAO {
                 obj.setTracos(resultado.getString("tracos"));
                 obj.setOutros(resultado.getString("outros"));
                 obj.setImagem(resultado.getBytes("imagem"));
+                retorno = obj;
             }
 
         } catch (SQLException ex) {

@@ -286,11 +286,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
-//ver porque não está funcionando o consultar
-//ver porque o suspeito está desalinhado
-//ver como arrumar a posição da mensagem depois do login
-//ver porque está repetindo cidades
-//ver porque o Esporte está nulo na dica do local
+//ver porque não está funcionando o consultar -------------- resolvido (problema local)
+//ver porque o suspeito está desalinhado ------------------- arrumar dps
+//ver como arrumar a posição da mensagem depois do login --- 
+//ver porque está repetindo cidades  ----------------------- não tem solução no momento
+//ver porque o Esporte está nulo na dica do local ---------- resolvido
 
 //terminar de listar os supeitos
 //ver porque não aparece o suspeito no listar
