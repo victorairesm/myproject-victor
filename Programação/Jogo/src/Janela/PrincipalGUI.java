@@ -50,6 +50,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         menuCidades = new javax.swing.JMenu();
         itemCidadesG = new javax.swing.JMenuItem();
         itemCidadesL = new javax.swing.JMenuItem();
+        itemCidadesLS = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1364, 725));
@@ -151,6 +152,15 @@ public class PrincipalGUI extends javax.swing.JFrame {
         });
         menuCidades.add(itemCidadesL);
 
+        itemCidadesLS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/listar16.png"))); // NOI18N
+        itemCidadesLS.setText("Listar Susp.");
+        itemCidadesLS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCidadesLSActionPerformed(evt);
+            }
+        });
+        menuCidades.add(itemCidadesLS);
+
         jMenuBar1.add(menuCidades);
 
         setJMenuBar(jMenuBar1);
@@ -217,6 +227,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         tela.show();
     }//GEN-LAST:event_itemCidadesLActionPerformed
 
+    private void itemCidadesLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCidadesLSActionPerformed
+        dialogSuspeitos dialog = new dialogSuspeitos(this, rootPaneCheckingEnabled);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_itemCidadesLSActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,6 +271,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenuItem itemCidadesG;
     private javax.swing.JMenuItem itemCidadesL;
+    private javax.swing.JMenuItem itemCidadesLS;
     private javax.swing.JMenuItem itemDetetiveG;
     private javax.swing.JMenuItem itemDetetiveL;
     private javax.swing.JMenuItem itemLocaisG;
@@ -269,3 +285,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenu menuSuspeitos;
     // End of variables declaration//GEN-END:variables
 }
+
+//ver porque não está funcionando o consultar
+//ver porque o suspeito está desalinhado
+//ver como arrumar a posição da mensagem depois do login
+//ver porque está repetindo cidades
+//ver porque o Esporte está nulo na dica do local
+
+//terminar de listar os supeitos
+//ver porque não aparece o suspeito no listar

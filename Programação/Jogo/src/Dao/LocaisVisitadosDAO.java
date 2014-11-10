@@ -86,6 +86,30 @@ public class LocaisVisitadosDAO {
 
         return lista;
     }
+    
+        public List<LocaisVisitados> ListarTres() {
+        List<LocaisVisitados> lista = new ArrayList<LocaisVisitados>();
+        String sql = "SELECT * FROM localvisitado ORDER BY RANDOM() LIMIT 3";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+
+            while (resultado.next()) {
+                LocaisVisitados obj = new LocaisVisitados();
+                obj.setLocalvisitadoid(resultado.getInt("localvisitadoid"));
+                obj.setNomeatendente(resultado.getString("atendente"));
+                obj.setNomelocal(resultado.getString("nome"));
+                obj.setImagem(resultado.getBytes("imagem"));
+                lista.add(obj);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            lista = null;
+        }
+
+        return lista;
+    }
 
     public List<LocaisVisitados> Consultar(String filtro) {
         List<LocaisVisitados> lista = new ArrayList<LocaisVisitados>();

@@ -215,10 +215,11 @@ public class LoginGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        local tela = new local();
+        JogoGUI tela = new JogoGUI();
         tela.caso = caso;
         desktop.add(tela);
         tela.show();
+        this.dispose();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
 

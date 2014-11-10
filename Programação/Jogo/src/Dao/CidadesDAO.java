@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -95,7 +96,7 @@ public class CidadesDAO {
 
         return lista;
     }
-    
+
     public List<Cidades> Consultar(String filtro) {
         List<Cidades> lista = new ArrayList<Cidades>();
         String sql = "SELECT * FROM cidade WHERE nome ILIKE ?";
@@ -124,7 +125,6 @@ public class CidadesDAO {
 
         return lista;
     }
-        
 
     public Boolean Atualizar(Cidades obj) {
 
@@ -133,7 +133,7 @@ public class CidadesDAO {
         String sql = "UPDATE cidade SET nome = ?, descricao = ?,"
                 + "dica1 = ?, dica2 = ?, dica3 = ?, item1 = ?,"
                 + "item2 = ?, imagem = ? WHERE cidadeid = ?";
-        
+
         PreparedStatement pst = Conexao.getPreparedStatement(sql);
 
         try {
@@ -159,8 +159,8 @@ public class CidadesDAO {
         }
         return retorno;
     }
-    
-        public List<Cidades> ListarRandom() {
+
+    public List<Cidades> ListarRandom() {
         List<Cidades> lista = new ArrayList<Cidades>();
         String sql = "SELECT * FROM cidade ORDER BY RANDOM() LIMIT 3;";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
@@ -187,6 +187,42 @@ public class CidadesDAO {
         }
 
         return lista;
+    }
+
+    public List<Cidades> ListarTres(Cidades proxima, Cidades atual) {
+        List<Cidades> lista = new ArrayList<Cidades>();
+        String sql = "SELECT * FROM cidade where cidadeid <> ? and cidadeid <> ? order by RANDOM() limit 2";
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            psm.setInt(1, proxima.getCidadeid()); //tira a id da próxima cidade
+            psm.setInt(2, atual.getCidadeid());//tira o id 
+            ResultSet resultado = psm.executeQuery();
+            //busca duas cidades "erradas"
+            while (resultado.next()) {
+                Cidades obj = new Cidades();
+                obj.setCidadeid(resultado.getInt("cidadeid"));
+                obj.setNomecidade(resultado.getString("nome"));
+                obj.setDescricao(resultado.getString("descricao"));
+                obj.setDica1(resultado.getString("dica1"));
+                obj.setDica2(resultado.getString("dica2"));
+                obj.setDica3(resultado.getString("dica3"));
+                obj.setItem1(resultado.getString("item1"));
+                obj.setItem2(resultado.getString("Item2"));
+                obj.setImagem(resultado.getBytes("imagem"));
+                lista.add(obj);
+            }
+            //adiciona a próxima cidade 
+            lista.add(proxima);
+            //embaralhar as cidades
+            Collections.shuffle(lista);
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco" + ex.getMessage());
+            lista = null;
+        }
+
+        return lista;
+
     }
 
 }
