@@ -174,6 +174,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
         );
 
         lblNomedaCidade.setFont(new java.awt.Font("Trajan Pro", 1, 24)); // NOI18N
+        lblNomedaCidade.setText("Nome da Cidade");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
 
@@ -208,16 +209,16 @@ public class JogoGUI extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblNomedaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNomedaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,6 +263,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnCidade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCidade1ActionPerformed
+        caso.setPassos(caso.getPassos()+3);
         cidade = cidadesbotoes.get(0);
         //incrementa em TRÊS os passos
         caso.setPassos(caso.getPassos() + 3);
@@ -281,6 +283,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCidade1ActionPerformed
 
     private void btnLocal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocal1ActionPerformed
+        caso.setPassos(caso.getPassos()+1);
         dialogLocal dialog = new dialogLocal(null, closable);
         
         dialog.local = locaisbotoes.get(0);
@@ -298,6 +301,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLocal1ActionPerformed
 
     private void btnCidade2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCidade2ActionPerformed
+        caso.setPassos(caso.getPassos()+3);
         cidade = cidadesbotoes.get(1);
         //incrementa em TRÊS os passos
         caso.setPassos(caso.getPassos() + 3);
@@ -317,6 +321,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCidade2ActionPerformed
 
     private void btnCidade3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCidade3ActionPerformed
+        caso.setPassos(caso.getPassos()+3);
         cidade = cidadesbotoes.get(2);
         //incrementa em TRÊS os passos
         caso.setPassos(caso.getPassos() + 3);
@@ -336,6 +341,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCidade3ActionPerformed
 
     private void btnLocal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocal2ActionPerformed
+        caso.setPassos(caso.getPassos()+1);
         dialogLocal dialog = new dialogLocal(null, closable);
         
         dialog.local = locaisbotoes.get(1);
@@ -353,6 +359,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLocal2ActionPerformed
 
     private void btnLocal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocal3ActionPerformed
+        caso.setPassos(caso.getPassos()+1);
         dialogLocal dialog = new dialogLocal(null, closable);
         
         dialog.local = locaisbotoes.get(2);
@@ -392,7 +399,25 @@ public class JogoGUI extends javax.swing.JInternalFrame {
 
         btnLocal1.setText(locaisbotoes.get(0).getNomelocal());
         btnLocal2.setText(locaisbotoes.get(1).getNomelocal());
-        btnLocal2.setText(locaisbotoes.get(2).getNomelocal());
+        btnLocal3.setText(locaisbotoes.get(2).getNomelocal());
+    }
+    
+    private boolean verificaFinal(){
+        boolean acabou = false;
+        if (caso.getPassos() > 15){
+             dialogFim fim  = new dialogFim(null, true);
+             fim.caso = caso;
+             fim.prendeu = false;  
+             acabou = true;
+        } else {
+            if (posicaoCidade == caso.getCidades().size()-1) {
+                dialogFim fim = new dialogFim(null,true);
+                fim.caso = caso;
+                fim.prendeu = true;
+                acabou = true;
+            }
+        }
+        return acabou;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
