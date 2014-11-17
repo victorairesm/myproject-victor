@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Dao/SuspeitosDAO.java</file>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Janela/SuspeitosGUI.java</file>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Janela/dialogFim.java</file>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Janela/JogoGUI.java</file>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Modelo/Caso.java</file>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Janela/dialogSuspeitos.java</file>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Janela/PrincipalGUI.java</file>
-            <file>file:/C:/Users/Aluno/Documents/Victor/Programação/Jogo/src/Janela/LoginGUI.java</file>
+            <file>file:/C:/Users/Victor/Documents/Projetos%20de%20Aula/Programação/Jogo/src/Janela/JogoGUI.java</file>
+            <file>file:/C:/Users/Victor/Documents/Projetos%20de%20Aula/Programação/Jogo/src/Janela/SuspeitosGUI.java</file>
+            <file>file:/C:/Users/Victor/Documents/Projetos%20de%20Aula/Programação/Jogo/src/Janela/PrincipalGUI.java</file>
+            <file>file:/C:/Users/Victor/Documents/Projetos%20de%20Aula/Programação/Jogo/src/Janela/DetetiveGUI.java</file>
         </group>
     </open-files>
 </project-private>
