@@ -38,6 +38,11 @@ public class LoginGUI extends javax.swing.JInternalFrame {
         lista = dao.Listar();
         this.desktop = desktop;
         painelCaso.setVisible(false);
+        
+        
+         painelLogin.setVisible(false);
+            painelCaso.setVisible(true);
+            painelCaso.setBounds(10, 10,100,100);
     }
 
     /**
@@ -203,8 +208,8 @@ public class LoginGUI extends javax.swing.JInternalFrame {
             lblTexto.setText(texto);
             painelLogin.setVisible(false);
             painelCaso.setVisible(true);
-            painelCaso.setAlignmentX(painelLogin.getAlignmentX());
-            painelCaso.setAlignmentY(painelLogin.getAlignmentY());
+            painelCaso.setLocation(painelLogin.getX(), painelLogin.getY());
+           
         }
     }//GEN-LAST:event_btnAcessarActionPerformed
 
