@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class DetetiveGUI extends javax.swing.JInternalFrame {
 
-    List<Modelo.Detetive> lista = new ArrayList<Modelo.Detetive>();
+    List<Detetive> lista = new ArrayList<>();
     DetetiveDAO dao;
     Integer posicaoLista;
     BufferedImage imagem;
