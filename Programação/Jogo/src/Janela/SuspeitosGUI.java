@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class SuspeitosGUI extends javax.swing.JInternalFrame {
 
-    List<Suspeitos> lista = new ArrayList<>();
+    List<Suspeitos> lista = new ArrayList<Suspeitos>();
     SuspeitosDAO dao;
     Integer posicaoLista;
     BufferedImage imagem;
@@ -410,17 +410,18 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
+
         Suspeitos jogo = lista.get(0);
 
-        txtCodigo.setText(jogo.getSuspeitoid().toString());
-        txtNomesuspeito.setText(jogo.getNomesuspeito());
-        cbxSexo.setSelectedItem(jogo.getSexo());
-        txtOcupacao.setText(jogo.getOcupacao());
-        txtEsporte.setText(jogo.getEsporte());
-        txtCabelo.setText(jogo.getCabelo());
-        txtCarro.setText(jogo.getCarro());
-        txtTracos.setText(jogo.getTracos());
-        txtOutros.setText(jogo.getOutros());
+        txtCodigo2.setText(jogo.getSuspeitoid().toString());
+        txtNomesuspeito2.setText(jogo.getNomesuspeito());
+        cbxSexo2.setSelectedItem(jogo.getSexo());
+        txtOcupacao2.setText(jogo.getOcupacao());
+        txtEsporte2.setText(jogo.getEsporte());
+        txtCabelo2.setText(jogo.getCabelo());
+        txtCarro2.setText(jogo.getCarro());
+        txtTracos2.setText(jogo.getTracos());
+        txtOutros2.setText(jogo.getOutros());
         exibeImagem(jogo.getImagem());
 
         posicaoLista = 0;
@@ -429,15 +430,15 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         Suspeitos jogo = lista.get(lista.size() - 1);
 
-        txtCodigo.setText(jogo.getSuspeitoid().toString());
-        txtNomesuspeito.setText(jogo.getNomesuspeito());
-        cbxSexo.setSelectedItem(jogo.getSexo());
-        txtOcupacao.setText(jogo.getOcupacao());
-        txtEsporte.setText(jogo.getEsporte());
-        txtCabelo.setText(jogo.getCabelo());
-        txtCarro.setText(jogo.getCarro());
-        txtTracos.setText(jogo.getTracos());
-        txtOutros.setText(jogo.getOutros());
+        txtCodigo2.setText(jogo.getSuspeitoid().toString());
+        txtNomesuspeito2.setText(jogo.getNomesuspeito());
+        cbxSexo2.setSelectedItem(jogo.getSexo());
+        txtOcupacao2.setText(jogo.getOcupacao());
+        txtEsporte2.setText(jogo.getEsporte());
+        txtCabelo2.setText(jogo.getCabelo());
+        txtCarro2.setText(jogo.getCarro());
+        txtTracos2.setText(jogo.getTracos());
+        txtOutros2.setText(jogo.getOutros());
         exibeImagem(jogo.getImagem());
 
         posicaoLista = lista.size() - 1;
@@ -448,15 +449,15 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
             posicaoLista = posicaoLista - 1;
             Suspeitos jogo = lista.get(posicaoLista);
 
-            txtCodigo.setText(jogo.getSuspeitoid().toString());
-            txtNomesuspeito.setText(jogo.getNomesuspeito());
-            cbxSexo.setSelectedItem(jogo.getSexo());
-            txtOcupacao.setText(jogo.getOcupacao());
-            txtEsporte.setText(jogo.getEsporte());
-            txtCabelo.setText(jogo.getCabelo());
-            txtCarro.setText(jogo.getCarro());
-            txtTracos.setText(jogo.getTracos());
-            txtOutros.setText(jogo.getOutros());
+            txtCodigo2.setText(jogo.getSuspeitoid().toString());
+            txtNomesuspeito2.setText(jogo.getNomesuspeito());
+            cbxSexo2.setSelectedItem(jogo.getSexo());
+            txtOcupacao2.setText(jogo.getOcupacao());
+            txtEsporte2.setText(jogo.getEsporte());
+            txtCabelo2.setText(jogo.getCabelo());
+            txtCarro2.setText(jogo.getCarro());
+            txtTracos2.setText(jogo.getTracos());
+            txtOutros2.setText(jogo.getOutros());
             exibeImagem(jogo.getImagem());
 
         }
@@ -467,15 +468,15 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
             posicaoLista = posicaoLista + 1;
             Suspeitos jogo = lista.get(posicaoLista);
 
-            txtCodigo.setText(jogo.getSuspeitoid().toString());
-            txtNomesuspeito.setText(jogo.getNomesuspeito());
-            cbxSexo.setSelectedItem(jogo.getSexo());
-            txtOcupacao.setText(jogo.getOcupacao());
-            txtEsporte.setText(jogo.getEsporte());
-            txtCabelo.setText(jogo.getCabelo());
-            txtCarro.setText(jogo.getCarro());
-            txtTracos.setText(jogo.getTracos());
-            txtOutros.setText(jogo.getOutros());
+            txtCodigo2.setText(jogo.getSuspeitoid().toString());
+            txtNomesuspeito2.setText(jogo.getNomesuspeito());
+            cbxSexo2.setSelectedItem(jogo.getSexo());
+            txtOcupacao2.setText(jogo.getOcupacao());
+            txtEsporte2.setText(jogo.getEsporte());
+            txtCabelo2.setText(jogo.getCabelo());
+            txtCarro2.setText(jogo.getCarro());
+            txtTracos2.setText(jogo.getTracos());
+            txtOutros2.setText(jogo.getOutros());
             exibeImagem(jogo.getImagem());
         }
     }//GEN-LAST:event_btnProximoActionPerformed
@@ -496,29 +497,29 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
 
         Modelo.Suspeitos jogo = lista.get(posicaoLista);
         posicaoLista = 0;
-        txtCodigo.setText(jogo.getSuspeitoid().toString());
-        txtNomesuspeito.setText(jogo.getNomesuspeito());
-        cbxSexo.setSelectedItem(jogo.getSexo());
-        txtOcupacao.setText(jogo.getOcupacao());
-        txtEsporte.setText(jogo.getEsporte());
-        txtCabelo.setText(jogo.getCabelo());
-        txtCarro.setText(jogo.getCarro());
-        txtTracos.setText(jogo.getTracos());
-        txtOutros.setText(jogo.getOutros());
+        txtCodigo2.setText(jogo.getSuspeitoid().toString());
+        txtNomesuspeito2.setText(jogo.getNomesuspeito());
+        cbxSexo2.setSelectedItem(jogo.getSexo());
+        txtOcupacao2.setText(jogo.getOcupacao());
+        txtEsporte2.setText(jogo.getEsporte());
+        txtCabelo2.setText(jogo.getCabelo());
+        txtCarro2.setText(jogo.getCarro());
+        txtTracos2.setText(jogo.getTracos());
+        txtOutros2.setText(jogo.getOutros());
         exibeImagem(jogo.getImagem());
     }//GEN-LAST:event_btnTodosActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
         Suspeitos jogo = new Suspeitos();
 
-        jogo.setNomesuspeito(txtNomesuspeito.getText());
-        jogo.setSexo(cbxSexo.getSelectedItem().toString());
-        jogo.setOcupacao(txtOcupacao.getText());
-        jogo.setEsporte(txtEsporte.getText());
-        jogo.setCabelo(txtCabelo.getText());
-        jogo.setCarro(txtCarro.getText());
-        jogo.setTracos(txtTracos.getText());
-        jogo.setOutros(txtOutros.getText());
+        jogo.setNomesuspeito(txtNomesuspeito2.getText());
+        jogo.setSexo(cbxSexo2.getSelectedItem().toString());
+        jogo.setOcupacao(txtOcupacao2.getText());
+        jogo.setEsporte(txtEsporte2.getText());
+        jogo.setCabelo(txtCabelo2.getText());
+        jogo.setCarro(txtCarro2.getText());
+        jogo.setTracos(txtTracos2.getText());
+        jogo.setOutros(txtOutros2.getText());
         jogo.setImagem(ManipularImagem.getImgBytes(imagem));
 
         Boolean retorno = dao.Cadastrar(jogo);
@@ -534,8 +535,8 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         String consulta
-        = JOptionPane.showInputDialog("Informe o nome do suspeito a ser"
-            + " consultado ");
+                = JOptionPane.showInputDialog("Informe o nome do suspeito a ser"
+                        + " consultado ");
 
         boolean encontrou = false;
 
@@ -551,15 +552,15 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
 
             Modelo.Suspeitos jogo = lista.get(posicaoLista);
             posicaoLista = 0;
-            txtCodigo.setText(jogo.getSuspeitoid().toString());
-            txtNomesuspeito.setText(jogo.getNomesuspeito());
-            cbxSexo.setSelectedItem(jogo.getSexo());
-            txtOcupacao.setText(jogo.getOcupacao());
-            txtEsporte.setText(jogo.getEsporte());
-            txtCabelo.setText(jogo.getCabelo());
-            txtCarro.setText(jogo.getCarro());
-            txtTracos.setText(jogo.getTracos());
-            txtOutros.setText(jogo.getOutros());
+            txtCodigo2.setText(jogo.getSuspeitoid().toString());
+            txtNomesuspeito2.setText(jogo.getNomesuspeito());
+            cbxSexo2.setSelectedItem(jogo.getSexo());
+            txtOcupacao2.setText(jogo.getOcupacao());
+            txtEsporte2.setText(jogo.getEsporte());
+            txtCabelo2.setText(jogo.getCabelo());
+            txtCarro2.setText(jogo.getCarro());
+            txtTracos2.setText(jogo.getTracos());
+            txtOutros2.setText(jogo.getOutros());
             exibeImagem(jogo.getImagem());
         }
         lblExibicao.setText(saidaLabel);
@@ -592,16 +593,16 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         Suspeitos jogo = new Suspeitos();
 
-        jogo.setNomesuspeito(txtNomesuspeito.getText());
-        jogo.setSexo(cbxSexo.getSelectedItem().toString());
-        jogo.setOcupacao(txtOcupacao.getText());
-        jogo.setEsporte(txtEsporte.getText());
-        jogo.setCabelo(txtCabelo.getText());
-        jogo.setCarro(txtCarro.getText());
-        jogo.setTracos(txtTracos.getText());
-        jogo.setOutros(txtOutros.getText());
+        jogo.setNomesuspeito(txtNomesuspeito2.getText());
+        jogo.setSexo(cbxSexo2.getSelectedItem().toString());
+        jogo.setOcupacao(txtOcupacao2.getText());
+        jogo.setEsporte(txtEsporte2.getText());
+        jogo.setCabelo(txtCabelo2.getText());
+        jogo.setCarro(txtCarro2.getText());
+        jogo.setTracos(txtTracos2.getText());
+        jogo.setOutros(txtOutros2.getText());
         jogo.setImagem(ManipularImagem.getImgBytes(imagem));
-        jogo.setSuspeitoid(Integer.parseInt(txtCodigo.getText()));
+        jogo.setSuspeitoid(Integer.parseInt(txtCodigo2.getText()));
 
         Boolean retorno = dao.Atualizar(jogo);
         if (retorno) {
@@ -633,18 +634,52 @@ public class SuspeitosGUI extends javax.swing.JInternalFrame {
     }
 
     public void limparDados() {
-        txtCodigo.setText("");
-        txtNomesuspeito.setText("");
-        cbxSexo.setSelectedIndex(-1);
-        txtOcupacao.setText("");
-        txtEsporte.setText("");
-        txtCabelo.setText("");
-        txtCarro.setText("");
-        txtTracos.setText("");
-        txtOutros.setText("");
+        txtCodigo2.setText("");
+        txtNomesuspeito2.setText("");
+        cbxSexo2.setSelectedIndex(-1);
+        txtOcupacao2.setText("");
+        txtEsporte2.setText("");
+        txtCabelo2.setText("");
+        txtCarro2.setText("");
+        txtTracos2.setText("");
+        txtOutros2.setText("");
         lblImagem.setIcon(null);
 
     }
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(SuspeitosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SuspeitosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SuspeitosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SuspeitosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SuspeitosGUI().setVisible(true);
+            }
+        });
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
