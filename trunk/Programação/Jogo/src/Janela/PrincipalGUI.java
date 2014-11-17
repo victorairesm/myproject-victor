@@ -286,7 +286,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
-//ver porque não está funcionando o suspeito -------------- resolver
+
 //ver como arrumar a posição da mensagem depois do login --- resolver
 //ver porque está repetindo cidades  ----------------------- não tem solução no momento
 
