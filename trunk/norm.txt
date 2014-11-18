@@ -1,0 +1,40 @@
+aluno(matricula, nome, curcodigo, disciplina(discodigo, disnome, procodigo, pronome, nota, faltas, situacao))
+      ---------                              ---------
+
+1fn
+aluno(matricula, nome, curcodigo, curnome)
+      ---------
+
+aluno_disciplina(matricula, discodigo, disnome, procodigo, pronome, nota, faltas, situacao)
+                 ---------  ---------        
+
+2fn
+
+aluno(matricula, nome, curcodigo, curnome)
+      ---------
+
+aluno_disciplina(matricula, discodigo, nota, faltas, situacao)
+                 ---------  ---------
+
+disciplina (discodigo, disnome, procodigo, pronome)
+            ---------
+
+3fn
+
+aluno(matricula, nome, curcodigo, curnome)
+      ---------
+
+aluno_disciplina(matricula, discodigo)
+                 ---------  ---------
+
+disciplina (discodigo, disnome)
+            ---------
+
+professor(discodigo, procodigo, pronome)
+
+          ---------  ---------
+
+historico(nota, faltas, situcao)
+
+
+twitter, ts, itau
