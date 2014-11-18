@@ -5,8 +5,11 @@
  */
 package Janela;
 
+import Dao.SuspeitosDAO;
 import Modelo.Cidades;
 import Modelo.Suspeitos;
+import UTIL.ManipularImagem;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,18 +17,50 @@ import java.util.List;
  * @author Victor
  */
 public class dialogSuspeitos extends javax.swing.JDialog {
+
     private List<Suspeitos> pegasuspeito;
+
     /**
      * Creates new form dialogSuspeitos
      */
     public dialogSuspeitos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Suspeitos susp = new Suspeitos();
-        lblNome1.setText(pegasuspeito.get(0).getNomesuspeito());
-        lblNome2.setText(pegasuspeito.get(1).getNomesuspeito());
-        lblNome2.setText(pegasuspeito.get(3).getNomesuspeito());
-        
+        List<Suspeitos> suspeitos = new ArrayList<>();
+        SuspeitosDAO dao = new SuspeitosDAO();
+
+        suspeitos = dao.Listar();
+
+        lblNome1.setText(suspeitos.get(0).getNomesuspeito());
+        lblSexo1.setText(suspeitos.get(0).getSexo());
+        lblOcupacao1.setText(suspeitos.get(0).getOcupacao());
+        lblEsporte1.setText(suspeitos.get(0).getEsporte());
+        lblCabelo1.setText(suspeitos.get(0).getCabelo());
+        lblCarro1.setText(suspeitos.get(0).getCarro());
+        lblTracos1.setText(suspeitos.get(0).getTracos());
+        lblOutros1.setText(suspeitos.get(0).getOutros());
+        ManipularImagem.exibiImagemLabel(suspeitos.get(0).getImagem(), lblExibeImagem1);
+
+        lblNome2.setText(suspeitos.get(1).getNomesuspeito());
+        lblSexo2.setText(suspeitos.get(1).getSexo());
+        lblOcupacao2.setText(suspeitos.get(1).getOcupacao());
+        lblEsporte2.setText(suspeitos.get(1).getEsporte());
+        lblCabelo2.setText(suspeitos.get(1).getCabelo());
+        lblCarro2.setText(suspeitos.get(1).getCarro());
+        lblTracos2.setText(suspeitos.get(1).getTracos());
+        lblOutros2.setText(suspeitos.get(1).getOutros());
+        ManipularImagem.exibiImagemLabel(suspeitos.get(1).getImagem(), lblExibeImagem2);
+
+        lblNome3.setText(suspeitos.get(2).getNomesuspeito());
+        lblSexo3.setText(suspeitos.get(2).getSexo());
+        lblOcupacao3.setText(suspeitos.get(2).getOcupacao());
+        lblEsporte3.setText(suspeitos.get(2).getEsporte());
+        lblCabelo3.setText(suspeitos.get(2).getCabelo());
+        lblCarro3.setText(suspeitos.get(2).getCarro());
+        lblTracos3.setText(suspeitos.get(2).getTracos());
+        lblOutros3.setText(suspeitos.get(2).getOutros());
+        ManipularImagem.exibiImagemLabel(suspeitos.get(2).getImagem(), lblExibeImagem3);
+
     }
 
     /**
@@ -38,38 +73,38 @@ public class dialogSuspeitos extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblExibeImagem = new javax.swing.JLabel();
+        lblExibeImagem1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblSexo1 = new javax.swing.JLabel();
+        lblOcupacao1 = new javax.swing.JLabel();
+        lblEsporte1 = new javax.swing.JLabel();
+        lblCabelo1 = new javax.swing.JLabel();
+        lblTracos1 = new javax.swing.JLabel();
+        lblCarro1 = new javax.swing.JLabel();
         lblNome1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblOutros1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        lblExibeImagem1 = new javax.swing.JLabel();
-        lblNome2 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         lblExibeImagem2 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jPanel3 = new javax.swing.JPanel();
+        lblExibeImagem3 = new javax.swing.JLabel();
+        lblSexo2 = new javax.swing.JLabel();
+        lblOcupacao2 = new javax.swing.JLabel();
+        lblEsporte2 = new javax.swing.JLabel();
+        lblCabelo2 = new javax.swing.JLabel();
+        lblTracos2 = new javax.swing.JLabel();
+        lblCarro2 = new javax.swing.JLabel();
+        lblNome2 = new javax.swing.JLabel();
+        lblOutros2 = new javax.swing.JLabel();
+        lblEsporte3 = new javax.swing.JLabel();
+        lblCabelo3 = new javax.swing.JLabel();
+        lblTracos3 = new javax.swing.JLabel();
+        lblCarro3 = new javax.swing.JLabel();
         lblNome3 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        lblOutros3 = new javax.swing.JLabel();
+        lblSexo3 = new javax.swing.JLabel();
+        lblOcupacao3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,13 +116,13 @@ public class dialogSuspeitos extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblExibeImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addComponent(lblExibeImagem1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblExibeImagem, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(lblExibeImagem1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -96,31 +131,21 @@ public class dialogSuspeitos extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Suspeitos");
 
-        jLabel2.setText("Sexo");
+        lblSexo1.setText("Sexo");
 
-        jLabel3.setText("Ocupação");
+        lblOcupacao1.setText("Ocupação");
 
-        jLabel4.setText("Esporte");
+        lblEsporte1.setText("Esporte");
 
-        jLabel5.setText("Cabelo ");
+        lblCabelo1.setText("Cabelo ");
 
-        jLabel6.setText("Traços");
+        lblTracos1.setText("Traços");
 
-        jLabel7.setText("Carro ");
+        lblCarro1.setText("Carro ");
 
         lblNome1.setText("Nome do Suspeito ");
 
-        jLabel9.setText("Outros");
-
-        jLabel10.setText("Ocupação");
-
-        jLabel11.setText("Esporte");
-
-        jLabel12.setText("Cabelo ");
-
-        jLabel13.setText("Traços");
-
-        jLabel14.setText("Carro ");
+        lblOutros1.setText("Outros");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
 
@@ -130,33 +155,17 @@ public class dialogSuspeitos extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblExibeImagem1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addComponent(lblExibeImagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lblExibeImagem1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(lblExibeImagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        lblNome2.setText("Nome do Suspeito ");
-
         jSeparator2.setForeground(new java.awt.Color(255, 102, 102));
-
-        jLabel16.setText("Outros");
-
-        jLabel17.setText("Sexo");
-
-        jLabel18.setText("Ocupação");
-
-        jLabel19.setText("Esporte");
-
-        jLabel20.setText("Cabelo ");
-
-        jLabel21.setText("Traços");
-
-        jLabel22.setText("Carro ");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
 
@@ -166,21 +175,47 @@ public class dialogSuspeitos extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblExibeImagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addComponent(lblExibeImagem3, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(lblExibeImagem2, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(lblExibeImagem3, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
+        lblSexo2.setText("Sexo");
+
+        lblOcupacao2.setText("Ocupação");
+
+        lblEsporte2.setText("Esporte");
+
+        lblCabelo2.setText("Cabelo ");
+
+        lblTracos2.setText("Traços");
+
+        lblCarro2.setText("Carro ");
+
+        lblNome2.setText("Nome do Suspeito ");
+
+        lblOutros2.setText("Outros");
+
+        lblEsporte3.setText("Esporte");
+
+        lblCabelo3.setText("Cabelo ");
+
+        lblTracos3.setText("Traços");
+
+        lblCarro3.setText("Carro ");
+
         lblNome3.setText("Nome do Suspeito ");
 
-        jLabel24.setText("Outros");
+        lblOutros3.setText("Outros");
 
-        jLabel25.setText("Sexo");
+        lblSexo3.setText("Sexo");
+
+        lblOcupacao3.setText("Ocupação");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,14 +228,14 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
+                            .addComponent(lblEsporte1)
+                            .addComponent(lblSexo1)
+                            .addComponent(lblCabelo1)
+                            .addComponent(lblCarro1)
+                            .addComponent(lblTracos1)
                             .addComponent(lblNome1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel9)))
+                            .addComponent(lblOcupacao1)
+                            .addComponent(lblOutros1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(jLabel1))
@@ -214,28 +249,28 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13)
+                                    .addComponent(lblEsporte2)
+                                    .addComponent(lblSexo2)
+                                    .addComponent(lblCabelo2)
+                                    .addComponent(lblCarro2)
+                                    .addComponent(lblTracos2)
                                     .addComponent(lblNome2)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel16)))
+                                    .addComponent(lblOcupacao2)
+                                    .addComponent(lblOutros2)))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel21)
+                            .addComponent(lblEsporte3)
+                            .addComponent(lblSexo3)
+                            .addComponent(lblCabelo3)
+                            .addComponent(lblCarro3)
+                            .addComponent(lblTracos3)
                             .addComponent(lblNome3)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel24))))
+                            .addComponent(lblOcupacao3)
+                            .addComponent(lblOutros3))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -251,63 +286,65 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                         .addGap(44, 44, 44)
                         .addComponent(lblNome1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(lblSexo1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(lblOcupacao1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(lblEsporte1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
+                        .addComponent(lblCabelo1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
+                        .addComponent(lblCarro1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
+                        .addComponent(lblTracos1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9)))
+                        .addComponent(lblOutros1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addComponent(lblNome2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17)
+                        .addComponent(lblSexo2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
+                        .addComponent(lblOcupacao2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11)
+                        .addComponent(lblEsporte2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12)
+                        .addComponent(lblCabelo2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel14)
+                        .addComponent(lblCarro2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13)
+                        .addComponent(lblTracos2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel16)))
+                        .addComponent(lblOutros2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addComponent(lblNome3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel25)
+                        .addComponent(lblSexo3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel18)
+                        .addComponent(lblOcupacao3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel19)
+                        .addComponent(lblEsporte3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel20)
+                        .addComponent(lblCabelo3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel22)
+                        .addComponent(lblCarro3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel21)
+                        .addComponent(lblTracos3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel24)))
+                        .addComponent(lblOutros3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -358,37 +395,37 @@ public class dialogSuspeitos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblExibeImagem;
+    private javax.swing.JLabel lblCabelo1;
+    private javax.swing.JLabel lblCabelo2;
+    private javax.swing.JLabel lblCabelo3;
+    private javax.swing.JLabel lblCarro1;
+    private javax.swing.JLabel lblCarro2;
+    private javax.swing.JLabel lblCarro3;
+    private javax.swing.JLabel lblEsporte1;
+    private javax.swing.JLabel lblEsporte2;
+    private javax.swing.JLabel lblEsporte3;
     private javax.swing.JLabel lblExibeImagem1;
     private javax.swing.JLabel lblExibeImagem2;
+    private javax.swing.JLabel lblExibeImagem3;
     private javax.swing.JLabel lblNome1;
     private javax.swing.JLabel lblNome2;
     private javax.swing.JLabel lblNome3;
+    private javax.swing.JLabel lblOcupacao1;
+    private javax.swing.JLabel lblOcupacao2;
+    private javax.swing.JLabel lblOcupacao3;
+    private javax.swing.JLabel lblOutros1;
+    private javax.swing.JLabel lblOutros2;
+    private javax.swing.JLabel lblOutros3;
+    private javax.swing.JLabel lblSexo1;
+    private javax.swing.JLabel lblSexo2;
+    private javax.swing.JLabel lblSexo3;
+    private javax.swing.JLabel lblTracos1;
+    private javax.swing.JLabel lblTracos2;
+    private javax.swing.JLabel lblTracos3;
     // End of variables declaration//GEN-END:variables
 }
