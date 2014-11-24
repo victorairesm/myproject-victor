@@ -290,4 +290,3 @@ public class PrincipalGUI extends javax.swing.JFrame {
 //ver como arrumar a posição da mensagem depois do login --- resolver
 //ver porque está repetindo cidades  ----------------------- não tem solução no momento
 
-//fazer aparecer os nomes na lista de suspeitos

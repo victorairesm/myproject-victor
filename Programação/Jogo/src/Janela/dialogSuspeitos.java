@@ -9,8 +9,12 @@ import Dao.SuspeitosDAO;
 import Modelo.Cidades;
 import Modelo.Suspeitos;
 import UTIL.ManipularImagem;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 
 /**
  *
@@ -25,6 +29,7 @@ public class dialogSuspeitos extends javax.swing.JDialog {
      */
     public dialogSuspeitos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+          
         initComponents();
         List<Suspeitos> suspeitos = new ArrayList<>();
         SuspeitosDAO dao = new SuspeitosDAO();
@@ -72,18 +77,32 @@ public class dialogSuspeitos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PainelTeste = new javax.swing.JPanel();
+        lblCabelo2 = new javax.swing.JLabel();
+        lblTracos2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblExibeImagem1 = new javax.swing.JLabel();
+        lblCarro2 = new javax.swing.JLabel();
+        lblNome2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        lblOutros2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lblEsporte3 = new javax.swing.JLabel();
         lblSexo1 = new javax.swing.JLabel();
+        lblCabelo3 = new javax.swing.JLabel();
         lblOcupacao1 = new javax.swing.JLabel();
+        lblTracos3 = new javax.swing.JLabel();
         lblEsporte1 = new javax.swing.JLabel();
+        lblCarro3 = new javax.swing.JLabel();
         lblCabelo1 = new javax.swing.JLabel();
+        lblNome3 = new javax.swing.JLabel();
         lblTracos1 = new javax.swing.JLabel();
+        lblOutros3 = new javax.swing.JLabel();
         lblCarro1 = new javax.swing.JLabel();
+        lblSexo3 = new javax.swing.JLabel();
         lblNome1 = new javax.swing.JLabel();
         lblOutros1 = new javax.swing.JLabel();
+        lblOcupacao3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblExibeImagem2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -92,21 +111,12 @@ public class dialogSuspeitos extends javax.swing.JDialog {
         lblSexo2 = new javax.swing.JLabel();
         lblOcupacao2 = new javax.swing.JLabel();
         lblEsporte2 = new javax.swing.JLabel();
-        lblCabelo2 = new javax.swing.JLabel();
-        lblTracos2 = new javax.swing.JLabel();
-        lblCarro2 = new javax.swing.JLabel();
-        lblNome2 = new javax.swing.JLabel();
-        lblOutros2 = new javax.swing.JLabel();
-        lblEsporte3 = new javax.swing.JLabel();
-        lblCabelo3 = new javax.swing.JLabel();
-        lblTracos3 = new javax.swing.JLabel();
-        lblCarro3 = new javax.swing.JLabel();
-        lblNome3 = new javax.swing.JLabel();
-        lblOutros3 = new javax.swing.JLabel();
-        lblSexo3 = new javax.swing.JLabel();
-        lblOcupacao3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        lblCabelo2.setText("Cabelo ");
+
+        lblTracos2.setText("Traços");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
 
@@ -126,26 +136,48 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        lblCarro2.setText("Carro ");
+
+        lblNome2.setText("Nome do Suspeito ");
+
         jSeparator1.setForeground(new java.awt.Color(255, 102, 102));
+
+        lblOutros2.setText("Outros");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Suspeitos");
 
+        lblEsporte3.setText("Esporte");
+
         lblSexo1.setText("Sexo");
+
+        lblCabelo3.setText("Cabelo ");
 
         lblOcupacao1.setText("Ocupação");
 
+        lblTracos3.setText("Traços");
+
         lblEsporte1.setText("Esporte");
+
+        lblCarro3.setText("Carro ");
 
         lblCabelo1.setText("Cabelo ");
 
+        lblNome3.setText("Nome do Suspeito ");
+
         lblTracos1.setText("Traços");
 
+        lblOutros3.setText("Outros");
+
         lblCarro1.setText("Carro ");
+
+        lblSexo3.setText("Sexo");
 
         lblNome1.setText("Nome do Suspeito ");
 
         lblOutros1.setText("Outros");
+
+        lblOcupacao3.setText("Ocupação");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem"));
 
@@ -191,43 +223,20 @@ public class dialogSuspeitos extends javax.swing.JDialog {
 
         lblEsporte2.setText("Esporte");
 
-        lblCabelo2.setText("Cabelo ");
-
-        lblTracos2.setText("Traços");
-
-        lblCarro2.setText("Carro ");
-
-        lblNome2.setText("Nome do Suspeito ");
-
-        lblOutros2.setText("Outros");
-
-        lblEsporte3.setText("Esporte");
-
-        lblCabelo3.setText("Cabelo ");
-
-        lblTracos3.setText("Traços");
-
-        lblCarro3.setText("Carro ");
-
-        lblNome3.setText("Nome do Suspeito ");
-
-        lblOutros3.setText("Outros");
-
-        lblSexo3.setText("Sexo");
-
-        lblOcupacao3.setText("Ocupação");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+        javax.swing.GroupLayout PainelTesteLayout = new javax.swing.GroupLayout(PainelTeste);
+        PainelTeste.setLayout(PainelTesteLayout);
+        PainelTesteLayout.setHorizontalGroup(
+            PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelTesteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabel1))
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEsporte1)
                             .addComponent(lblSexo1)
                             .addComponent(lblCabelo1)
@@ -236,33 +245,24 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                             .addComponent(lblNome1)
                             .addComponent(lblOcupacao1)
                             .addComponent(lblOutros1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblEsporte2)
-                                    .addComponent(lblSexo2)
-                                    .addComponent(lblCabelo2)
-                                    .addComponent(lblCarro2)
-                                    .addComponent(lblTracos2)
-                                    .addComponent(lblNome2)
-                                    .addComponent(lblOcupacao2)
-                                    .addComponent(lblOutros2)))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEsporte2)
+                            .addComponent(lblSexo2)
+                            .addComponent(lblCabelo2)
+                            .addComponent(lblCarro2)
+                            .addComponent(lblTracos2)
+                            .addComponent(lblNome2)
+                            .addComponent(lblOcupacao2)
+                            .addComponent(lblOutros2)))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblEsporte3)
                             .addComponent(lblSexo3)
                             .addComponent(lblCabelo3)
@@ -271,18 +271,18 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                             .addComponent(lblNome3)
                             .addComponent(lblOcupacao3)
                             .addComponent(lblOutros3))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+        PainelTesteLayout.setVerticalGroup(
+            PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelTesteLayout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(lblNome1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -301,11 +301,11 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                         .addComponent(lblOutros1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(lblNome2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -324,11 +324,11 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                         .addComponent(lblOutros2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(PainelTesteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(PainelTesteLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(lblNome3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -344,8 +344,20 @@ public class dialogSuspeitos extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblTracos3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblOutros3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblOutros3))))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PainelTeste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PainelTeste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -394,6 +406,7 @@ public class dialogSuspeitos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PainelTeste;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
