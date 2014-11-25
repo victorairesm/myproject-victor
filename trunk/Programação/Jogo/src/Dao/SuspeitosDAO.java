@@ -162,8 +162,8 @@ public class SuspeitosDAO {
         }
         return retorno;
     }
-    
-        public Suspeitos ListarRandom() {
+
+    public Suspeitos ListarRandom() {
         Suspeitos retorno = new Suspeitos();
         String sql = "SELECT * FROM suspeito ORDER BY RANDOM() LIMIT 1;";
         PreparedStatement psm = Conexao.getPreparedStatement(sql);
@@ -190,6 +190,114 @@ public class SuspeitosDAO {
             retorno = null;
         }
 
+        return retorno;
+    }
+
+    public List<String> retornaCabelo() {
+        String sql = "SELECT DISTINCT cabelo FROM suspeito ORDER BY cabelo";
+        List<String> retorno = new ArrayList<>();
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                String cabelo = resultado.getString("cabelo");
+                retorno.add(cabelo);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            retorno = null;
+        }
+        return retorno;
+    }
+
+    public List<String> retornaCarro() {
+        String sql = "SELECT DISTINCT carro FROM suspeito ORDER BY carro";
+        List<String> retorno = new ArrayList<>();
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                String carro = resultado.getString("carro");
+                retorno.add(carro);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            retorno = null;
+        }
+        return retorno;
+    }
+
+    public List<String> retornaEsporte() {
+        String sql = "SELECT DISTINCT esporte FROM suspeito ORDER BY esporte";
+        List<String> retorno = new ArrayList<>();
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                String esporte = resultado.getString("esporte");
+                retorno.add(esporte);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            retorno = null;
+        }
+        return retorno;
+    }
+
+    public List<String> retornaOcupacao() {
+        String sql = "SELECT DISTINCT ocupacao FROM suspeito ORDER BY ocupacao";
+        List<String> retorno = new ArrayList<>();
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                String ocupacao = resultado.getString("ocupacao");
+                retorno.add(ocupacao);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            retorno = null;
+        }
+        return retorno;
+    }
+
+    public List<String> retornaTracos() {
+        String sql = "SELECT DISTINCT tracos FROM suspeito ORDER BY tracos";
+        List<String> retorno = new ArrayList<>();
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                String tracos = resultado.getString("tracos");
+                retorno.add(tracos);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            retorno = null;
+        }
+        return retorno;
+    }
+
+    public List<String> retornaOutros() {
+        String sql = "SELECT DISTINCT outros FROM suspeito ORDER BY outros";
+        List<String> retorno = new ArrayList<>();
+        PreparedStatement psm = Conexao.getPreparedStatement(sql);
+        try {
+            ResultSet resultado = psm.executeQuery();
+            while (resultado.next()) {
+                String outros = resultado.getString("outros");
+                retorno.add(outros);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro ao acessar o banco: " + ex.getMessage().toString());
+            retorno = null;
+        }
         return retorno;
     }
 
