@@ -301,4 +301,58 @@ public class SuspeitosDAO {
         return retorno;
     }
 
+    public List<Suspeitos> buscaMandato(String ocupacao, String esporte, String carro,
+            String sexo, String outros, String cabelo, String tracos) {
+
+        List<Suspeitos> lista = new ArrayList<Suspeitos>();
+        try {
+            String sql = "SELECT * FROM SUSPEITO WHERE";
+            if (cabelo.isEmpty() == false) {
+                sql = sql + "cabelo= '" + cabelo + "' AND";
+            }
+            if (carro.isEmpty() == false) {
+                sql = sql + "carro= '" + carro + "' AND";
+            }
+            if (sexo.isEmpty() == false) {
+                sql = sql + "sexo= '" + sexo + "' AND";
+            }
+            if (esporte.isEmpty() == false) {
+                sql = sql + "esporte= '" + esporte + "' AND";
+            }
+            if (ocupacao.isEmpty() == false) {
+                sql = sql + "ocupacao= '" + ocupacao + "' AND";
+            }
+            if (tracos.isEmpty() == false) {
+                sql = sql + "tracos= '" + tracos + "' AND";
+            }
+            if (outros.isEmpty() == false) {
+                sql = sql + "outros= '" + outros + "' AND";
+            }
+            sql = sql.substring(0, sql.length() - 5);
+
+            PreparedStatement psm = Conexao.getPreparedStatement(sql);
+
+            ResultSet resultado = psm.executeQuery();
+
+            while (resultado.next()) {
+                Suspeitos obj = new Suspeitos();
+                obj.setSuspeitoid(resultado.getInt("suspeitoid"));
+                obj.setSexo(resultado.getString("sexo"));
+                obj.setNomesuspeito(resultado.getString("nome"));
+                obj.setOcupacao(resultado.getString("ocupacao"));
+                obj.setEsporte(resultado.getString("esporte"));
+                obj.setCabelo(resultado.getString("cabelo"));
+                obj.setCarro(resultado.getString("carro"));
+                obj.setTracos(resultado.getString("tracos"));
+                obj.setOutros(resultado.getString("outros"));
+                obj.setImagem(resultado.getBytes("imagem"));
+                lista.add(obj);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(" Erro ao acessar o banco" + ex.getMessage().toString());
+        }
+        return lista;
+    }
+
 }

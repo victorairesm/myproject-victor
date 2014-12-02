@@ -180,6 +180,8 @@ public class dialogMandato extends javax.swing.JDialog {
                jProgressBar1.setValue(jProgressBar1.getValue()+10);
             }
         }, delay, interval);
+        
+        
 
     }//GEN-LAST:event_btnEmitirActionPerformed
 
