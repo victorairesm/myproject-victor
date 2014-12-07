@@ -301,34 +301,34 @@ public class SuspeitosDAO {
         return retorno;
     }
 
-    public List<Suspeitos> buscaMandato(String ocupacao, String esporte, String carro,
-            String sexo, String outros, String cabelo, String tracos) {
+    public List<Suspeitos> buscaMandato(String cabelo, String carro, String sexo,
+            String esporte, String ocupacao, String tracos, String outros) {
 
         List<Suspeitos> lista = new ArrayList<Suspeitos>();
         try {
-            String sql = "SELECT * FROM SUSPEITO WHERE";
+            String sql = "SELECT * FROM SUSPEITO WHERE ";
             if (cabelo.isEmpty() == false) {
-                sql = sql + "cabelo= '" + cabelo + "' AND";
+                sql = sql + "cabelo = '" + cabelo + "' AND";
             }
             if (carro.isEmpty() == false) {
-                sql = sql + "carro= '" + carro + "' AND";
+                sql = sql + " carro = '" + carro + "' AND";
             }
             if (sexo.isEmpty() == false) {
-                sql = sql + "sexo= '" + sexo + "' AND";
+                sql = sql + " sexo = '" + sexo + "' AND";
             }
             if (esporte.isEmpty() == false) {
-                sql = sql + "esporte= '" + esporte + "' AND";
+                sql = sql + " esporte = '" + esporte + "' AND";
             }
             if (ocupacao.isEmpty() == false) {
-                sql = sql + "ocupacao= '" + ocupacao + "' AND";
+                sql = sql + " ocupacao = '" + ocupacao + "' AND";
             }
             if (tracos.isEmpty() == false) {
-                sql = sql + "tracos= '" + tracos + "' AND";
+                sql = sql + " tracos = '" + tracos + "' AND";
             }
             if (outros.isEmpty() == false) {
-                sql = sql + "outros= '" + outros + "' AND";
+                sql = sql + " outros = '" + outros + "' AND";
             }
-            sql = sql.substring(0, sql.length() - 5);
+            sql = sql.substring(0, sql.length() - 4);
 
             PreparedStatement psm = Conexao.getPreparedStatement(sql);
 
