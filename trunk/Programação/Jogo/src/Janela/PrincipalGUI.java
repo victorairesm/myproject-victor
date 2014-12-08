@@ -44,6 +44,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
         menuSuspeitos = new javax.swing.JMenu();
         itemSuspeitosG = new javax.swing.JMenuItem();
         itemSuspeitosL = new javax.swing.JMenuItem();
+        itemMandato = new javax.swing.JMenuItem();
         menuLocaisvisitados = new javax.swing.JMenu();
         itemLocaisG = new javax.swing.JMenuItem();
         itemLocaisL = new javax.swing.JMenuItem();
@@ -109,6 +110,14 @@ public class PrincipalGUI extends javax.swing.JFrame {
             }
         });
         menuSuspeitos.add(itemSuspeitosL);
+
+        itemMandato.setText("Mandato");
+        itemMandato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMandatoActionPerformed(evt);
+            }
+        });
+        menuSuspeitos.add(itemMandato);
 
         jMenuBar1.add(menuSuspeitos);
 
@@ -232,6 +241,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_itemCidadesLSActionPerformed
 
+    private void itemMandatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMandatoActionPerformed
+        dialogMandato dialog = new dialogMandato(this, rootPaneCheckingEnabled);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_itemMandatoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -276,6 +290,7 @@ public class PrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemDetetiveL;
     private javax.swing.JMenuItem itemLocaisG;
     private javax.swing.JMenuItem itemLocaisL;
+    private javax.swing.JMenuItem itemMandato;
     private javax.swing.JMenuItem itemSuspeitosG;
     private javax.swing.JMenuItem itemSuspeitosL;
     private javax.swing.JMenuBar jMenuBar1;
