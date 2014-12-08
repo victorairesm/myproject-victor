@@ -214,8 +214,7 @@ public class dialogMandato extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmitirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirActionPerformed
-        String ocupacao = "", esporte = "", carro = "",
-                sexo = "", outros = "", cabelo = "", tracos = "";
+
         int delay = 100;   // delay de 0,1 seg.
         int interval = 30;  // intervalo de 0,01 seg.
 
@@ -223,45 +222,50 @@ public class dialogMandato extends javax.swing.JDialog {
 
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
+                String ocupacao = "", esporte = "", carro = "",
+                        sexo = "", outros = "", cabelo = "", tracos = "";
                 jProgressBar1.setValue(jProgressBar1.getValue() + 1);
+                if (jProgressBar1.getValue() >= 100) {
+                    if (cbxCabelo.getSelectedIndex() > 0) {
+                        cabelo = cbxCabelo.getSelectedItem().toString();
+                    }
+                    if (cbxCarro.getSelectedIndex() > 0) {
+                        carro = cbxCarro.getSelectedItem().toString();
+                    }
+                    if (cbxSexo.getSelectedIndex() > 0) {
+                        sexo = cbxSexo.getSelectedItem().toString();
+                    }
+                    if (cbxEsporte.getSelectedIndex() > 0) {
+                        esporte = cbxEsporte.getSelectedItem().toString();
+                    }
+                    if (cbxOcupacao.getSelectedIndex() > 0) {
+                        ocupacao = cbxOcupacao.getSelectedItem().toString();
+                    }
+                    if (cbxTracos.getSelectedIndex() > 0) {
+                        tracos = cbxTracos.getSelectedItem().toString();
+                    }
+                    if (cbxOutros.getSelectedIndex() > 0) {
+                        outros = cbxOutros.getSelectedItem().toString();
+                    }
+
+                    SuspeitosDAO dao = new SuspeitosDAO();
+                    List<Suspeitos> lista = dao.buscaMandato(cabelo, carro, sexo,
+                            esporte, ocupacao, tracos, outros);
+
+                    if (lista.isEmpty()) {
+                        lblResultado.setText("Nenhum suspeito encontrado!");
+                    } else {
+                        if (lista.size() == 1) {
+                            lblResultado.setText("Mandato emitido com sucesso para: " + lista.get(0).getNomesuspeito());
+                        } else {
+                            lblResultado.setText("Temos mais suspeitos do que imaginamos!");
+                        }
+                    }
+                }
             }
+
         }, delay, interval);
 
-        if (cbxCabelo.getSelectedIndex() > 0) {
-            cabelo = cbxCabelo.getSelectedItem().toString();
-        }
-        if (cbxCarro.getSelectedIndex() > 0) {
-            carro = cbxCarro.getSelectedItem().toString();
-        }
-        if (cbxSexo.getSelectedIndex() > 0) {
-            sexo = cbxSexo.getSelectedItem().toString();
-        }
-        if (cbxEsporte.getSelectedIndex() > 0) {
-            esporte = cbxEsporte.getSelectedItem().toString();
-        }
-        if (cbxOcupacao.getSelectedIndex() > 0) {
-            ocupacao = cbxOcupacao.getSelectedItem().toString();
-        }
-        if (cbxTracos.getSelectedIndex() > 0) {
-            tracos = cbxTracos.getSelectedItem().toString();
-        }
-        if (cbxOutros.getSelectedIndex() > 0) {
-            outros = cbxOutros.getSelectedItem().toString();
-        }
-
-        SuspeitosDAO dao = new SuspeitosDAO();
-        List<Suspeitos> lista = dao.buscaMandato(cabelo, carro, sexo,
-                esporte, ocupacao, tracos, outros);
-
-        if (lista.isEmpty()) {
-            lblResultado.setText("Nenhum suspeito encontrado!");
-        } else {        
-            if (lista.size() == 1) {
-                lblResultado.setText("Mandato emitido com sucesso para: " + lista.get(0).getNomesuspeito());
-            } else {
-                lblResultado.setText("Temos mais suspeitos do que imaginamos!");
-            }
-        }
     }//GEN-LAST:event_btnEmitirActionPerformed
 
     /**
