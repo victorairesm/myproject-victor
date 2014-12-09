@@ -6,12 +6,13 @@
 package Janela;
 
 import Dao.SuspeitosDAO;
+import Modelo.Caso;
 import Modelo.Suspeitos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.TimerTask;
 import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JComboBox;
 
 /**
@@ -23,6 +24,9 @@ public class dialogMandato extends javax.swing.JDialog {
     /**
      * Creates new form dialogMandato
      */
+    
+    Caso caso;
+    
     public dialogMandato(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -257,6 +261,7 @@ public class dialogMandato extends javax.swing.JDialog {
                     } else {
                         if (lista.size() == 1) {
                             lblResultado.setText("Mandato emitido com sucesso para: " + lista.get(0).getNomesuspeito());
+                            caso.setMandato(true);
                         } else {
                             lblResultado.setText("Temos mais suspeitos do que imaginamos!");
                         }
