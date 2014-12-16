@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
@@ -11,13 +10,13 @@ package Modelo;
  * @author Marcos
  */
 public class Detetive {
-    
-   private String nome;
-   private String email;
-   private Integer ncasos;
-   private String equipe;
-   private Integer detetiveid;
-   private byte[] imagem;
+
+    private String nome;
+    private String email;
+    private Integer ncasos;
+    private String equipe;
+    private Integer detetiveid;
+    private byte[] imagem;
 
     public String getNome() {
         return nome;
@@ -66,5 +65,25 @@ public class Detetive {
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
-   
+
+    public String getPatente() {
+        String retorno = "";
+        if (this.getNcasos() < 3) {
+            retorno = "Recruta";
+            return retorno;
+        } else {
+            if (this.getNcasos() < 5) {
+                retorno = "Oficial";
+                return retorno;
+            } else {
+                if (this.getNcasos() < 8) {
+                    retorno = "Delegado";
+                    return retorno;
+                } else {
+                    retorno = "Herói de Guerra";
+                    return retorno;
+                }
+            }
+        }
+    }
 }
