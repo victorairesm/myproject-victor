@@ -6,13 +6,17 @@
 package Janela;
 
 import Dao.CidadesDAO;
+import Dao.DetetiveDAO;
 import Dao.LocaisVisitadosDAO;
 import Modelo.Caso;
 import Modelo.Cidades;
 import Modelo.LocaisVisitados;
+import Modelo.Mandato;
 import UTIL.ManipularImagem;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -287,15 +291,25 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     private void logicaLocal(int numeroBotao) {
 
         if (caso.getCidades().get(2).getDescricao().equals(cidade.getDescricao())) {
-            dialogFim fim = new dialogFim(null, closable);
-            if (!caso.getMandato()) {
+            dialogFim fim = new dialogFim(null, true);
+            if (Mandato.getMandatoEmitido() == false) {
                 fim.prendeu = false;
                 fim.caso = this.caso;
                 fim.setVisible(true);
             } else {
-                fim.prendeu = true;
-                fim.caso = this.caso;
-                fim.setVisible(true);
+                if (Mandato.getSuspeito().getNomesuspeito().equals(caso.getSuspeito().getNomesuspeito())) {
+
+                    fim.prendeu = true;
+                    fim.caso = this.caso;
+                    fim.setVisible(true);
+                    caso.getDetetive().setNcasos(caso.getDetetive().getNcasos()+1);
+                    DetetiveDAO dao = new DetetiveDAO();
+                    dao.Atualizar(caso.getDetetive());
+                } else {
+                    fim.prendeu = false;
+                    fim.caso = this.caso;
+                    fim.setVisible(true);
+                }
             }
         } else {
 
@@ -306,8 +320,41 @@ public class JogoGUI extends javax.swing.JInternalFrame {
             String dica;
             dica = "<html>";
             if (perdido == false) {
-                dica += "Olá, ele me perguntou sobre o(a) " + proxima.getDica1() + ". <br>Ele "
-                        + "me disse que praticava " + caso.getSuspeito().getEsporte();
+                Random gerador = new Random();
+                String dicaG = "";
+                int dicax = gerador.nextInt(3);
+                switch (dicax) {
+                    case 0:
+                            dicaG = proxima.getDica1();
+                        break;
+                            
+                            case 1:
+                                    dicaG = proxima.getDica2();
+                                 break;
+                                    
+                                    case 2:
+                                            dicaG = proxima.getDica3();
+                                         break;
+                                                
+                                               default:
+                                                        dicaG = proxima.getDica1();
+                                                    break;
+                }
+                
+                String dicaSuspeito;
+                List<String> listaDicas = new ArrayList<>();
+                
+                listaDicas.add("Ela tinha cabelo "+caso.getSuspeito().getCabelo());
+                listaDicas.add("Ela tinha um "+caso.getSuspeito().getCarro());
+                listaDicas.add("Ela me disse que praticava "+caso.getSuspeito().getEsporte());
+                listaDicas.add("Ela era "+caso.getSuspeito().getOcupacao());
+                listaDicas.add("Ela me falou sobre "+caso.getSuspeito().getOutros());
+                listaDicas.add("Me parecia uma "+caso.getSuspeito().getTracos());
+
+                Collections.shuffle(listaDicas);
+      
+                dica += "Olá, ela me perguntou sobre o(a) " + dicaG + ". <br>"
+                        + listaDicas.get(0);
             } else {
                 dica += "Que estranho!<br> Não vi ninguém por aqui.";
             }

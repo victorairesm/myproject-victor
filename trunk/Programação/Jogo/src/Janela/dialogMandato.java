@@ -7,6 +7,7 @@ package Janela;
 
 import Dao.SuspeitosDAO;
 import Modelo.Caso;
+import Modelo.Mandato;
 import Modelo.Suspeitos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +25,8 @@ public class dialogMandato extends javax.swing.JDialog {
     /**
      * Creates new form dialogMandato
      */
-    
     Caso caso;
-    
+
     public dialogMandato(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -218,6 +218,14 @@ public class dialogMandato extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEmitirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmitirActionPerformed
+        /*btnEmitir.setEnabled(false);
+        cbxCabelo.setEnabled(false);
+        cbxCarro.setEnabled(false);
+        cbxEsporte.setEnabled(false);
+        cbxOcupacao.setEnabled(false);
+        cbxOutros.setEnabled(false);
+        cbxSexo.setEnabled(false);
+        cbxTracos.setEnabled(false);*/
 
         int delay = 100;   // delay de 0,1 seg.
         int interval = 30;  // intervalo de 0,01 seg.
@@ -261,9 +269,12 @@ public class dialogMandato extends javax.swing.JDialog {
                     } else {
                         if (lista.size() == 1) {
                             lblResultado.setText("Mandato emitido com sucesso para: " + lista.get(0).getNomesuspeito());
-                            caso.setMandato(true);
+
+                            Mandato.setSuspeito(lista.get(0));
+                            Mandato.setMandatoEmitido(true);
+
                         } else {
-                            lblResultado.setText("Temos mais suspeitos do que imaginamos!");
+                            lblResultado.setText("Temos mais suspeitos do que imaginavamos!");
                         }
                     }
                 }

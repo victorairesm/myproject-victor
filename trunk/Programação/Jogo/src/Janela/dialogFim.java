@@ -104,7 +104,7 @@ public class dialogFim extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (prendeu) {
             lblTextofinal.setText("Parabéns, o(a) " + caso.getSuspeito().getNomesuspeito()
-                    + " foi preso com sucesso");
+                    + " foi preso(a) com sucesso!");
         } else {
             lblTextofinal.setText("Que barbaridade,deu errado tchê!!");
         }
