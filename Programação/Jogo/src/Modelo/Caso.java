@@ -20,6 +20,7 @@ public class Caso {
     private List<Cidades> cidades;
     private Integer passos;
     private Boolean mandato;
+    private Detetive detetive;
     
     public Caso() {
         this.passos = 0;
@@ -63,5 +64,13 @@ public class Caso {
 
     public void setMandato(Boolean mandato) {
         this.mandato = mandato;
+    }
+
+    public Detetive getDetetive() {
+        return detetive;
+    }
+
+    public void setDetetive(Detetive detetive) {
+        this.detetive = detetive;
     }
 }

@@ -10,6 +10,7 @@ import Dao.DetetiveDAO;
 import Dao.SuspeitosDAO;
 import Modelo.Caso;
 import Modelo.Detetive;
+import Modelo.Mandato;
 import static java.awt.SystemColor.desktop;
 import java.util.ArrayList;
 import java.util.List;
@@ -187,25 +188,28 @@ public class LoginGUI extends javax.swing.JInternalFrame {
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
 
-        String texto = "";
         boolean encontrou = false;
         PrincipalGUI pgui = new PrincipalGUI();
         Detetive detetive = dao.ConsultarEmail(txtUser.getText());
         encontrou = (detetive == null);
-
+        
+        String texto = "";
         if (encontrou == true) {
             JOptionPane.showMessageDialog(null, "Email não encontrado, cadastre-se");
         } else {
             JOptionPane.showMessageDialog(null, "Email encontrado, bem-vindo!");
-             caso = new Caso();
+            caso = new Caso();
+            caso.setDetetive(detetive);
             texto = "<html>E ai <b>" + detetive.getNome() + "</b>, teu posto atual é recruta. Vamos desvendar um crime?.<br>";
             texto += "" + caso.getCidades().get(0).getItem1() + " roubado de " + caso.getCidades().get(0).getNomecidade() + ".<br>";
             texto += "Suspeito fugiu de " + caso.getCidades().get(0).getNomecidade() + ". Vá atrás dele TCHÊ.</html>";
-            
+
+            Mandato.limpaMandato();
+
             lblTexto.setText(texto);
             painelLogin.setVisible(false);
             painelCaso.setVisible(true);
-           
+
         }
     }//GEN-LAST:event_btnAcessarActionPerformed
 
@@ -223,6 +227,20 @@ public class LoginGUI extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
+    private void proximoCaso() {
+        String texto = "";
+        if (encontrou == true) {
+            JOptionPane.showMessageDialog(null, "Email não encontrado, cadastre-se");
+        } else {
+            JOptionPane.showMessageDialog(null, "Email encontrado, bem-vindo!");
+            caso = new Caso();
+            caso.setDetetive(detetive);
+            texto = "<html>E ai <b>" + detetive.getNome() + "</b>, teu posto atual é recruta. Vamos desvendar um crime?.<br>";
+            texto += "" + caso.getCidades().get(0).getItem1() + " roubado de " + caso.getCidades().get(0).getNomecidade() + ".<br>";
+            texto += "Suspeito fugiu de " + caso.getCidades().get(0).getNomecidade() + ". Vá atrás dele TCHÊ.</html>";
+
+            Mandato.limpaMandato();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcessar;
