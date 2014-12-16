@@ -266,15 +266,18 @@ public class dialogMandato extends javax.swing.JDialog {
 
                     if (lista.isEmpty()) {
                         lblResultado.setText("Nenhum suspeito encontrado!");
+                        
                     } else {
                         if (lista.size() == 1) {
                             lblResultado.setText("Mandato emitido com sucesso para: " + lista.get(0).getNomesuspeito());
 
                             Mandato.setSuspeito(lista.get(0));
                             Mandato.setMandatoEmitido(true);
+                            
 
                         } else {
                             lblResultado.setText("Temos mais suspeitos do que imaginavamos!");
+                            
                         }
                     }
                 }

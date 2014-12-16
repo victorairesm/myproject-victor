@@ -6,6 +6,12 @@
 package Janela;
 
 import Modelo.Caso;
+import Modelo.Detetive;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -18,10 +24,12 @@ public class dialogFim extends javax.swing.JDialog {
      */
     public Caso caso;
     public Boolean prendeu;
-
-    public dialogFim(java.awt.Frame parent, boolean modal) {
+    private JDesktopPane desktop;
+    
+    public dialogFim(java.awt.Frame parent, boolean modal, JDesktopPane desktop) {
         super(parent, modal);
         initComponents();
+        this.desktop = desktop;
     }
 
     /**
@@ -49,6 +57,11 @@ public class dialogFim extends javax.swing.JDialog {
         lblTitulo.setText("Caso Encerrado");
 
         btnProximo.setText("Próximo caso");
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -110,6 +123,27 @@ public class dialogFim extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        Detetive detetive = caso.getDetetive();
+        caso = new Caso();
+        caso.setDetetive(detetive);
+        this.setVisible(false);
+        JInternalFrame[] lista = desktop.getAllFrames();
+        for (JInternalFrame interno : lista) {
+            try {
+                interno.setClosed(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(dialogFim.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        ProximoCaso tela = new ProximoCaso(desktop);
+        tela.caso = caso;
+        desktop.add(tela);
+        tela.show();
+        this.setVisible(false);
+    }//GEN-LAST:event_btnProximoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -140,7 +174,7 @@ public class dialogFim extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                dialogFim dialog = new dialogFim(new javax.swing.JFrame(), true);
+                dialogFim dialog = new dialogFim(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -33,11 +34,13 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     private List<Cidades> cidadesbotoes;
     private List<LocaisVisitados> locaisbotoes;
     private boolean perdido = false;
+    private JDesktopPane desktop;
     private Integer posicaoCidade = 0;
     List<Cidades> lista = new ArrayList<Cidades>();
 
-    public JogoGUI() {
+    public JogoGUI(JDesktopPane desktop) {
         initComponents();
+        this.desktop = desktop;
     }
 
     /**
@@ -291,7 +294,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     private void logicaLocal(int numeroBotao) {
 
         if (caso.getCidades().get(2).getDescricao().equals(cidade.getDescricao())) {
-            dialogFim fim = new dialogFim(null, true);
+            dialogFim fim = new dialogFim(null, true, this.desktop);
             if (Mandato.getMandatoEmitido() == false) {
                 fim.prendeu = false;
                 fim.caso = this.caso;
@@ -302,7 +305,7 @@ public class JogoGUI extends javax.swing.JInternalFrame {
                     fim.prendeu = true;
                     fim.caso = this.caso;
                     fim.setVisible(true);
-                    caso.getDetetive().setNcasos(caso.getDetetive().getNcasos()+1);
+                    caso.getDetetive().setNcasos(caso.getDetetive().getNcasos() + 1);
                     DetetiveDAO dao = new DetetiveDAO();
                     dao.Atualizar(caso.getDetetive());
                 } else {
@@ -325,34 +328,34 @@ public class JogoGUI extends javax.swing.JInternalFrame {
                 int dicax = gerador.nextInt(3);
                 switch (dicax) {
                     case 0:
-                            dicaG = proxima.getDica1();
+                        dicaG = proxima.getDica1();
                         break;
-                            
-                            case 1:
-                                    dicaG = proxima.getDica2();
-                                 break;
-                                    
-                                    case 2:
-                                            dicaG = proxima.getDica3();
-                                         break;
-                                                
-                                               default:
-                                                        dicaG = proxima.getDica1();
-                                                    break;
+
+                    case 1:
+                        dicaG = proxima.getDica2();
+                        break;
+
+                    case 2:
+                        dicaG = proxima.getDica3();
+                        break;
+
+                    default:
+                        dicaG = proxima.getDica1();
+                        break;
                 }
-                
+
                 String dicaSuspeito;
                 List<String> listaDicas = new ArrayList<>();
-                
-                listaDicas.add("Ela tinha cabelo "+caso.getSuspeito().getCabelo());
-                listaDicas.add("Ela tinha um "+caso.getSuspeito().getCarro());
-                listaDicas.add("Ela me disse que praticava "+caso.getSuspeito().getEsporte());
-                listaDicas.add("Ela era "+caso.getSuspeito().getOcupacao());
-                listaDicas.add("Ela me falou sobre "+caso.getSuspeito().getOutros());
-                listaDicas.add("Me parecia uma "+caso.getSuspeito().getTracos());
+
+                listaDicas.add("Ela tinha cabelo " + caso.getSuspeito().getCabelo());
+                listaDicas.add("Ela tinha um " + caso.getSuspeito().getCarro());
+                listaDicas.add("Ela me disse que praticava " + caso.getSuspeito().getEsporte());
+                listaDicas.add("Ela era " + caso.getSuspeito().getOcupacao());
+                listaDicas.add("Ela me falou sobre " + caso.getSuspeito().getOutros());
+                listaDicas.add("Me parecia uma " + caso.getSuspeito().getTracos());
 
                 Collections.shuffle(listaDicas);
-      
+
                 dica += "Olá, ela me perguntou sobre o(a) " + dicaG + ". <br>"
                         + listaDicas.get(0);
             } else {
@@ -447,20 +450,23 @@ public class JogoGUI extends javax.swing.JInternalFrame {
     private boolean verificaFinal() {
         boolean acabou = false;
         if (caso.getPassos() > 15) {
-            dialogFim fim = new dialogFim(null, true);
+            dialogFim fim = new dialogFim(null, true, this.desktop);
             fim.caso = caso;
             fim.prendeu = false;
             acabou = true;
+
         } else {
             if (posicaoCidade == caso.getCidades().size() - 1) {
-                dialogFim fim = new dialogFim(null, true);
+                dialogFim fim = new dialogFim(null, true, this.desktop);
                 fim.caso = caso;
                 fim.prendeu = true;
                 acabou = true;
+
             }
         }
         return acabou;
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCidade1;

@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Victor
  */
 public class LoginGUI extends javax.swing.JInternalFrame {
-
+    
     List<Modelo.Detetive> lista = new ArrayList<Modelo.Detetive>();
     DetetiveDAO dao;
     Integer posicaoLista;
@@ -32,7 +32,7 @@ public class LoginGUI extends javax.swing.JInternalFrame {
      * Creates new form LoginGUI
      */
     Caso caso;
-
+    
     public LoginGUI(JDesktopPane desktop) {
         initComponents();
         dao = new DetetiveDAO();
@@ -40,7 +40,7 @@ public class LoginGUI extends javax.swing.JInternalFrame {
         this.desktop = desktop;
         painelCaso.setVisible(false);
         painelLogin.setVisible(true);
-
+        
     }
 
     /**
@@ -187,7 +187,7 @@ public class LoginGUI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-
+        
         boolean encontrou = false;
         PrincipalGUI pgui = new PrincipalGUI();
         Detetive detetive = dao.ConsultarEmail(txtUser.getText());
@@ -198,18 +198,9 @@ public class LoginGUI extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Email não encontrado, cadastre-se");
         } else {
             JOptionPane.showMessageDialog(null, "Email encontrado, bem-vindo!");
-            caso = new Caso();
-            caso.setDetetive(detetive);
-            texto = "<html>E ai <b>" + detetive.getNome() + "</b>, teu posto atual é recruta. Vamos desvendar um crime?.<br>";
-            texto += "" + caso.getCidades().get(0).getItem1() + " roubado de " + caso.getCidades().get(0).getNomecidade() + ".<br>";
-            texto += "Suspeito fugiu de " + caso.getCidades().get(0).getNomecidade() + ". Vá atrás dele TCHÊ.</html>";
-
-            Mandato.limpaMandato();
-
-            lblTexto.setText(texto);
-            painelLogin.setVisible(false);
-            painelCaso.setVisible(true);
-
+            
+            proximoCaso(detetive);
+            
         }
     }//GEN-LAST:event_btnAcessarActionPerformed
 
@@ -220,26 +211,29 @@ public class LoginGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        JogoGUI tela = new JogoGUI();
+        JogoGUI tela = new JogoGUI(this.desktop);
         tela.caso = caso;
         desktop.add(tela);
         tela.show();
         this.dispose();
     }//GEN-LAST:event_btnIniciarActionPerformed
-
-    private void proximoCaso() {
+    
+    private void proximoCaso(Detetive detetive) {
+        
         String texto = "";
-        if (encontrou == true) {
-            JOptionPane.showMessageDialog(null, "Email não encontrado, cadastre-se");
-        } else {
-            JOptionPane.showMessageDialog(null, "Email encontrado, bem-vindo!");
-            caso = new Caso();
-            caso.setDetetive(detetive);
-            texto = "<html>E ai <b>" + detetive.getNome() + "</b>, teu posto atual é recruta. Vamos desvendar um crime?.<br>";
-            texto += "" + caso.getCidades().get(0).getItem1() + " roubado de " + caso.getCidades().get(0).getNomecidade() + ".<br>";
-            texto += "Suspeito fugiu de " + caso.getCidades().get(0).getNomecidade() + ". Vá atrás dele TCHÊ.</html>";
-
-            Mandato.limpaMandato();
+        
+        caso = new Caso();
+        caso.setDetetive(detetive);
+        texto = "<html>E ai <b>" + detetive.getNome() + "</b>, teu posto atual é recruta. Vamos desvendar um crime?.<br>";
+        texto += "" + caso.getCidades().get(0).getItem1() + " roubado de " + caso.getCidades().get(0).getNomecidade() + ".<br>";
+        texto += "Suspeito fugiu de " + caso.getCidades().get(0).getNomecidade() + ". Vá atrás dele TCHÊ.</html>";
+        
+        Mandato.limpaMandato();
+        
+        lblTexto.setText(texto);
+        painelLogin.setVisible(false);
+        painelCaso.setVisible(true);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
